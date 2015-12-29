@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
+<Configuration>
+<!-- IP Teacher  -->
+		<IP>10.3.19.3</IP>
+		
+		<!-- Broad Cast UDP-->
+		<IP_UDP>10.3.255.255</IP_UDP>
+
+		<!--  port UDP for find new student-->
+		<PORT_UDP>9900</PORT_UDP>
+
+		<!--  port UDP for send boards content-->
+		<PORT_UDP_BOARD>9910</PORT_UDP_BOARD>
+
+		<!--  port TCP for get screenImage-->
+		<PORT_TCP_IMG>9920</PORT_TCP_IMG>
+		
+		<!--  port TCP for get command-->		
+		<PORT_TCP_COMMAND>9930</PORT_TCP_COMMAND>
+		
+		<!--  port TCP for get ScreenStream-->		
+		<PORT_TCP_ScStr>9940</PORT_TCP_ScStr>
+		
+</Configuration>
+	<Colors>
+		<Bacground>CCFFFF</Bacground>
+		<Foreground>9900CC</Foreground>
+		<LineColor>5214FF</LineColor>
+		<FillColor>0F00FF</FillColor>	 
+	</Colors>
+</application>

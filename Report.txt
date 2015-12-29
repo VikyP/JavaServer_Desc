@@ -1,0 +1,1267 @@
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+myjavadesc.MyJavaCanvas	4	Position not represented by view		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+UDP_Listener.run()Address already in use: Cannot bind		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+Sender_UDP.Send(..)!!!!!!!!!!!!Address already in use: JVM_Bind		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+UDP_Listener.run()Address already in use: Cannot bind		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.5.5	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.106	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+Ошибка подключения по адресу 10.3.2.111	Connection refused: connect		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		

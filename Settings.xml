@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
+<Configuration>
+<!-- IP Teacher  -->192.168.0
+	<IP>192.168.0.101</IP>
+	
+	<!-- Broad Cast UDP-->
+	<IP_UDP>192.168.0.255</IP_UDP>
+
+	<!--  port UDP for find new student-->
+	<PORT_UDP>9800</PORT_UDP>
+
+	<!--UDP порт приема данных доски  + 1 -->
+	<!--PORT_UDP_BOARD>9801</PORT_UDP_BOARD-->
+		
+	<!--TCP порт отправки экрана студета +2 -->
+	<!--PORT_TCP_IMG>9820</PORT_TCP_IMG-->
+		
+	<!--TCP порт получения команд  +3 -->		
+	<!--PORT_TCP_COMMAND>9830</PORT_TCP_COMMAND-->
+		
+	<!--port UDP for get ScreenStream +4 -->		
+	<!--PORT_TCP_ScStr>9840</PORT_TCP_ScStr-->
+		
+</Configuration>
+	<Colors>
+		<Background>999999</Background>
+		<Foreground>FFFF33</Foreground>
+		<LineColor>000099</LineColor>
+		<FillColor>00FFCC</FillColor>	 
+	</Colors>
+	<Line>
+		<Thickness>1.0</Thickness>
+		<Dash>0</Dash>
+
+	</Line>
+
+</application>
