@@ -784,7 +784,8 @@ public class MyJavaCanvas extends JEditorPane {
      *
      * @return высоту строки
      */
-    private int getHeightLine() {
+    private int getHeightLine()
+    {
         FontMetrics metrics = this.getGraphics().getFontMetrics(this.getFont());
         return metrics.getHeight();
     }
