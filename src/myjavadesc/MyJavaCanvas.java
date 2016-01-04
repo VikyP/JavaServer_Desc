@@ -45,8 +45,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JEditorPane;
+import javax.swing.JSpinner;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -77,11 +80,8 @@ public class MyJavaCanvas extends JEditorPane {
 
     //данные для заголовка
     //состояние (вкл/выкл) записи звука
-   // public boolean isRecord = false;
-
-   // private String group = "";
-    
     public RecordInfo recordHead;
+    
     //состояние (вкл/выкл) трансляции экрана преподавателя
     public boolean isShareScreen = false;
 
@@ -92,25 +92,41 @@ public class MyJavaCanvas extends JEditorPane {
 
     //список фигур доски
     public ArrayList<IShapeAction> shapes = new ArrayList<IShapeAction>();
+    
     // якоря выбранной фигуры
     private AnchorsManipulations EditAnchors;
+    
     //событие изменился тип фигуры для рисования
     public EventAddShape EASh = new EventAddShape();
+    
     // тип фигуры, который будет нарисован
     public int shapeType = ShapeType.None;
+    
     // количество строк на доске
     private int rowsCount = 30;
+    private int rowHeigth=0;
+    private int rowDescent=0;
+    
+     // количество символов в строке
+    private int colsCount = 80;
+    private int colWidth=0;
     // Цвет линии
     public Color LineColor;
+    
     // Цвет заливки
     public Color FillColor;
+    
     //толщина линии
     public float stroke;
-
+    
+    //тип линии
     public int typeLine = 0;
+    
     //флаг (рисовать или нет фигуру при движении мышки)
     //Fonts  Courier, Andale Mono, Monaco, Profont, Consolas, Deja Vu Sans Mono
-    private Font F = new Font(Font.MONOSPACED, Font.PLAIN, 16);
+    private Font F = new Font(Font.MONOSPACED, Font.PLAIN, 16);   
+    private int fontHeight=0;
+    
 
     //флаг рисование в данный момент
     private boolean isDraw = false;
@@ -123,14 +139,17 @@ public class MyJavaCanvas extends JEditorPane {
     // текущая позиция мышки
     private Point curP;
 
-    private int RedLineX = 0;
+    //предварительная высота, пересчитывается в зависимости от размера шрифта
     private int height = 600;
+    
+    // ширина доски
     private int width = 750;
-
+    // номер текущей строчки, в которой находится курсор
+    // передается на доску студента и подсвечивается
     private byte indexRow = 1;
 
     private SPenLine freeLine;
-
+    
     private int currentEditAction = EditAction.empty;
 
     /**
@@ -167,13 +186,25 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * Поток, отправляющий данные доски - текст
      */
-    private class ThreadSendeкText extends Thread {
+    private class ThreadSendeкText extends Thread
+    {
+        int count=0;
+        final int frequency=3;
+        String oldText="";
 
         @Override
         public void run() {
             while (true) {
-                try {
+                try 
+                {
+                    if(!oldText.equals(MyJavaCanvas.this.getText()))
+                        count=0;
+                    if(count%frequency==0)
+                    {
+                    System.out.println("    TEXT ");
                     MyJavaCanvas.this.sender.Send(MyJavaCanvas.this.textToBytes());
+                    }
+                    count++;
 
                     Thread.sleep(timeT);
                 } catch (InterruptedException ex) {
@@ -195,6 +226,7 @@ public class MyJavaCanvas extends JEditorPane {
         public void run() {
             while (true) {
                 try {
+                    System.out.println("    Graph ");
 
                     synchronized (MyJavaCanvas.this.shapes) {
                         MyJavaCanvas.this.sender.Send(MyJavaCanvas.this.graphToBytes());
@@ -213,16 +245,21 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * @return the rowsCount
      */
-    public int getRowsCount() {
+    public int getRowsCount()
+    {
         return rowsCount;
     }
 
     /**
      * @param rowsCount the rowsCount to set
      */
-    public final void setRowsCount(int rowsCount) {
+    public final void setRowsCount(int rowsCount)
+    {
         this.rowsCount = rowsCount;
+        
     }
+    
+    
 
     private class KeyListenerEdit implements KeyListener {
 
@@ -403,18 +440,9 @@ public class MyJavaCanvas extends JEditorPane {
     class MyMouseMotionListener extends MouseMotionAdapter {
 
         @Override
-        public void mouseDragged(MouseEvent me) {
-            //<editor-fold defaultstate="collapsed" desc="Изменение размеров"> 
-            if (MyJavaCanvas.this.getCursor().getType() == java.awt.Cursor.E_RESIZE_CURSOR) {
-                int stepX = me.getX() - MyJavaCanvas.this.begP.x;
-                Dimension newSize = new Dimension(MyJavaCanvas.this.getPreferredSize().width + stepX, MyJavaCanvas.this.getHeight());
-
-                MyJavaCanvas.this.RedLineX = me.getX();
-
-            }
-            //</editor-fold>   
-            //<editor-fold defaultstate="collapsed" desc="Редактирование ">
-
+        public void mouseDragged(MouseEvent me)
+        {
+           
             if (MyJavaCanvas.this.isEdit && MyJavaCanvas.this.isManipulation) {
 
                 int index = MyJavaCanvas.this.editTools.shapesList.getSelectedIndex();
@@ -567,6 +595,26 @@ public class MyJavaCanvas extends JEditorPane {
             MyJavaCanvas.this.clearBoard();
         }
     };
+    
+    public  ChangeListener FontSizeChanger = new ChangeListener()
+    {
+
+        @Override
+        public void stateChanged(ChangeEvent e)
+        {
+            JSpinner fontSize = (JSpinner)e.getSource();
+            
+            fontHeight=(int)fontSize.getValue();
+            float val=Float.parseFloat(fontSize.getValue().toString());
+            
+            MyJavaCanvas.this.setFont(F.deriveFont(val));
+            MyJavaCanvas.this.getFontMetrics_HW();
+            
+            MyJavaCanvas.this.validate();
+            MyJavaCanvas.this.repaint();
+        }
+    
+    };
 
     /**
      * удаление выбранного графического объекта *
@@ -581,7 +629,8 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * копирование и вставка выбранного графического объекта *
      */
-    ActionListener addselect = new ActionListener() {
+    ActionListener addselect = new ActionListener()
+    {
         @Override
         public void actionPerformed(ActionEvent e) {
             MyJavaCanvas.this.addSelect();
@@ -628,35 +677,26 @@ public class MyJavaCanvas extends JEditorPane {
 
     };
     BufferedImage b;
+    
+    private final int left=35;
+    private final int top=13;
+    private final int right=20;
+    private final int bottom=20;
 
     public MyJavaCanvas() {
         setOpaque(false);
-        /*   try
-         {
-         //HTMLDocument hd = new HTMLDocument();
-         // this.setContentType("text/html");
-         // this.setDocument(hd);
-            
-         b = ImageIO.read(new File("i_.jpeg"));
-         } catch (IOException ex)
-         {
-         Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
-         }*/
-
         this.addMouseListener(new MyJavaCanvas.MyMouselistener());
         this.addMouseMotionListener(new MyJavaCanvas.MyMouseMotionListener());
         this.addKeyListener(new KeyListenerText());
 
         //this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
         // this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        this.rowsCount = 30;
-        this.setRowsCount(rowsCount);
-        this.setPreferredSize(new Dimension(this.width, this.height));
-        this.setMaximumSize(new Dimension(this.width, this.height));
-        this.setMinimumSize(new Dimension(100, 200));
-
-        Insets myMargin = new Insets(13, 35, 10, 20);
-        this.setMargin(myMargin);
+      // this.rowsCount = 30;
+        
+        getFontMetrics_HW();
+       
+        this.setMinimumSize(new Dimension(200, 200));
+        this.setMargin(new Insets(top, left, bottom, right));
 
         this.TST = new ThreadSendeкText();
         this.TST.setDaemon(true);
@@ -671,7 +711,6 @@ public class MyJavaCanvas extends JEditorPane {
         this.editTools.shapesList.addListSelectionListener(selectShape);
         this.editTools.shapesList.addKeyListener(new KeyListenerEdit());
         this.editTools.isSelectedOne(false);
-
         this.addComponentListener(new ComponentListener() {
 
             @Override
@@ -685,33 +724,32 @@ public class MyJavaCanvas extends JEditorPane {
             }
 
             @Override
-            public void componentShown(ComponentEvent e) {
-                System.out.println("    **** canvas show ");
-                // TextTimer.schedule(TextTask, 1000, 50);
-                //  GraphTimer.schedule(GraphTask, 2500, 200);
-                MyJavaCanvas.this.timeG = 200;
+            public void componentShown(ComponentEvent e)
+            {                
+                MyJavaCanvas.this.timeG = 100;
                 MyJavaCanvas.this.timeT = 50;
             }
 
             @Override
-            public void componentHidden(ComponentEvent e) {
-                System.out.println("    **** canvas Hidden ");
+            public void componentHidden(ComponentEvent e)
+            {               
                 MyJavaCanvas.this.timeG = 5000;
                 MyJavaCanvas.this.timeT = 2000;
             }
         });
-
-        this.addCaretListener(new CaretListener() {
+        this.addCaretListener(new CaretListener()
+        {
             @Override
-            public void caretUpdate(CaretEvent ce) {
+            public void caretUpdate(CaretEvent ce)
+            {
                 int pos = MyJavaCanvas.this.getCaretPosition();
                 Element map = MyJavaCanvas.this.getDocument().getDefaultRootElement();
                 int row = map.getElementIndex(pos);
                 Element lineElem = map.getElement(row);
                 int col = pos - lineElem.getStartOffset();
                 MyJavaCanvas.this.indexRow = (byte) row;
-                System.out.println("   row " + MyJavaCanvas.this.indexRow);
-                System.out.println("   col " + col);
+              // System.out.println("   row " + MyJavaCanvas.this.indexRow);
+               //System.out.println("   col " + col);
             }
 
         });
@@ -723,19 +761,43 @@ public class MyJavaCanvas extends JEditorPane {
      *
      * @param SC объект с данными из файла
      */
-    public void Init(SettingsConfig SC) {
+    public void Init(SettingsConfig SC) 
+    {
         this.sender = new Sender_UDP(SC.IP_UDP, SC.PORT_UDP_BOARD);
-
         this.setDrawColors(SC.LineColor, SC.FillColor);
         this.setColors(SC.Background, SC.Foreground);
         this.stroke = SC.thicknessLine;
         this.typeLine = SC.typeLine;
-        this.setFont(F);
-        this.RedLineX = this.width;
         this.TST.start();
         this.TSG.start();
 
     }
+    
+    
+    /**
+     * Определение высоты строки в зависимости от размера шрифта     *
+     * @return высоту строки
+     */
+     private void getFontMetrics_HW()
+    {
+        BufferedImage BI = new BufferedImage(this.width, this.height,BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d= (Graphics2D)BI.createGraphics();
+        g2d.setFont(this.getFont());
+        FontMetrics metrics = g2d.getFontMetrics(this.getFont());
+        g2d.dispose();
+        
+        this.rowHeigth= metrics.getHeight();  
+        this.rowDescent=metrics.getMaxDescent();
+        this.colWidth = metrics.charWidth('X');
+        
+        this.height= this.rowHeigth*(this.rowsCount+1)+this.top+this.bottom ; 
+        this.width=this.colWidth*(this.colsCount+1)+this.left+this.right;
+        
+        this.setPreferredSize(new Dimension(this.width, this.height));
+        this.setMaximumSize(new Dimension(this.width, this.height));
+    }
+    
+
 
     /**
      * Добавление выбранной фигуры
@@ -777,17 +839,6 @@ public class MyJavaCanvas extends JEditorPane {
         }
         this.repaint();
 
-    }
-
-    /**
-     * Определение высоты строки в зависимости от размера шрифта
-     *
-     * @return высоту строки
-     */
-    private int getHeightLine()
-    {
-        FontMetrics metrics = this.getGraphics().getFontMetrics(this.getFont());
-        return metrics.getHeight();
     }
 
     /**
@@ -836,7 +887,7 @@ public class MyJavaCanvas extends JEditorPane {
             int lastIndex = this.getText().length() - 1;
             Rectangle R = this.modelToView(lastIndex);
 // обрезка текста
-            while (lastIndex > 0 && R.getY() > (this.rowsCount + 10) * this.getHeightLine() + 5) {
+            while (lastIndex > 0 && R.getY() > (this.rowsCount + 10) * this.rowHeigth + 5) {
                 lastIndex--;
                 R = this.modelToView(lastIndex);
                 isCut = true;
@@ -860,16 +911,17 @@ public class MyJavaCanvas extends JEditorPane {
      *
      * @param g Graphics доски
      */
-    private void drawLinesNumber(Graphics2D g2D) {
-        int H = this.getHeightLine();
+    private void drawLinesNumber(Graphics2D g2D)
+    {
 
         g2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
-        g2D.setFont(this.F);
+        g2D.setFont(this.getFont());
         g2D.setColor(this.getForeground());
         AlphaComposite A1 = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
         g2D.setComposite(A1);
-        for (int i = 0; i < getRowsCount(); i++) {
-            g2D.drawString((i + 1) + "", 5, (i + 1) * H + 10);
+        for (int i = 0; i < getRowsCount(); i++)
+        {
+            g2D.drawString((i + 1) + "", 5, (i+1) * this.rowHeigth +this.top-this.rowDescent);
         }
         AlphaComposite A2 = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f);
         g2D.setComposite(A2);
@@ -881,7 +933,8 @@ public class MyJavaCanvas extends JEditorPane {
      *
      * @param g Graphics доски
      */
-    private void draw_IsDraw(Graphics g) {
+    private void draw_IsDraw(Graphics g)
+    {
         if (!this.isDraw) {
             return;
         }
@@ -923,16 +976,6 @@ public class MyJavaCanvas extends JEditorPane {
 
     }
 
-    /**
-     * происовка красной линиии(ограничения видимости доски для студента)
-     *
-     * @param g
-     */
-    private void drawRedLine(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawLine(this.RedLineX, 0, this.RedLineX, MyJavaCanvas.this.getHeight());
-
-    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -944,7 +987,8 @@ public class MyJavaCanvas extends JEditorPane {
             int x = (getWidth() - b.getWidth()) / 2;
             int y = (getHeight() - b.getHeight()) / 2;
             g2d.drawImage(b, 0, 0, this);
-        } else {
+        } 
+        else {
             g2d.setColor(getBackground());
             g2d.fillRect(0, 0, getWidth(), getHeight());
         }
@@ -952,7 +996,6 @@ public class MyJavaCanvas extends JEditorPane {
             R.draw(g);
         }
 
-        // drawRedLine(g);
         draw_IsDraw(g);
         if (this.EditAnchors != null) {
             this.EditAnchors.DrawAnchors(g);
@@ -960,13 +1003,16 @@ public class MyJavaCanvas extends JEditorPane {
 
         drawLinesNumber(g2d);
         getUI().paint(g2d, this);
+        g2d.setColor(this.getBackground());
+        g2d.fillRect(0, this.rowHeigth*(this.rowsCount)+this.rowHeigth/2, this.getWidth(), this.getHeight()-this.rowHeigth*this.rowsCount);
         g2d.dispose();
     }
 
     /**
      * очистка доски от графических объектов
      */
-    public void clearBoard() {
+    public void clearBoard()
+    {
         endEdit();
         this.shapes.clear();
         this.editTools.dlm.removeAllElements();
@@ -988,7 +1034,8 @@ public class MyJavaCanvas extends JEditorPane {
         this.repaint();
     }
 
-    protected Graphics2D setProperties(Graphics g) {
+    protected Graphics2D setProperties(Graphics g)
+    {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2D.setColor(this.LineColor);
@@ -997,9 +1044,7 @@ public class MyJavaCanvas extends JEditorPane {
     }
 
     /**
-     * запись текста в массив байт для отправки по UDP
-     *
-     *
+     * запись текста в массив байт для отправки по UDP 
      * @return массив байт с текстом
      */
     private byte[] textToBytes() {
@@ -1007,7 +1052,11 @@ public class MyJavaCanvas extends JEditorPane {
             ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
             DataOutputStream DOS = new DataOutputStream(BAOS);
             writeHead(DOS, TypeInfo.TEXT);
-            synchronized (this.getText()) {
+            synchronized (this.getText())
+            {
+                //параметр для согласования размеров холста, шрифта, расположения и масштаба графики
+                DOS.writeByte(this.fontHeight);
+                //  текст с доски
                 DOS.writeUTF(this.getText());
             }
             return BAOS.toByteArray();
@@ -1025,7 +1074,6 @@ public class MyJavaCanvas extends JEditorPane {
 
     /**
      * Запись графического содержимого в массив байт для отправки по UDP
-     *
      * @return массив байт с графикой
      */
     private byte[] graphToBytes() {
@@ -1111,7 +1159,10 @@ public class MyJavaCanvas extends JEditorPane {
     private void writeBytesGraph(DataOutputStream DOS) {
         try {
 
-            synchronized (this.shapes) {
+            synchronized (this.shapes)
+            {
+                DOS.writeInt(this.getWidth());
+                DOS.writeInt(this.getHeight());
                 //размер массива
                 DOS.writeInt(shapes.size());
                 // запись всех фигур
@@ -1144,7 +1195,10 @@ public class MyJavaCanvas extends JEditorPane {
      *
      * @param f файл для сохранения доски
      */
-    public void save(File f) {
+    public void save(File f)
+    {
+        if(!f.exists())
+            return;
         FileOutputStream FOS = null;
         DataOutputStream DOS = null;
         try {
@@ -1153,12 +1207,15 @@ public class MyJavaCanvas extends JEditorPane {
             this.writeBytesText(DOS);
             this.writeBytesGraph(DOS);
 
-        } catch (FileNotFoundException ex) {
+        }
+        catch 
+                (FileNotFoundException ex) {
             ReportException.write(" Ошибка записи файла 1  " + f.getName());
         } finally {
             try {
                 DOS.close();
                 FOS.close();
+                
             } catch (IOException ex) {
                 ReportException.write(" Ошибка записи файла 3  " + f.getName());
             }
@@ -1176,6 +1233,7 @@ public class MyJavaCanvas extends JEditorPane {
             if (DIS.available() == 0) {
                 return;
             }
+            getFontMetrics_HW();
             int length = DIS.readInt();
             System.out.println(length);
             byte[] text = new byte[length];
@@ -1247,27 +1305,20 @@ public class MyJavaCanvas extends JEditorPane {
      */
     public void readBoard(File f)
     {
-        try {
+        try 
+        {
             String gr=f.getPath().substring(f.getPath().indexOf("_"), f.getPath().indexOf("\\"));
-            //this.group = gr;
             this.recordHead.setNameGroup(gr);
         }
         catch (Exception exc)
         {
             System.out.println("     GROUP ????");
-          //  this.group = "000000";
             this.recordHead.setNameGroup("???");
         }
         this.setText("");
         this.clearBoard();
-        this.height =( this.rowsCount+1) * getHeightLine();
-        if (this.getHeight() != this.height)
-        {
-            this.setPreferredSize(new Dimension(this.width, this.height));
-            this.setMaximumSize(new Dimension(this.width, this.height));            
-        }
-        FileInputStream FIS;
-        DataInputStream DIS;
+        FileInputStream FIS=null;
+        DataInputStream DIS=null;
         try {
             FIS = new FileInputStream(f);
             DIS = new DataInputStream(FIS);
@@ -1278,11 +1329,26 @@ public class MyJavaCanvas extends JEditorPane {
             readBitesText(DIS);
             readBitesGraph(DIS);
             this.repaint();
-        } catch (FileNotFoundException ex) {
+            
+        }
+        catch (FileNotFoundException ex) {
             ReportException.write(" Ошибка чтения файла (графика) " + f.getName());
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally
+                
+                {
+                    try {
+                    FIS.close();
+                    DIS.close();
+            }
+                    catch (IOException ex) {
+                Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
 
     }
     //</editor-fold>

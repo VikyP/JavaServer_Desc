@@ -12,10 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import masterPanel.RecordInfo;
@@ -26,6 +28,7 @@ import userControl.DashLineComboBox;
 
 import userControl.DrawTools;
 import userControl.SettingTools;
+import userControl.SizeSketch;
 import userControl.ToolsPanel;
 import userControl.WidthLineComboBox;
 
@@ -41,8 +44,8 @@ public class MasterBoard extends JPanel {
     private JScrollPane scrollPaneTools;
     private JSplitPane mainPanel;
     private JTextArea plan;
-    private int modeType = 0;
     private SettingsConfig styles;
+    
     
     public File fileCurrentBoard;
 
@@ -59,9 +62,9 @@ public class MasterBoard extends JPanel {
 
     IChShapeType IShType = new IChShapeType() {
         @Override
-        public void setShapeType(int ShapeType) {
+        public void setShapeType(int ShapeType) 
+        {
             MasterBoard.this.myCanvas.shapeType = ShapeType;
-          //  System.out.println("ShapeType " +ShapeType);
         }
     };
 
@@ -73,8 +76,7 @@ public class MasterBoard extends JPanel {
         {
            
             if(f==null)
-            {
-                System.out.println(" M******************************************************************");
+            {                
                 MasterBoard.this.myCanvas.clearBoard();
                 MasterBoard.this.myCanvas.setText("");
                 return;
@@ -98,7 +100,7 @@ public class MasterBoard extends JPanel {
 /**
  * конструктор создания доски
  */
-    public MasterBoard(SettingsConfig SC, RecordInfo r) 
+    public MasterBoard(SettingsConfig SC, RecordInfo r, JToggleButton b) 
     {    
         
         this.styles=SC;
@@ -124,7 +126,7 @@ public class MasterBoard extends JPanel {
         this.myCanvas.recordHead=r; 
         this.myCanvas.setVisible(false);        
         this.canvasPanel.add(this.myCanvas);
-         this.canvasPanel.setBackground(getPanelBackground(this.myCanvas.getBackground()));
+        this.canvasPanel.setBackground(getPanelBackground(this.myCanvas.getBackground()));
       
         this.plan = new JTextArea();
         this.MasterPane.setLayout(new BorderLayout());
@@ -134,11 +136,13 @@ public class MasterBoard extends JPanel {
         SP.setResizeWeight(1);
         this.tools = new ToolsPanel();
         this.MasterPane.add(SP, BorderLayout.CENTER);
-        this.settings= new SettingTools (SC.thicknessLine,SC.typeLine,this.tools.widthControl);
+        this.settings= new SettingTools (SC.thicknessLine,SC.typeLine);
         initTools();
         settings.currFill.setBackground(SC.FillColor);
         settings.currLine.setBackground(SC.Background);
         settings.currLine.setProperties(SC.LineColor, SC.thicknessLine, SC.typeLine);
+        this.archF.rec=b;
+        this.archF.fontSize.setValue(SC.fontSize);
         this.add(this.MasterPane, BorderLayout.CENTER);
         
     }
@@ -158,37 +162,39 @@ public class MasterBoard extends JPanel {
         this.scrollPaneTools.setViewportView(this.tools);  
         this.MasterPane.add(this.scrollPaneTools, BorderLayout.WEST);
         
-        this.tools.setPreferredSize(new Dimension(this.tools.width,this.BoardDim.height));
+        this.tools.setPreferredSize(new Dimension(SizeSketch.TOOLPANEL_WIDTH,this.BoardDim.height));
         
         this.colorChooser= new JColorChooser(this.myCanvas.getForeground());
         
         //<editor-fold defaultstate="collapsed" desc=" Группа ">
        //заполняем список папок групп( заполнение в конструкторе)
-        this.listGour = new Groups();
+       this.listGour = new Groups();
         // инструменты работы с группой
-       this.tools.setToolsGroups(this.listGour.Groups, this.listGour.toolPanel);
+       this.tools.Group.setPanel(this.listGour.groupPanel,this.listGour.rowsClose  );
         //событие изменения выбранной группы
-       this.listGour.Groups.addActionListener(new ActionListener() {
+       this.listGour.setActionGroups(new ActionListener()
+       {
 
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(MasterBoard.this.listGour.Groups.getSelectedIndex()<0)
+                JComboBox Groups= (JComboBox)e.getSource();
+                if(Groups.getSelectedIndex()<0)
                     return;
-                MasterBoard.this.archF.setGroup(MasterBoard.this.listGour.getSelectedGroup());
-              
+                MasterBoard.this.archF.setGroup(MasterBoard.this.listGour.getSelectedGroup() );
             }
-
         });
 //</editor-fold>         
         
         //<editor-fold defaultstate="collapsed" desc=" Архив группы ">
        // создаем объект для раборы с архивом выбранной группы
         this.archF = new ArchiveFiles();
+        
         //событие изменения текущей доски
         this.archF.EvChBoard.ChangeBoardAdd(IChbrd);
         //событие изменения выбранной даты
-        this.archF.archiveGroup.addListSelectionListener(
+        this.archF.archiveGroup.addListSelectionListener
+        (
                 new ListSelectionListener() {
 
                     @Override
@@ -202,9 +208,11 @@ public class MasterBoard extends JPanel {
                         MasterBoard.this.archF.setDay(path);
                         
                     }
-                });
-        //инструменты работы с архивом
-       this.tools.setDaysList(this.archF.toolsArchive(this.tools.widthControl));
+         });
+        
+        //инструменты работы с архивом ( добавить счетчик !!!)
+       this.tools.Hystory.setPanel(this.archF.toolsArchive(),this.archF.rowsClose);
+       
        //кнопка изменения цвета текста
         this.archF.colorText.addActionListener(new ActionListener() 
         {
@@ -241,15 +249,20 @@ public class MasterBoard extends JPanel {
                          myCanvas.setBackground(c);
                     }
 
-                    },  null) .setVisible(true);                   
+                    },  null) .setVisible(true); 
+                if(c!=null)
+                {
 
                     MasterBoard.this.canvasPanel.setBackground( MasterBoard.this.getPanelBackground(c));
                     settings.currLine.setBackground(c);
+                }
             }
             
             
 
-        });        
+        });  
+        this.archF.fontSize.addChangeListener(this.myCanvas.FontSizeChanger);
+       
        
 //</editor-fold>    
         
@@ -295,7 +308,7 @@ public class MasterBoard extends JPanel {
             }
 
         });
-        this.tools.setSettingTools(this.settings);
+        this.tools.Setting.setPanel(this.settings,this.settings.rowsClose);
         this.settings.thicnessLine.addActionListener(new ActionListener()
         {
 
@@ -324,20 +337,17 @@ public class MasterBoard extends JPanel {
 //</editor-fold>  
         
         //<editor-fold defaultstate="collapsed" desc=" Типы графических элементов ">
-        // патель изменения типа графическиго онструмента
-        this.DT= new DrawTools();
+        // патель изменения типа графическиго инструмента
+        this.DT= new DrawTools();        
         this.tools.setDrawTools(this.DT);     
         //событие смены типа текущего графического элемента
-        this.DT.EvShapeType.ShapeTypeChangedAdd(IShType);
+        this.DT.EvShapeType.ShapeTypeChangedAdd(IShType);        
+        //</editor-fold>  
         
-//</editor-fold>  
-        
-        //<editor-fold defaultstate="collapsed" desc=" Редактирование графических элементов ">
-        //задаем размер блока редактирования графики в ззависимости от ширины панели 
-        this.myCanvas.editTools.setSizePanel(this.tools.widthControl,200);
+        //<editor-fold defaultstate="collapsed" desc=" Редактирование графических элементов ">       
         //добавление на панель инструментов блока редактирования графики
         this.tools.setEditTools(this.myCanvas.editTools);
-//</editor-fold>    
+        //</editor-fold>    
         
     
     }
@@ -348,7 +358,7 @@ public class MasterBoard extends JPanel {
      * @return 
      */
     private Color getPanelBackground(Color c)
-    {
+    {       
         int delta=30;
         int r=c.getRed()>150?c.getRed()-delta:c.getRed()+delta;
         int g=c.getGreen()>150?c.getGreen()-delta:c.getGreen()+delta;
@@ -366,7 +376,7 @@ public class MasterBoard extends JPanel {
         if(this.fileCurrentBoard!=null)
         {
             this.myCanvas.save(fileCurrentBoard);
-            this.styles.saveSettingsThemes(this.myCanvas.getForeground(),this.myCanvas.getBackground());
+            this.styles.saveSettingsThemes(this.myCanvas.getForeground(),this.myCanvas.getBackground(),(int)this.archF.fontSize.getValue());
             this.styles.saveColorsDraw(this.myCanvas.LineColor, this.myCanvas.FillColor);
             this.styles.saveLineSetting(this.myCanvas.stroke, this.myCanvas.typeLine);
         }        
@@ -390,15 +400,9 @@ public class MasterBoard extends JPanel {
                 this.myCanvas.setVisible(true);
                 this.settings.setEnabledAll();
             }
-            
+            this.myCanvas.requestFocus();
         }
     }
-    /*
-    public void setIsRecord(boolean flag)
-    {
-        this.myCanvas.isRecord=flag;
-        System.out.println("    isRecord "+ flag);
-    }
-   */
+    
 
 }

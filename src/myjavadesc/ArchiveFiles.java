@@ -7,6 +7,7 @@ package myjavadesc;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -22,13 +23,22 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeListener;
 import masterPanel.ReportException;
 import myjavadesc.events.EventChangeBoard;
 import myjavadesc.events.IChBoard;
 import userControl.ImageIconURL;
+import userControl.SizeSketch;
 
 /**
  *
@@ -56,7 +66,6 @@ public class ArchiveFiles
 
     // папка выбранной группы
     private File groupDir;
-
     private ArrayList<File> listBoard;
 
   
@@ -85,10 +94,26 @@ public class ArchiveFiles
     public JButton previosBoard;
     //следущая
     public JButton nextBoard;
+    
 
     //следущая
     public JButton themesBoard;
     public JButton colorText;
+    public JSpinner fontSize;
+    private final int MIN_Value=15;
+    private final int MAX_Value=25;
+    private final int STEP_Value=1;
+    
+    
+    private JLabel fontSizeIcon;
+    
+    public JToggleButton rec;
+    public int rowsClose=3;
+    
+    
+    
+
+    
     // фильтр выбирает только файлы с заданным расширением
     private FileFilter FF = new FileFilter()
     {
@@ -161,6 +186,7 @@ public class ArchiveFiles
             {
                 ArchiveFiles.this.addBoard();
                 ArchiveFiles.this.changeBoard();
+                
             }
         });
 
@@ -214,8 +240,8 @@ public class ArchiveFiles
         this.nextBoard.setToolTipText("Следующая доска");
         this.setButtonPaintOff(this.nextBoard);
 
-        this.themesBoard = new JButton(ImageIconURL.get("resources/Theme-icon20.png"));
-        this.themesBoard.setPressedIcon(ImageIconURL.get("resources/Theme-icon20_press.png"));
+        this.themesBoard = new JButton(ImageIconURL.get("resources/Theme-icon25.png"));
+        this.themesBoard.setPressedIcon(ImageIconURL.get("resources/Theme-icon25_press.png"));
         this.themesBoard.setToolTipText("Тема ");
 
         this.setButtonPaintOff(this.themesBoard);
@@ -226,6 +252,27 @@ public class ArchiveFiles
 
         this.setButtonPaintOff(this.colorText);
         this.todayStr = this.todayTostring();
+        
+        fontSizeIcon= new JLabel(ImageIconURL.get("resources/fontSize20.png"));
+        fontSizeIcon.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH*2,SizeSketch.CONTROL_HEIGHT));
+        SpinnerModel model =
+        new SpinnerNumberModel(MIN_Value,MIN_Value,MAX_Value,STEP_Value);
+        
+        this.fontSize= new JSpinner();
+        this.fontSize.setModel(model);
+        this.fontSize.requestFocus(false);
+        
+        //запрет редактирования тексттового поля счетчика
+        JTextField tf = ((JSpinner.DefaultEditor) this.fontSize.getEditor()).getTextField();
+        tf.setEditable(false);
+        setPaintOff(this.fontSize);
+       
+       
+    }
+    
+    public void addFontSizeChangeListener(ChangeListener listener)
+    {
+        this.fontSize.addChangeListener(listener);
     }
 
     /**
@@ -238,29 +285,42 @@ public class ArchiveFiles
     }
 
     /**
-     * Компановка инструмента на панали
-     *
-     * @param w ширина панели, в которую вставляются инструменты
+     * Компановка инструмента на панели     
      * @return панель с инструментом
      */
-    public JPanel toolsArchive(int w)
+    public JPanel toolsArchive()
     {
+        
+        int rows=0;
         JPanel p = new JPanel();
-        p.setLayout(new FlowLayout(FlowLayout.LEFT));
-        p.setPreferredSize(new Dimension(w+10, 160));
+        p.setLayout(new FlowLayout(FlowLayout.CENTER));
+       
+        //row 1 H=buttonSize
         p.add(this.newBoard);
         p.add(this.deleteBoard);
         p.add(this.previosBoard);
         p.add(this.nextBoard);
+        rows++;
 
-        this.BoardsToday.setPreferredSize(new Dimension(w, 20));
+        //row 2 H=buttonSize
+        this.BoardsToday.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
         p.add(this.BoardsToday);
-
+        rows++;
+        
+        //row3 H=buttonSize*4
         JScrollPane scroll_H = new JScrollPane(this.archiveGroup);
-        scroll_H.setPreferredSize(new Dimension(w, 80));
+        scroll_H.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.LISTBOX_HEIGHT));
         p.add(scroll_H);
+        rows+=4;
+        
+        ///row4  H=buttonSize
         p.add(this.themesBoard);
         p.add(this.colorText);
+        p.add(this.fontSizeIcon);
+        p.add(this.fontSize);
+        rows++;
+         
+        p.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rows));
         return p;
 
     }
@@ -282,7 +342,8 @@ public class ArchiveFiles
         }
 
         // при переходе на новую группу
-        // активируем инструмент для работы с арховом        
+        // активируем инструмент для работы с арховом    
+        this.rec.setEnabled(true);
         this.newBoard.setEnabled(true);
         this.deleteBoard.setEnabled(true);
         this.previosBoard.setEnabled(true);
@@ -350,7 +411,6 @@ public class ArchiveFiles
         this.listBoard.clear();
         this.cbm.removeAllElements();
         this.currentBoard = null;
-
         File F = new File(day);
 
         if (!F.exists())
@@ -359,7 +419,6 @@ public class ArchiveFiles
         }
         //Выставляем флаг для истории досок
         this.isTodayDir = this.todayStr.equals(day.substring(day.indexOf("/") + 1));
-      ////////////////////////////// System.out.println("  Dir day  set day "+this.isTodayDir);
 
         //список файлов досок 
         File[] files = F.listFiles(this.FF);
@@ -377,7 +436,6 @@ public class ArchiveFiles
         for (File f : files)
         {
             this.listBoard.add(f);
-
             this.cbm.addElement(getNameBoard(f));
 
         }
@@ -400,8 +458,18 @@ public class ArchiveFiles
         B.setFocusPainted(false);
         B.setBorderPainted(false);
         B.setContentAreaFilled(false);
-        B.setPreferredSize(new Dimension(20, 20));
-        B.setEnabled(false);
+        B.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        B.setEnabled(false);       
+    }
+    
+    /**
+     * отменяет прорисовку рамки, фона кнопки
+     */
+    private void setPaintOff(JSpinner B)
+    {
+        B.setBorder(null);
+       // B.setUI(null);
+        B.setPreferredSize(new Dimension(SizeSketch.SPINNER_WIDTH, SizeSketch.CONTROL_HEIGHT));
     }
 
     /**
@@ -475,7 +543,6 @@ public class ArchiveFiles
         }
         //выставляем флаг для истории
         this.isTodayDir = this.todayStr.equals(this.archiveGroup.getSelectedValue().toString());
-        ///////////////////System.out.println("  Dir day  " + this.archiveGroup.getSelectedValue().toString());
     }
 
     /**
@@ -521,6 +588,7 @@ public class ArchiveFiles
             this.listBoard.add(this.currentBoard);
             this.cbm.addElement(getNameBoard(this.currentBoard));
             this.BoardsToday.setSelectedIndex(this.cbm.getSize() - 1);
+            
         }
         //перечне дат выбираем последнюю
         setDateLastSelected();
@@ -543,27 +611,59 @@ public class ArchiveFiles
     private void deleteBoard()
     {
         int index = this.BoardsToday.getSelectedIndex();
-
         File f = this.listBoard.get(index);
+        if ( this.listBoard.size()==1)
+        {            
+           if( 
+                JOptionPane.showConfirmDialog(  archiveGroup, "Удалить файл"+ f.getName()+"  и  папку \r\n \t\tДень:  "
+                +this.archiveGroup.getSelectedValue().toString()+" ?","Удаление папки",
+                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION
+              )
+           {
+              
+               if(this.lm.size()!=0)
+               {
+                  
+                File dir=f.getParentFile();
+                f.delete();
+                dir.delete();                  
+                setGroup(this.groupDir.getName());
+               }
+           }                    
+            return;
+        } 
+        
+                
+        String boardName =this.BoardsToday.getSelectedItem().toString();
+       
+        if( JOptionPane.showConfirmDialog(  archiveGroup, "Удалить доску  "
+            +boardName+" ?","Удаление доски",
+            JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION)        
+        {
+            
+            return;
+        }
         this.listBoard.remove(index);
         this.BoardsToday.removeItemAt(index);
-        f.delete();
-
+        
         String path = getPathArchive();
+        f.delete();
 
         for (int i = index; i < this.listBoard.size(); i++)
         {
             File ff = new File(path + "/" + "Board_" + (i + 1) + "." + this.ext);
+            
             this.listBoard.get(i).renameTo(ff);
             this.cbm.removeElementAt(i);
             this.cbm.insertElementAt(getNameBoard(ff), i);
         }
         if (!this.listBoard.isEmpty())
-
         {
-            this.BoardsToday.setSelectedIndex(index);
+            System.out.println("    index" +index);
+            this.BoardsToday.setSelectedIndex(--index);
             this.currentBoard = this.listBoard.get(index);
         }
+      
     }
 
     /**

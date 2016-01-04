@@ -6,15 +6,18 @@
 package myjavadesc;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import userControl.ImageIconURL;
+import userControl.SizeSketch;
 
 /**
  *
@@ -31,10 +34,12 @@ public class Groups {
     String groupKey = "group_";
     
     DefaultComboBoxModel cbm;    
-    public JComboBox Groups;
+    private JComboBox Groups;
     private JTextField tb= new JTextField();
     private JButton addGroup;
-    public JPanel toolPanel;
+    public JPanel groupPanel;
+    public int rowsClose=2;
+    
     public Groups()
     {
         File F = new File("");
@@ -55,12 +60,13 @@ public class Groups {
         
         //выпадающий список групп
         this.Groups = new JComboBox(cbm);
+        this.Groups.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH,SizeSketch.CONTROL_HEIGHT));
         this.Groups.setSelectedIndex(-1);
         
         // текстовое поле добавления новой группы
         this.tb= new JTextField();
         tb.setEditable(true);
-        this.tb.setPreferredSize( new Dimension(90,20));
+        this.tb.setPreferredSize( new Dimension(SizeSketch.TEXTBOX_WIDTH,SizeSketch.CONTROL_HEIGHT));
         
         
         //кнопка добавления новой группы
@@ -69,7 +75,7 @@ public class Groups {
         this.addGroup.setBorderPainted(false);
         this.addGroup.setContentAreaFilled(false);
         this.addGroup.setPressedIcon(ImageIconURL.get("resources/New20_press.png"));
-        this.addGroup.setPreferredSize(new Dimension(20,20));
+        this.addGroup.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH,SizeSketch.CONTROL_HEIGHT));
         
         this.addGroup.addActionListener(new ActionListener(){
 
@@ -89,15 +95,32 @@ public class Groups {
             }
         });
         
-        toolPanel= new JPanel();
-        this.toolPanel.add(tb);
-        this.toolPanel.add(this.addGroup);
+        int rows=0;
+        groupPanel= new JPanel(new FlowLayout(FlowLayout.CENTER));
+        rows++;       
+        this.groupPanel.add(this.Groups);
         
+        JLabel l = new JLabel("Новая группа");
+        l.setPreferredSize(new Dimension(SizeSketch.TEXTBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        rows++;  
+        this.groupPanel.add(l);
+        rows++;     
+        this.groupPanel.add(tb); 
+        rows++;
+        this.groupPanel.add(this.addGroup);
+        rows++;
+       
+        this.groupPanel.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.CONTROL_HEIGHT*rows));
     }
     
     public String getSelectedGroup()
     { 
         return groupKey+cbm.getSelectedItem().toString();
+    }
+    
+    public void setActionGroups(ActionListener AL)
+    {
+        this.Groups.addActionListener(AL);    
     }
     
     
