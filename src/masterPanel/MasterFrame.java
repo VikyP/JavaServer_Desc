@@ -70,7 +70,6 @@ public class MasterFrame extends JFrame
                 MasterFrame.this.setVisible(true);
                 setBounds(PrevX, PrevY, PrevWidth, PrevHeight);
                 MasterFrame.this.setPreferredSize( new Dimension(PrevWidth, PrevHeight));
-               // Frame_TeamViewer.this.setBounds(50, 50, 400, 500);
                 MasterFrame.this.dispose();
 
                 MasterFrame.this.setUndecorated(false);
