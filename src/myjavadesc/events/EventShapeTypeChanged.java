@@ -30,6 +30,7 @@ public class EventShapeTypeChanged
         if (listeners.contains(l))
             listeners.remove (l);
     }
+    
     public Object  getListener()
     {
         return listeners.iterator().next();
