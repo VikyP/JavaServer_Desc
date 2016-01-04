@@ -8,7 +8,6 @@ package screen_stream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.RecordInfo;

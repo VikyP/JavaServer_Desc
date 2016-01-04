@@ -16,7 +16,6 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.WritableRaster;
-
 import java.io.ByteArrayInputStream;
 
 import java.io.ByteArrayOutputStream;
@@ -61,8 +60,7 @@ public class ScreenTiles
     {
         return blocks.size()*ImageToSend.blockPixelHeight*ImageToSend.blockPixelWidth*2;
     }
-    
-    
+       
 
     public ScreenTiles(RecordInfo r)
     {

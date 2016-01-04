@@ -105,8 +105,7 @@ public class ScreenProperties
 
     // общее количество блоков
     public int getTotalCountOfBlocks()
-    {
-       
+    {       
         return widthCountOfBlocks * heightCountOfBlocks;
     }
 

@@ -14,7 +14,5 @@ public class TypeImageSend
     public static byte Fast=1;
     public static byte Row=2;
     public static byte Difference=3;
-    
-    
-    
+        
 }
