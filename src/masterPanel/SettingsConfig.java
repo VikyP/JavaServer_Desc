@@ -47,6 +47,8 @@ public class SettingsConfig
     
     public float thicknessLine;
     public int typeLine=0;
+    public int fontSize;
+    private final int MIN_FONTSIZE=16;
     
     
     //<editor-fold defaultstate="collapsed" desc=" IP, ports ">
@@ -59,18 +61,22 @@ public class SettingsConfig
      * порт вещания доски
      */
     public int  PORT_UDP_BOARD;
+    private final int DELTA_UDP_BOARD=1;
     /**
      * порт TCP соединения для получения картинки
      */
     public int  PORT_TCP_IMG;
+    private final int DELTA_TCP_IMG=2;
     /**
      * порт TCP соединения для отправки команды
      */
     public int  PORT_TCP_COMMAND;
+    private final int DELTA_TCP_COMMAND=3;
     /**
      * порт для отправки экрана преподавателя по UDP
      */
     public int  PORT_TCP_ScStr;
+    private final int DELTA_TCP_ScStr=4;
     //</editor-fold>    
     InputStream IS;
     /**
@@ -128,7 +134,7 @@ public class SettingsConfig
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             this.doc = builder.parse(new File("Settings.xml"));
-            
+             
             Element back = (Element)doc.getElementsByTagName("Background").item(0); 
             this.Background=new Color(Integer.parseInt(back.getTextContent(),16));
             Element fore = (Element)doc.getElementsByTagName("Foreground").item(0);
@@ -136,8 +142,6 @@ public class SettingsConfig
             
             Element line = (Element)doc.getElementsByTagName("LineColor").item(0); 
             this.LineColor=new Color(Integer.parseInt(line.getTextContent(),16));
-            
-            
             Element fill = (Element)doc.getElementsByTagName("FillColor").item(0);
             this.FillColor=new Color(Integer.parseInt(fill.getTextContent(),16));
             
@@ -147,9 +151,16 @@ public class SettingsConfig
             Element dash = (Element)doc.getElementsByTagName("Dash").item(0);
             this.typeLine=Integer.parseInt(dash.getTextContent());
             
+            Element fSize = (Element)doc.getElementsByTagName("FontSize").item(0);
+            this.fontSize=Integer.parseInt(fSize.getTextContent());    
+            this.fontSize=(this.fontSize==0)?this.fontSize=MIN_FONTSIZE:this.fontSize;
             
             Element ip = (Element)doc.getElementsByTagName("IP").item(0); 
             this.IP=InetAddress.getByName(ip.getTextContent().trim());
+            
+             // уточняем IP
+            if(this.IP!=InetAddress.getLocalHost())
+                this.IP=InetAddress.getLocalHost();
             
             Element ip_udp = (Element)doc.getElementsByTagName("IP_UDP").item(0); 
             this.IP_UDP=InetAddress.getByName(ip_udp.getTextContent().trim());
@@ -157,15 +168,16 @@ public class SettingsConfig
             Element p_udp = (Element)doc.getElementsByTagName("PORT_UDP").item(0); 
             this.PORT_UDP=Integer.parseInt(p_udp.getTextContent());
             
-            this.PORT_UDP_BOARD=this.PORT_UDP+1;            
-            this.PORT_TCP_IMG=this.PORT_UDP+2;
-            this.PORT_TCP_COMMAND=this.PORT_UDP+3;
-            this.PORT_TCP_ScStr=this.PORT_UDP+4;
+            this.PORT_UDP_BOARD=this.PORT_UDP+DELTA_UDP_BOARD;            
+            this.PORT_TCP_IMG=this.PORT_UDP+DELTA_TCP_IMG;
+            this.PORT_TCP_COMMAND=this.PORT_UDP+DELTA_TCP_COMMAND;
+            this.PORT_TCP_ScStr=this.PORT_UDP+DELTA_TCP_ScStr;
            
             return true;
         }
         catch (ParserConfigurationException ex)
         {
+            
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (SAXException ex)
@@ -180,14 +192,18 @@ public class SettingsConfig
         return false;
     }
     
-    public void saveSettingsThemes(Color f, Color b)
+    public void saveSettingsThemes(Color f, Color b, int fSize)
     {
         try
         {
+           
             Element back = (Element)doc.getElementsByTagName("Background").item(0);            
             back.setTextContent(String.format( "%02X%02X%02X", b.getRed(), b.getGreen(), b.getBlue() ));
             Element fore = (Element)doc.getElementsByTagName("Foreground").item(0); 
             fore.setTextContent(String.format( "%02X%02X%02X", f.getRed(), f.getGreen(), f.getBlue() ));
+            
+            Element fS = (Element)doc.getElementsByTagName("FontSize").item(0); 
+            fS.setTextContent(String.valueOf(fSize));
             
             Source domSource = new DOMSource(this.doc);
             Result fileResult = new StreamResult(new File("Settings.xml"));

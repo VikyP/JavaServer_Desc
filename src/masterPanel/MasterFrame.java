@@ -40,6 +40,7 @@ public class MasterFrame extends JFrame
     private  ModeChanger Modes;
     private  Thread_SenderImage SenderImage;
     private  Dimension StartDim =new Dimension(805,705);
+    
     private  RecordInfo recordHead;
     
     private int PrevX,PrevY,PrevWidth,PrevHeight;
@@ -163,8 +164,11 @@ public class MasterFrame extends JFrame
             this.TV= new MasterTeamViewer(this.StartDim, SC);
             
             this.recordHead= new RecordInfo();
-            this.Desc= new MasterBoard(SC,this.recordHead);
+            
             this.Modes= new ModeChanger(this.StartDim);
+            this.Desc= new MasterBoard(SC,this.recordHead, this.Modes.Record);
+            
+            
             this.SenderImage = new Thread_SenderImage(SC.IP_UDP,SC.PORT_TCP_ScStr, this.recordHead);
            
             this.Modes.setActionListenerSendScreen(new ActionListener()
@@ -236,6 +240,7 @@ public class MasterFrame extends JFrame
         System.out.println("W "+ PrevWidth + " H " + PrevHeight);   
     
     }
+    
     
     //JOptionPane.showMessageDialog(this, "This is a Message Box.");
 }

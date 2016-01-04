@@ -10,8 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import myjavadesc.TypeInfo;
-import screen_stream.ScreenTiles;
 
 /**
  *
