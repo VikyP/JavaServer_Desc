@@ -59,10 +59,7 @@ public class MasterFrame extends JFrame
                           //dispose() is the reason that this trick doesn't work with videos
                 MasterFrame.this.setUndecorated(true);
                 MasterFrame.this.setBounds(0,0,getToolkit().getScreenSize().width,getToolkit().getScreenSize().height);
-                MasterFrame.this.setVisible(true); 
-
-//                        System.out.println("full screen  H= "+getToolkit().getScreenSize().width + "    H ="+ getToolkit().getScreenSize().height); 
-
+                MasterFrame.this.setVisible(true);
             }
             else
             {
@@ -203,6 +200,7 @@ public class MasterFrame extends JFrame
             lp.add(this.Modes, JLayeredPane.POPUP_LAYER);
             lp.add(this.TV.TP,JLayeredPane.POPUP_LAYER);
             this.setSize(this.StartDim);
+            this.setMinimumSize(new Dimension(300, 300));
             this.TV.TP.setVisible(false);
             
             this.TV.ESFS.addEventFullScreeen(FS);
