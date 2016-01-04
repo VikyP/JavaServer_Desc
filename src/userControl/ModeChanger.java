@@ -5,13 +5,11 @@
  */
 package userControl;
 
-import java.awt.Color;
 import myjavadesc.events.EventModeTypeChanged;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Point;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -37,7 +35,7 @@ public class ModeChanger extends JPanel
     private JToggleButton Mode;
     private boolean status=false;
     private JToggleButton SendScreen;
-    private JToggleButton Record;
+    public JToggleButton Record;
     private JToggleButton board;
     private JToggleButton viewers;
   
@@ -132,6 +130,7 @@ public class ModeChanger extends JPanel
       this.Record.setSelectedIcon(ImageIconURL.get("resources/micStop.png"));
       this.setToggleButtonPaintOff(this.Record);      
       this.Record.setToolTipText("Включение записи звука");
+      this.Record.setEnabled(false);
       this.viewers= new JToggleButton(ImageIconURL.get("resources/monitor_45.png"));
       this.viewers.setToolTipText("Включение трансляции рабочего стола");
       this.setToggleButtonPaintOff(this.viewers);

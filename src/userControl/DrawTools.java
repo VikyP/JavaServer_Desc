@@ -38,10 +38,11 @@ public class DrawTools extends JPanel
     public DrawTools()
     {
         this.setLayout(new FlowLayout());
-        this.setPreferredSize(new Dimension(145,100));
+        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSize.height*4));
         this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         
         this.EvShapeType=new EventShapeTypeChanged();
+        
         
         ButtonGroup bg = new ButtonGroup();
         for(final IShapeModel type:ShapeType.Shapes)

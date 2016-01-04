@@ -5,7 +5,6 @@
  */
 package userControl;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
@@ -25,7 +24,7 @@ public class SettingTools extends JPanel
      public JButton colorFill;
      public DashLineComboBox styleLine;
      public WidthLineComboBox thicnessLine;
-     
+     public int rowsClose=2;
      
      private Object[][] widthLine={{1,"resources/lineCB1.png","resources/lineCB1_s.png"},
      {2,"resources/lineCB2.png", "resources/lineCB2_s.png"},{4,"resources/lineCB4.png","resources/lineCB4_s.png"},
@@ -37,50 +36,55 @@ public class SettingTools extends JPanel
      {3,"resources/lineCB_d4.png","resources/lineCB_d4.png"},{4,"resources/lineCB_d5.png","resources/lineCB_d5.png"}
      };
      
-     public SettingTools( float w, int t, int w_p)
+     public SettingTools( float w, int t)
      {
-        this.setLayout(new FlowLayout());       
+         int rows=0;
+        this.setLayout(new FlowLayout());  
        // this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         
         this.currLine= new LinePreview();
-        this.currLine.setPreferredSize(new Dimension((w_p-5)/2, 20));
-        
+        this.currLine.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));        
         
         this.currFill= new JPanel();
-        this.currFill.setPreferredSize(new Dimension((w_p-5)/2, 20));
+        this.currFill.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));
         this.currFill.setToolTipText("Цвет заливки");
         
         this.add(this.currLine);
         this.add(this.currFill);
+        rows++;
         this.colorLine= new JButton(ImageIconURL.get("resources/colorPen30.png"));
         this.colorLine.setPressedIcon(ImageIconURL.get("resources/colorPen30_press.png"));
         this.colorLine.setPreferredSize(btnSize);
         this.setButtonPaintOff(this.colorLine);
         this.add(this.colorLine);
-        
+       
         this.colorFill= new JButton(ImageIconURL.get("resources/colorBrush30.png"));
         this.colorFill.setPressedIcon(ImageIconURL.get("resources/colorBrush30_press.png"));
         this.colorFill.setPreferredSize(btnSize);
         this.setButtonPaintOff(this.colorFill);
         this.add(this.colorFill);
-        
+        rows++;
         this.add( new JLabel("Толщина линии"));
-        
+        rows++;
         this.thicnessLine= new WidthLineComboBox();
         
         this.thicnessLine.setEditable(true);
         this.thicnessLine.addItems(widthLine);
-        this.add(this.thicnessLine);
+        this.add(this.thicnessLine); 
+        rows++;
         this.thicnessLine.setSelectedItem(getSelectedThickness((int) w));
         this.thicnessLine.setEnabled(false);
         
         this.add( new JLabel("Тип линии  "));
+        rows++;
         this.styleLine=  new DashLineComboBox();
         this.styleLine.setEditable(true);
         this.styleLine.addItems(dashLine);
         this.styleLine.setSelectedItem(getSelectedDash(t));
         this.add(this.styleLine);
+        rows++;
         this.styleLine.setEnabled(false);
+        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rows+btnSize.height));
         
      
      }

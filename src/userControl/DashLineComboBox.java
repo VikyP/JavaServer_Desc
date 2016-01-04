@@ -23,8 +23,7 @@ public class DashLineComboBox extends JComboBox
         this.setToolTipText("Тип линии");
         this.setPreferredSize(new Dimension(120, 20));
         setModel(model);
-        setRenderer(new WidthLineItemRenderer());
-        
+        setRenderer(new WidthLineItemRenderer());        
         WLIE=new WidthLineItemEditor();
         setEditor(WLIE);
     }

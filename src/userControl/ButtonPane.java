@@ -7,11 +7,7 @@ package userControl;
 
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import java.awt.Insets;
 
@@ -35,11 +31,10 @@ public class ButtonPane extends JPanel
    // флаг состояния
     public boolean state;
     private JToggleButton B;
-    private JPanel P;
     
-    private Dimension BSize;    
     private Dimension open;
     private Dimension close;
+   
     
     Icon openIcon=ImageIconURL.get("resources/closeGreen.png");
     Icon closeIcon=ImageIconURL.get("resources/openGreen.png");
@@ -51,24 +46,19 @@ public class ButtonPane extends JPanel
      * @param openY высота в открытом состоянии
      * @param closeY высота в закрытом состоянии
      */
-    public ButtonPane(String btn_text, int w, int openY, int closeY)
-    {
-        int W=w+10;
+    public ButtonPane(String btn_text)
+    {      
         this.setLayout(new BorderLayout());
-        
-        this.close = new Dimension(W,closeY);
-        this.open= new Dimension(W,openY); 
-        
-        //размеры кнопки разворачивания панели
-        this.BSize = new Dimension(W,20);
-        
         this.state=false;
         this.B= new JToggleButton (btn_text);
+        this.B.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,SizeSketch.CONTROL_HEIGHT));
         this.B.setHorizontalAlignment(SwingConstants.LEFT);
         this.B.setMargin( new Insets(2, 2, 2, 14));
         this.B.setIcon(closeIcon);        
         this.B.setFocusPainted(false);//нет рамки фокуса
-        this.B.setPreferredSize(this.BSize);        
+        
+        //размеры кнопки разворачивания панели
+              
         this.B.addActionListener(
         new  ActionListener()
         {
@@ -94,35 +84,22 @@ public class ButtonPane extends JPanel
              }
              
         });        
-        this.add(this.B, BorderLayout.NORTH);
-        
-        
-        this.P= new JPanel( new FlowLayout());        
-        this.P.setPreferredSize(new Dimension(W,this.close.height-this.BSize.height));       
+        this.add(this.B, BorderLayout.NORTH);   
         this.setBorder(BorderFactory.createLoweredBevelBorder());
-        this.add(this.P,BorderLayout.CENTER);
-        this.setPreferredSize(this.close);
     }
     
-    /**
-     * добавление компонента на панель
-     * @param C компонента
-     */
-    public void addRow (Component C)
-    {
-        this.P.add(C);
-    }
+    
      /**
      * задаем уже сформированную панель
      * @param p 
+     * @param rowsClose 
      */
-    public void setPanel (JPanel p)
-    {       
-       // p.setPreferredSize(new Dimension(this.BSize.width,this.close.height-this.BSize.height));   
-     //
-        
+    public void setPanel (JPanel p, int rowsClose)
+    {  
+        this.open=p.getPreferredSize();
+        this.close=new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rowsClose);
         this.add(p,BorderLayout.CENTER);
-        // this.P.add(p);
+        setOpen ();
     }
     
     /**

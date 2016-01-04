@@ -32,7 +32,8 @@ public class WidthLineComboBox extends JComboBox
         setEditor(WLIE);
         
     }
-     
+    
+    
     /**
      * Add an array items to this combo box.
      * Each item is an array of two String elements:

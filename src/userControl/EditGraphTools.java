@@ -7,11 +7,7 @@ package userControl;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -42,12 +38,14 @@ public class EditGraphTools extends JPanel
     private JButton btnClear;
     private JButton btnRemove;
     private JButton btnCopyPast;
+    private int Heigth=100;
     
     
     
     public EditGraphTools()
     {
         JPanel p= new JPanel();
+        
         this.setLayout(new BorderLayout());
         this.add(p, BorderLayout.NORTH);
         this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
@@ -74,6 +72,13 @@ public class EditGraphTools extends JPanel
         this.setButtonPaintOff(this.btnClear);
         
         p.add(btnClear);
+        
+        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, Heigth)); 
+        JScrollPane scroll = new JScrollPane(shapesList,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        this.add(scroll,BorderLayout.CENTER);
+        
+     
 
     }
     
@@ -119,19 +124,6 @@ public class EditGraphTools extends JPanel
     }
     
     
-    /**
-     * задаем размеры панели и списка фигур
-     * @param w ширина панели
-     * @param h высота панели
-     */
-    public void setSizePanel( int w, int h)
-    {
-        this.setPreferredSize(new Dimension(w+10, h)); 
-        
-        JScrollPane scroll = new JScrollPane(shapesList,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        this.add(scroll,BorderLayout.CENTER);
-    }
     
     /**
      * Отключение прорисовки рамки, фона 

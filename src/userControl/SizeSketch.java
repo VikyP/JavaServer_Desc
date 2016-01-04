@@ -25,4 +25,5 @@ public class SizeSketch
     public final static int LISTBOX_HEIGHT=80;
     public final static int ROW_HEIGHT=28;
     
+    
 }
