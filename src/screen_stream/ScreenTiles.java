@@ -48,12 +48,22 @@ public class ScreenTiles
     private ScreenProperties ImageToSend;
     //индексы блоков для отправки
     ArrayList<Integer> blocks = new ArrayList<>();
+    
     private Robot robot;
+    //первая строка пакета для отправки
     private int startRow=0;
+    //последняя строка пакета для отправки
     private int stopRow=0;
+    
+    //текущий тип передаваемого пакета
     private byte typeSend=TypeImageSend.Fast;
+    
+    //время отправки пакета
     public int time=500;
+    //максимальный объем пакета, который после сжатия можно переслать по UDP
     private static int DataMax=300000;
+    
+    //кратность полного обновления картинки
     private int rowsTime=0;
     
     private int getDiffereceDataSize()
@@ -104,8 +114,6 @@ public class ScreenTiles
                 DB.setElem(i * BI.getWidth() + j, value);
             }
         }
-        
-       
         return BI;
     }
 
@@ -116,47 +124,56 @@ public class ScreenTiles
      */
     public byte[] PrScrToBytes()
     {
+        // получаем снимок экрана с огрублением цветов
         BufferedImage BI=MakePrintScreen();
+        // подгоняем размеры картинки для кратности необходимым параметрам
         ImageToSend.getOptimalImage(BI);
+        // определяем объем изменений
         getChanges();
-        
-       
-      //  byteCompressorTEST();
-        byte[] body;     
+        //определяем количество изменений    
         int diff=getDiffereceDataSize();
-       
-        if(diff>DataMax )
+        
+        byte[] body; 
+        //в зависимости от количества изменений
+        if(diff>DataMax ) // оно превышает максимум 
         {
+            //формируем уменьшенную копию экрана
            ImageToSend.getFastlImage(BI);
+           //текущий тип пакета - быстрая передача
            typeSend=TypeImageSend.Fast;
+           //формируем сжатый массив пакета
            body= gzip(this.byteCompressorFastView());  
+           //задаем стартовые значения построчной отправки
            this.startRow=0;
            this.stopRow=0;
            rowsTime=0;
+           // время отправки 
            time=200;
-           System.out.println("    Diff  FAST"+ diff );
         } 
-        else
+        else// изменения не превышают максимум
         {
-           
+           //обновляем экран построчно 
            if(rowsTime==0 || this.stopRow<ImageToSend.newPictureBuffer.getHeight()) 
-           {
-            
+           { 
+            //текущий тип пакета  - построчная передача
             typeSend=TypeImageSend.Row;
             body= gzip(this.byteCompressorRow());
+            // время отправки
             time=100;
-            // System.out.println("    ROW "+ this.startRow);
            }
            else
            {
-               rowsTime--;               
+               //отсчитываем интервал обновления
+               rowsTime--; 
+               //текущий тип пакета  - только отличия
                typeSend=TypeImageSend.Difference;
-               body= gzip(this.byteCompressor());  
+               
+               body= gzip(this.byteCompressor()); 
+               // время отправки
                time=200;
-            //   System.out.println("    Difference "+body.length);
            }
         }
-        
+        //пакет для отправки 
         return body;
     }
 
@@ -194,8 +211,8 @@ public class ScreenTiles
             }
             //сжатый массив
             byte[] bodyZip = BAOS.toByteArray();
-            // размер массива
-            byte[] head = this.getHead(bodyZip.length + 5);//int(4 byte)+byte
+            // размер массива           длина массива    длина        тип информации      
+            byte[] head = this.getHead(bodyZip.length + Integer.BYTES+Byte.BYTES);//int(4 byte)+byte
 
             BAOS.reset();
             //запись заголовка
