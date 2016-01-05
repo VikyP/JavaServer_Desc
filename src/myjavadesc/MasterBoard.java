@@ -393,8 +393,8 @@ public class MasterBoard extends JPanel {
             
             this.myCanvas.readBoard(fileCurrentBoard);
             this.myCanvas.numberPage=this.archF.isTodayDir?
-                    (this.archF.cbm.getIndexOf(this.archF.cbm.getSelectedItem())+1):
-                    (this.archF.cbm.getIndexOf(this.archF.cbm.getSelectedItem())+1)*(-1);
+                    (byte)(this.archF.cbm.getIndexOf(this.archF.cbm.getSelectedItem())+1):
+                    (byte)((this.archF.cbm.getIndexOf(this.archF.cbm.getSelectedItem())+1)*(-1));
             if(!this.myCanvas.isVisible())
             {
                 this.myCanvas.setVisible(true);

@@ -88,7 +88,7 @@ public class MyJavaCanvas extends JEditorPane {
     //номер доски(страницы) текущей даты
     //еслитекущая страница относится не к сегодняшней дате
     // номер<0
-    public int numberPage = -1;
+    public byte numberPage = -1;
 
     //список фигур доски
     public ArrayList<IShapeAction> shapes = new ArrayList<IShapeAction>();
@@ -103,13 +103,13 @@ public class MyJavaCanvas extends JEditorPane {
     public int shapeType = ShapeType.None;
     
     // количество строк на доске
-    private int rowsCount = 30;
-    private int rowHeigth=0;
-    private int rowDescent=0;
+    private byte rowsCount = 30;
+    private byte rowHeigth=0;
+    private byte rowDescent=0;
     
      // количество символов в строке
-    private int colsCount = 80;
-    private int colWidth=0;
+    private byte colsCount = 80;
+    private byte colWidth=0;
     // Цвет линии
     public Color LineColor;
     
@@ -253,7 +253,7 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * @param rowsCount the rowsCount to set
      */
-    public final void setRowsCount(int rowsCount)
+    public final void setRowsCount(byte rowsCount)
     {
         this.rowsCount = rowsCount;
         
@@ -786,9 +786,9 @@ public class MyJavaCanvas extends JEditorPane {
         FontMetrics metrics = g2d.getFontMetrics(this.getFont());
         g2d.dispose();
         
-        this.rowHeigth= metrics.getHeight();  
-        this.rowDescent=metrics.getMaxDescent();
-        this.colWidth = metrics.charWidth('X');
+        this.rowHeigth= (byte)metrics.getHeight();  
+        this.rowDescent=(byte)metrics.getMaxDescent();
+        this.colWidth = (byte)metrics.charWidth('X');
         
         this.height= this.rowHeigth*(this.rowsCount+1)+this.top+this.bottom ; 
         this.width=this.colWidth*(this.colsCount+1)+this.left+this.right;
@@ -1057,7 +1057,9 @@ public class MyJavaCanvas extends JEditorPane {
                 //параметр для согласования размеров холста, шрифта, расположения и масштаба графики
                 DOS.writeByte(this.fontHeight);
                 //  текст с доски
-                DOS.writeUTF(this.getText());
+                byte[] body=getTextToBytes();
+                DOS.writeInt(body.length);
+                DOS.write(body);                
             }
             return BAOS.toByteArray();
         } catch (UnsupportedEncodingException ex) {
@@ -1070,6 +1072,28 @@ public class MyJavaCanvas extends JEditorPane {
             return null;
         }
 
+    }
+    
+    /**
+     * 
+     */
+    private byte[] getTextToBytes()
+    {
+       ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
+        DataOutputStream DOS = new DataOutputStream(BAOS);
+        byte[] body= null;
+        try
+        {
+            DOS.writeUTF(this.getText());
+            body=BAOS.toByteArray();
+            DOS.close();
+            BAOS.close();
+        }
+        catch(Exception exc)
+        {
+        
+        }    
+        return body;
     }
 
     /**
@@ -1084,7 +1108,9 @@ public class MyJavaCanvas extends JEditorPane {
             DOS = new DataOutputStream(BAOS);
             writeHead(DOS, TypeInfo.GRAPH);
             //////////////////////////////////////////// DOS.writeByte(this.RedLineX/5);
-            this.writeBytesGraph(DOS);
+            byte [] body =this.writeBytesGraph();
+            DOS.writeInt(body.length);
+            DOS.write(body);
             byte[] b = BAOS.toByteArray();
             DOS.close();
             BAOS.close();
@@ -1115,18 +1141,12 @@ public class MyJavaCanvas extends JEditorPane {
     
     private void writeHead(DataOutputStream DOS, int type) {
         try 
-        {
-            //первый байт указывает состояние микрофона (0(выкл)||1(вкл))
-            /*
-            DOS.writeByte((this.isRecord) ? (byte) 1 : (byte) 0);
-            DOS.writeByte(this.group.length());
-            DOS.writeChars(this.group);
-          */
-            
+        {          
             DOS.write(this.recordHead.getHeadDesc());
-            DOS.write(this.numberPage);
+            DOS.writeByte(this.numberPage);
             DOS.writeByte((byte) type);
-            if (type == TypeInfo.TEXT) {
+            if (type == TypeInfo.TEXT)
+            {
                 DOS.writeByte(this.indexRow);
             }
 
@@ -1144,6 +1164,7 @@ public class MyJavaCanvas extends JEditorPane {
      * запись в поток текста
      */
     private void writeBytesText(DataOutputStream DOS) {
+       
         try {
             byte[] text = this.getText().getBytes();
             DOS.writeInt(text.length);
@@ -1156,8 +1177,49 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * запись в поток графики
      */
-    private void writeBytesGraph(DataOutputStream DOS) {
+    private void writeBytesGraph(DataOutputStream DOS)
+    {
+        try 
+        {
+            synchronized (this.shapes)
+            {
+                //размер массива
+                DOS.writeInt(shapes.size());
+                // запись всех фигур
+                for (IShapeAction shape : shapes) {
+                    switch (shape.getType()) {
+                        case ShapeType.Line:
+                            ((SLine) shape).BinaryWrite(DOS);
+                            break;
+                        case ShapeType.PenLine:
+                            ((SPenLine) shape).BinaryWrite(DOS);
+                            break;
+                        case ShapeType.Ellipse:
+                        case ShapeType.FillEllipse:
+                            ((SEllipse) shape).BinaryWrite(DOS);
+                            break;
+                        case ShapeType.Rectangle:
+                        case ShapeType.FillRectangle:
+                            ((SRectangle) shape).BinaryWrite(DOS);
+                            break;
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * запись в поток графики
+     */
+    private byte[] writeBytesGraph()
+    { 
+        ByteArrayOutputStream BAOS =new ByteArrayOutputStream();
+        DataOutputStream DOS = new DataOutputStream(BAOS);
+        byte [] body=null;
         try {
+           
 
             synchronized (this.shapes)
             {
@@ -1185,9 +1247,15 @@ public class MyJavaCanvas extends JEditorPane {
                     }
                 }
             }
-        } catch (IOException ex) {
+            body =BAOS.toByteArray();
+            DOS.close();
+            BAOS.close();
+        }
+        catch (IOException ex)
+        {
             Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return body;
     }
 
     /**

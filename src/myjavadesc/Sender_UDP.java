@@ -33,7 +33,7 @@ public class Sender_UDP
             {
                 return;
             }
-          // System.out.println(" LENGTH SEND "+ByteSream.length);   
+           System.out.println(" LENGTH SEND "+ByteSream.length);   
             
             DatagramSocket DS = new DatagramSocket();
             DatagramPacket DP = new DatagramPacket(
