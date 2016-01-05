@@ -1,0 +1,31 @@
+Server
+//формирование пакетов для отправки
+
+//доска (класс)
+	DESC ( myjavadesc/MyJavaCanvas )
+	// методы ()
+	RecordInfo.getHeadDesc()
+		записывает в байт-массив 
+	
+	итоговый протокол
+	
+	HEAD
+		byte isRecord  -вкл /выкл запись
+		byte size  - количество символов в названии группы
+		char[size] name_gr - название группы
+		byte numberPage - номер страницы (доски)
+		byte type - тип информации
+		
+		
+		TEXT
+			byte line - номер строки с курсором
+			byte fontHeigt - высота шрифта
+			int arrSize - размер основного пакета (что ты просил)
+			String msg -  текст
+		GRAPH
+			int arrSize - размер основного пакета (что ты просил)
+			int width - ширина доски
+			int height - высота доски
+			byte [] shapes -массив графических объектов
+
+	Screen ()
