@@ -26,12 +26,12 @@
 		<Background>999999</Background>
 		<Foreground>FFFF33</Foreground>
 		<LineColor>99FF99</LineColor>
-		<FillColor>00FFCC</FillColor>	 
+		<FillColor>9999FF</FillColor>	 
 	</Colors>
 	<Line>
 		<Thickness>2.0</Thickness>
-		<Dash>4</Dash>
+		<Dash>0</Dash>
 	</Line>
-	<FontSize>20</FontSize>
+	<FontSize>17</FontSize>
 
 </application>
