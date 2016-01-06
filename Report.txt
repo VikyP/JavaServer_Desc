@@ -48131,3 +48131,85 @@ teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset
  Ошибка чтения файла (графика) 		
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+Sender_UDP_Image.Send(..)The message is larger than the maximum supported by the underlying transport: Datagram send failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		

@@ -25,13 +25,13 @@
 	<Colors>
 		<Background>999999</Background>
 		<Foreground>FFFF33</Foreground>
-		<LineColor>99FF99</LineColor>
+		<LineColor>11CD08</LineColor>
 		<FillColor>9999FF</FillColor>	 
 	</Colors>
 	<Line>
 		<Thickness>2.0</Thickness>
 		<Dash>0</Dash>
 	</Line>
-	<FontSize>17</FontSize>
+	<FontSize>19</FontSize>
 
 </application>
