@@ -1044,7 +1044,7 @@ public class MyJavaCanvas extends JEditorPane {
     }
 
     /**
-     * запись текста в массив байт для отправки по UDP 
+     * формирование пакета  для отправки  - текст
      * @return массив байт с текстом
      */
     private byte[] textToBytes() {
@@ -1054,12 +1054,16 @@ public class MyJavaCanvas extends JEditorPane {
             writeHead(DOS, TypeInfo.TEXT);
             synchronized (this.getText())
             {
-                //параметр для согласования размеров холста, шрифта, расположения и масштаба графики
-                DOS.writeByte(this.fontHeight);
                 //  текст с доски
                 byte[] body=getTextToBytes();
                 DOS.writeInt(body.length);
-                DOS.write(body);                
+                DOS.writeByte(this.indexRow);
+
+//параметр для согласования размеров холста, шрифта, расположения и масштаба графики
+                DOS.writeByte(this.fontHeight);
+
+                DOS.write(body);    
+                
             }
             return BAOS.toByteArray();
         } catch (UnsupportedEncodingException ex) {
@@ -1075,7 +1079,7 @@ public class MyJavaCanvas extends JEditorPane {
     }
     
     /**
-     * 
+     * запись текста в массив байт для отправки по UDP 
      */
     private byte[] getTextToBytes()
     {
@@ -1097,7 +1101,8 @@ public class MyJavaCanvas extends JEditorPane {
     }
 
     /**
-     * Запись графического содержимого в массив байт для отправки по UDP
+     * формирование пакета  графического содержимого для отправки по UDP
+     *  
      * @return массив байт с графикой
      */
     private byte[] graphToBytes() {
@@ -1106,10 +1111,13 @@ public class MyJavaCanvas extends JEditorPane {
         try {
             BAOS = new ByteArrayOutputStream();
             DOS = new DataOutputStream(BAOS);
+            //формирование заголовка
             writeHead(DOS, TypeInfo.GRAPH);
-            //////////////////////////////////////////// DOS.writeByte(this.RedLineX/5);
+            //формирование основного пакета
             byte [] body =this.writeBytesGraph();
+            // запись длины основного пакета
             DOS.writeInt(body.length);
+            // запись основного пакета
             DOS.write(body);
             byte[] b = BAOS.toByteArray();
             DOS.close();
@@ -1145,10 +1153,7 @@ public class MyJavaCanvas extends JEditorPane {
             DOS.write(this.recordHead.getHeadDesc());
             DOS.writeByte(this.numberPage);
             DOS.writeByte((byte) type);
-            if (type == TypeInfo.TEXT)
-            {
-                DOS.writeByte(this.indexRow);
-            }
+            
 
         } catch (IOException ex) {
             ReportException.write(this.getClass().getName() + "\t1\t" + ex.getMessage());
@@ -1161,8 +1166,8 @@ public class MyJavaCanvas extends JEditorPane {
 
     //<editor-fold defaultstate="collapsed" desc="Read Write Save board ">
     /**
-     * запись в поток текста
-     */
+     * запись в поток текста для сохранения
+     */ 
     private void writeBytesText(DataOutputStream DOS) {
        
         try {
@@ -1175,7 +1180,7 @@ public class MyJavaCanvas extends JEditorPane {
     }
 
     /**
-     * запись в поток графики
+     * запись в поток графики для сохранения
      */
     private void writeBytesGraph(DataOutputStream DOS)
     {
@@ -1211,7 +1216,7 @@ public class MyJavaCanvas extends JEditorPane {
     }
     
     /**
-     * запись в поток графики
+     * запись в поток графики для отправки по UDP
      */
     private byte[] writeBytesGraph()
     { 

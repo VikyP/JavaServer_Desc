@@ -355,6 +355,7 @@ public class CanvasScreen extends JPanel
     {
         this.setPreferredSize( new Dimension(this.bi.getWidth(),this.bi.getHeight()));
     }
+    
     // размеры окна
     public void FrameSize()
     {
