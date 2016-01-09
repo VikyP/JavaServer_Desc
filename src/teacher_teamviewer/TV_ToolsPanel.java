@@ -50,7 +50,7 @@ public class TV_ToolsPanel extends JPanel
     public JButton b_exit;
     
   
-    private Dimension panelSize= new Dimension(120,240);
+    private Dimension panelSize= new Dimension(120,210);
    
     private Rectangle openRect;
     private Rectangle closeRect;
@@ -98,7 +98,7 @@ public class TV_ToolsPanel extends JPanel
       
       
       this.Mode=new JToggleButton();
-      this.Mode.setPreferredSize(new Dimension(20,100));
+      this.Mode.setPreferredSize(new Dimension(20,80));
       this.Mode.setIcon(ImageIconURL.get("resources/left_28.png"));
       this.Mode.setSelectedIcon(ImageIconURL.get("resources/right_28.png"));
       this.setToggleButtonPaintOff(Mode);
@@ -122,17 +122,17 @@ public class TV_ToolsPanel extends JPanel
       this.setBounds(this.closeRect); 
       //this.setOpaque(false);//variant
       
-     JPanel p= new JPanel(new FlowLayout(FlowLayout.LEFT));     
+      studentName=new JLabel("******");
+      studentName.setHorizontalAlignment(0);
+      
+     JPanel p= new JPanel(new FlowLayout(FlowLayout.LEFT)); 
+     p.add(studentName);    
      p.add(this.Tools);
      p.add(Mode);
      
-     studentName=new JLabel("******");
-     studentName.setHorizontalAlignment(0);
-     studentName.setBackground(Color.red);
-    
      
      this.add(p,BorderLayout.CENTER);
-     this.add(studentName,BorderLayout.SOUTH);
+    // this.add(studentName,BorderLayout.SOUTH);
      this.addMouseMotionListener(new MyMouseMotionListener());
      this.addMouseListener( new MyMouselistener());
      

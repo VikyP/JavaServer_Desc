@@ -78,11 +78,13 @@ public class Thread_SenderImage extends Thread
        } 
        catch (InterruptedException ex)
        { 
+           
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         } 
        finally
        {
-           this.DS.close();       
+           this.DS.close();   
+           
        }
        
        

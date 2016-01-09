@@ -70,8 +70,11 @@ public class Student extends Object implements Comparable
    @Override
     public boolean equals(Object ob)
     {
-        
+        if(ob==null)
+            return false;
+       
         return( this.IP.equals(((Student)ob).IP) && this.config.PORT_TCP_IMG==((Student)ob).config.PORT_TCP_IMG );
+      
     }
     
     

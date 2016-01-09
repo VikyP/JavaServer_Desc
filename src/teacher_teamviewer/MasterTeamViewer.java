@@ -132,7 +132,12 @@ public class MasterTeamViewer extends JPanel {
             System.out.println("Find :" + s);
 
             MasterTeamViewer.this.PreviewPane.remove(s.SP);
+            if(s.equals(MaxSizeStudent))
+            {
+                unSelect();
+            }
             students.remove(s);
+            
             MasterTeamViewer.this.PreviewPane.validate();
             MasterTeamViewer.this.PreviewPane.repaint();
 
