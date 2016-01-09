@@ -157,9 +157,10 @@ public class TV_ToolsPanel extends JPanel
     {
     
       this.FullScreen = new JToggleButton();
+      /*
       this.FullScreen.setSelectedIcon(ImageIconURL.get("resources/fullscreeen_off_40.png"));
       this.FullScreen.setIcon(ImageIconURL.get("resources/fullscreeen_on_40.png"));
-      setToggleButtonPaintOff(this.FullScreen);
+      setToggleButtonPaintOff(this.FullScreen);*/
       
       this.b_scale= new JToggleButton();
       this.b_scale.setIcon(ImageIconURL.get("resources/monitor_sc1.png"));
@@ -176,8 +177,8 @@ public class TV_ToolsPanel extends JPanel
         //Dimension btnD=new Dimension (50,50);
      
        // FullScreen.setPreferredSize(btnD);
-        FullScreen.setToolTipText(" Полный экран ");
-        this.Tools.add(FullScreen);
+       // FullScreen.setToolTipText(" Полный экран ");
+       // this.Tools.add(FullScreen);
         
         
       //  b_scale.setPreferredSize(btnD);

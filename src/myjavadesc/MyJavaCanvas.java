@@ -188,11 +188,11 @@ public class MyJavaCanvas extends JEditorPane {
     /**
      * частота отправки текста
      */
-    public int timeT = 200;
+    private int timeT = 200;
     /**
      * частота отправки графики
      */
-    public int timeG = 200;
+    private int timeG = 200;
     private Sender_UDP sender;
 
     /**
@@ -788,15 +788,13 @@ public class MyJavaCanvas extends JEditorPane {
             @Override
             public void componentShown(ComponentEvent e)
             {                
-                MyJavaCanvas.this.timeG = 100;
-                MyJavaCanvas.this.timeT = 50;
+                setTimeOn(true);
             }
 
             @Override
             public void componentHidden(ComponentEvent e)
             {               
-                MyJavaCanvas.this.timeG = 5000;
-                MyJavaCanvas.this.timeT = 2000;
+               setTimeOn(false);
             }
         });
         this.addCaretListener(new CaretListener()
@@ -831,6 +829,21 @@ public class MyJavaCanvas extends JEditorPane {
         this.TST.start();
         this.TSG.start();
 
+    }
+    public void setTimeOn(boolean f)
+    {
+        if(f)
+        {
+            this.timeG = 100;
+            this.timeT = 50;        
+        }
+        else
+        {
+            this.timeG = 3000;
+            this.timeT = 3000;
+        
+        }
+    
     }
     
     

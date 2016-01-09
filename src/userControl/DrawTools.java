@@ -94,13 +94,15 @@ public class DrawTools extends JPanel
         this.rowsCB= new JComboBox();
          for(byte i=1; i<countMAX; i++)
             rowsCB.addItem(i);
-        
+        rowsCB.setToolTipText("Количество строк");
          p.add(rowsCB);
          JLabel column= new JLabel (ImageIconURL.get("resources/column.png"));
         p.add(column);
         this.colCB= new JComboBox();
          for(byte i=1; i<countMAX; i++)
             colCB.addItem(i);
+         
+          colCB.setToolTipText("Количество столбцов");
         p.add(colCB);
         this.add(p);
     } 

@@ -174,10 +174,20 @@ public class MasterFrame extends JFrame
                 public void actionPerformed(ActionEvent e) 
                 {
                     JToggleButton btn=(JToggleButton)e.getSource();
-                    
-                    MasterFrame.this.SenderImage.setStatus(btn.isSelected());
+                    if(btn.isSelected())
+                    {
+                        MasterFrame.this.Desc.myCanvas.setTimeOn(false);                       
+                    }
+                    else
+                    {
+                        if(MasterFrame.this.Desc.myCanvas.isVisible())
+                        {
+                           MasterFrame.this.Desc.myCanvas.setTimeOn(true);                        
+                        }                    
+                    }
+                        
+                    MasterFrame.this.SenderImage.setStatus(btn.isSelected());                    
                     MasterFrame.this.recordHead.setIsImageSender(btn.isSelected());
-                   
                 }
             });
             

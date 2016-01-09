@@ -8,6 +8,7 @@ package myjavadesc;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -51,7 +52,7 @@ public class MasterBoard extends JPanel {
     
     public File fileCurrentBoard;
 
-    private MyJavaCanvas myCanvas;
+    public MyJavaCanvas myCanvas;
     JColorChooser colorChooser ;
     
     private ToolsPanel tools;
@@ -116,7 +117,7 @@ public class MasterBoard extends JPanel {
         status.setPreferredSize(new Dimension(200,50));
         leftPanel.add(status, BorderLayout.SOUTH);
         leftPanel.setLayout(new BorderLayout());
-        this.canvasPanel = new JPanel(); 
+        this.canvasPanel = new JPanel(new FlowLayout(FlowLayout.CENTER) ); 
         
         
         leftPanel.add(this.canvasPanel,BorderLayout.CENTER);

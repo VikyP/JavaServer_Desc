@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.ReportException;
@@ -44,7 +45,7 @@ public class Sender_UDP
             {
                 return;
             }
-           System.out.println(" LENGTH SEND "+ByteSream.length);   
+           System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString());   
             
             
             DatagramPacket DP = new DatagramPacket(
