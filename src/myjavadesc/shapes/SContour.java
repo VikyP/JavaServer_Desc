@@ -24,7 +24,7 @@ public class SContour extends MyShape
     
     public SContour(){}
     
-    public SContour(DataInputStream DIS, int type)
+    public SContour(DataInputStream DIS, byte type)
     {
         super( DIS, type);
         try
@@ -39,7 +39,7 @@ public class SContour extends MyShape
             this.SRect = new Rectangle(Begin.x,Begin.y,w,h);
             
             this.thicknessLine=DIS.readFloat();
-            this.typeLine=(int) DIS.readByte();
+            this.typeLine=DIS.readByte();
             this.ColorLine=new Color(DIS.readInt());            
             
          
@@ -51,13 +51,13 @@ public class SContour extends MyShape
         }
     }
     
-    public SContour(Point Begin, Point End, Color c, float s, int t) 
+    public SContour(Point Begin, Point End, Color c, float s, byte t) 
     {
         super(Begin, End, c,s,t);
         this.Filling=null;        
     }
     
-    public SContour(Point Begin, Point End, Color c, Color f, float s,int t) 
+    public SContour(Point Begin, Point End, Color c, Color f, float s,byte t) 
     {
         super(Begin, End, c, s,t);
         this.Filling=f;        
@@ -67,7 +67,7 @@ public class SContour extends MyShape
    {
         try
         {
-            DOS.writeByte((byte) this.Type);
+            DOS.writeByte(this.Type);
             DOS.writeInt(this.SRect.x);
             DOS.writeInt(this.SRect.y);
             DOS.writeInt(this.SRect.width);

@@ -220,14 +220,14 @@ public class TV_ToolsPanel extends JPanel
     {
         if(this.status)
         {
-           this.setBounds(this.openRect); 
+           this.setBounds(this.openRect);           
            
         }
         else
         {
-            this.setBounds(this.closeRect); 
-            
+            this.setBounds(this.closeRect);             
         }
+        this.studentName.setVisible(!status);
     }
     
     // define start points openrect and closeRect

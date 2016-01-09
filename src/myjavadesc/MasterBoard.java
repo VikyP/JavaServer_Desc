@@ -27,8 +27,10 @@ import myjavadesc.events.IChShapeType;
 import userControl.DashLineComboBox;
 
 import userControl.DrawTools;
+import userControl.EndLineComboBox;
 import userControl.SettingTools;
 import userControl.SizeSketch;
+import userControl.StartLineComboBox;
 import userControl.ToolsPanel;
 import userControl.WidthLineComboBox;
 
@@ -62,7 +64,7 @@ public class MasterBoard extends JPanel {
 
     IChShapeType IShType = new IChShapeType() {
         @Override
-        public void setShapeType(int ShapeType) 
+        public void setShapeType(byte ShapeType) 
         {
             MasterBoard.this.myCanvas.shapeType = ShapeType;
         }
@@ -322,24 +324,49 @@ public class MasterBoard extends JPanel {
         });
         this.settings.styleLine.addActionListener(new ActionListener()
         {
-
             @Override
             public void actionPerformed(ActionEvent ae)
             {
                 DashLineComboBox dlcb=(DashLineComboBox)ae.getSource();
-                myCanvas.typeLine=dlcb.getSelectedValue();
+                myCanvas.typeLine=(byte)dlcb.getSelectedValue();
                 settings.currLine.setProperty(myCanvas.typeLine);
             }
         }
-);
-        
+     
+        );
+        this.settings.startLineCB.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                StartLineComboBox slcb= (StartLineComboBox)e.getSource();
+                myCanvas.startLineType = (byte) slcb.getSelectedValue();
+                
+            }
+        }
+        );
+           
+        this.settings.endLineCB.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                EndLineComboBox slcb= (EndLineComboBox)e.getSource();
+                myCanvas.endLineType = (byte) slcb.getSelectedValue();                
+            }
+        }
+        );
         
 //</editor-fold>  
         
         //<editor-fold defaultstate="collapsed" desc=" Типы графических элементов ">
         // патель изменения типа графическиго инструмента
         this.DT= new DrawTools();        
-        this.tools.setDrawTools(this.DT);     
+        this.tools.setDrawTools(this.DT); 
+        this.DT.setActionRowCount(myCanvas.rowCount);
+        this.DT.setActionColumnCount(myCanvas.colCount);
         //событие смены типа текущего графического элемента
         this.DT.EvShapeType.ShapeTypeChangedAdd(IShType);        
         //</editor-fold>  

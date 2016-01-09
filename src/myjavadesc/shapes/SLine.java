@@ -8,6 +8,7 @@ package myjavadesc.shapes;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -30,18 +32,21 @@ public class SLine extends MyShape implements IShapeAction
     
     private Point Begin_Editable=null;
     private Point End_Editable=null;
-    
+    private byte startLine=0;
+    private byte endLine=0;
     
 
-    public SLine(Point Begin, Point End, Color c, float s, int t)
+    public SLine(Point Begin, Point End, Color c, float s, byte t, byte start, byte end)
     {
         super(Begin, End, c, s,t);
         this.Type=ShapeType.Line;        
         this.Begin=Begin;
         this.End=End;
+        this.startLine=start;
+        this.endLine=end;
     }
     
-    public SLine(DataInputStream DIS, int type)
+    public SLine(DataInputStream DIS, byte type)
     {
         super(DIS, type);
         try 
@@ -53,13 +58,22 @@ public class SLine extends MyShape implements IShapeAction
             End.x=DIS.readInt();
             End.y=DIS.readInt();
             this.thicknessLine=DIS.readFloat();
-            this.typeLine=(int)DIS.readByte();
+            this.typeLine=DIS.readByte();
             this.ColorLine=new Color(DIS.readInt());            
             this.SRect = new Rectangle(
             (Begin.x < End.x) ? Begin.x : End.x,
             (Begin.y < End.y) ? Begin.y : End.y,
             Math.abs(End.x - Begin.x),
             Math.abs(End.y - Begin.y));
+            try{
+            this.startLine=DIS.readByte();
+            this.endLine=DIS.readByte();
+            }
+            catch(Exception exc)
+            {
+                this.startLine=EndLineType.NOT;
+                this.endLine=EndLineType.NOT;
+            }
         } 
         catch (IOException ex)
         {
@@ -95,9 +109,36 @@ public class SLine extends MyShape implements IShapeAction
             this.setProperties(g).drawLine(this.Begin_Editable.x, this.Begin_Editable.y,this.End_Editable.x, this.End_Editable.y); 
        else
             this.setProperties(g).drawLine(this.Begin.x, this.Begin.y,this.End.x, this.End.y);
+        
+        switch(this.startLine)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowStart(g,this.Begin,this.End);
+                break;
+            case EndLineType.CIRCLE:
+                g.fillOval(this.Begin.x-EndLineType.CIRCLE_SIZE, this.Begin.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g.fillRect(this.Begin.x-EndLineType.RECTANGLE_SIZE, this.Begin.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+        switch(this.endLine)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowEnd(g,this.Begin,this.End);
+                break;
+            case EndLineType.CIRCLE:
+                g.fillOval(this.End.x-EndLineType.CIRCLE_SIZE, this.End.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g.fillRect(this.End.x-EndLineType.RECTANGLE_SIZE, this.End.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+        
+       
     }
-    
-    
     
     @Override
    public void BinaryWrite(DataOutputStream DOS)
@@ -112,6 +153,8 @@ public class SLine extends MyShape implements IShapeAction
             DOS.writeFloat(this.thicknessLine);
             DOS.writeByte(this.typeLine);
             DOS.writeInt(this.ColorLine.getRGB());
+            DOS.writeByte(this.startLine);
+            DOS.writeByte(this.endLine);
             
         }
         catch (IOException ex) 
@@ -131,6 +174,8 @@ public class SLine extends MyShape implements IShapeAction
             this.SRect.width, this.SRect.height);        
         return this.RectEditable;
     }
+    
+    
 
     
 
@@ -196,9 +241,8 @@ public class SLine extends MyShape implements IShapeAction
     {
         Point begin= new Point(this.Begin.x+x,this.Begin.y+y);
         Point end= new Point(this.End.x+x,this.End.y+y);
-        return new SLine(begin,end, this.ColorLine, this.thicknessLine, this.typeLine);
+        return new SLine(begin,end, this.ColorLine, this.thicknessLine, this.typeLine, this.startLine, this.endLine);
     }
 
-    
     
 }

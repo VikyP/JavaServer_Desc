@@ -26,7 +26,7 @@ public class RecordInfo
     public void setIsRecord(boolean isRecord) {
         this.isRecord = isRecord;
     }
-    private String nameGroup="";
+    private String nameGroup="Unknow";
     public String getNameGroup() {
         return nameGroup;
     }

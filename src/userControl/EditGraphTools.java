@@ -38,7 +38,7 @@ public class EditGraphTools extends JPanel
     private JButton btnClear;
     private JButton btnRemove;
     private JButton btnCopyPast;
-    private int Heigth=100;
+    private int Heigth=200;
     
     
     

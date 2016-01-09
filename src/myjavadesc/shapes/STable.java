@@ -20,37 +20,34 @@ import java.util.logging.Logger;
  *
  * @author 06585
  */
-public class SRectangle extends SContour implements IShapeAction  
+public class STable extends SContour implements IShapeAction  
 {
+    private byte rows=0;
+    private byte columns=0;
 
-    public SRectangle(DataInputStream DIS, byte type)
+    public STable(DataInputStream DIS, byte type)
     {
         super(DIS, type);
-        try
-        {
-            if(this.Type==ShapeType.FillRectangle)
-                this.Filling= new Color(DIS.readInt());
-            else
-                this.Filling=null;
-        } catch (IOException ex)
-        {
-             this.Type=-1;
-            Logger.getLogger(SRectangle.class.getName()).log(Level.SEVERE, null, ex);
+       
+        this.Filling=null;
+        try {
+            this.rows=DIS.readByte();
+            this.columns=DIS.readByte();
+        } catch (IOException ex) {
+            Logger.getLogger(STable.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     
     }
-    public SRectangle(Point Begin, Point End, Color c, float s, byte t)
+    public STable(Point Begin, Point End, Color c, float s, byte t, byte r, byte col)
     {
         super(Begin, End, c, s, t);
-        this.Type=ShapeType.Rectangle;
+        this.Type=ShapeType.Table;
+        this.rows=r;
+        this.columns=col;
     }
     
-     public SRectangle(Point Begin, Point End, Color c, Color f, float s, byte t) 
-    {
-        super(Begin, End, c, s, t);
-        this.Filling=f;   
-        this.Type=ShapeType.FillRectangle;
-    }
+    
      
     @Override
     public Point getBegin()
@@ -76,9 +73,7 @@ public class SRectangle extends SContour implements IShapeAction
 
      @Override
     public void draw(Graphics g) 
-    {
-        int row=5;
-        int column=4;
+    {        
         Rectangle R=null;
         if(this.isEditable && this.RectEditable!=null)
             R=this.RectEditable;
@@ -91,6 +86,11 @@ public class SRectangle extends SContour implements IShapeAction
         }
         else
        this.setProperties(g).drawRect(R.x, R.y, R.width, R.height);
+        for(int i=1;i<this.rows;i++)
+            g.drawLine(R.x, R.y+R.height/rows*i,R.x+ R.width,  R.y+R.height/rows*i);
+        
+        for(int i=1;i<this.columns; i++)
+            g.drawLine(R.x+R.width/columns*i, R.y, R.x+R.width/columns*i, R.y+R.height);
         
     }
     
@@ -135,15 +135,14 @@ public class SRectangle extends SContour implements IShapeAction
     public void BinaryWrite(DataOutputStream DOS)
     {
         super.BinaryWrite(DOS);
-        try
-        {           
-            if(this.Type==ShapeType.FillRectangle)
-                DOS.writeInt(this.Filling.getRGB());
-        }
-        catch (IOException ex) 
+        try 
         {
-            Logger.getLogger(SEllipse.class.getName()).log(Level.SEVERE, null, ex);
+            DOS.writeByte(this.rows);
+            DOS.writeByte(this.columns);
+        } catch (IOException ex) {
+            Logger.getLogger(STable.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     @Override
@@ -162,16 +161,8 @@ public class SRectangle extends SContour implements IShapeAction
     {
         Point begin= new Point(this.getBegin().x+x,this.getBegin().y+y);
         Point end= new Point(this.getEnd().x+x,this.getEnd().y+y);
-       switch(this.Type)
-       {
-           case ShapeType.Rectangle:
-               return new SRectangle(begin, end, this.ColorLine, this.thicknessLine, this.typeLine);
-              
-           case ShapeType.FillRectangle:
-               return new SRectangle(begin, end, this.ColorLine,this.Filling, this.thicknessLine, this.typeLine);
-       }
-       
-       return null;
+        return new STable(begin, end, this.ColorLine, this.thicknessLine, this.typeLine, this.rows, this.columns);
+     
     }
      
 }

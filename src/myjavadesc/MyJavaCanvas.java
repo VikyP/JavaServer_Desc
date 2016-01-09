@@ -43,9 +43,11 @@ import java.util.ArrayList;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 
 import javax.swing.JEditorPane;
 import javax.swing.JSpinner;
+import javax.swing.JToggleButton;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
@@ -63,11 +65,13 @@ import myjavadesc.events.EventAddShape;
 
 import myjavadesc.shapes.AnchorsManipulations;
 import myjavadesc.shapes.EditAction;
+import myjavadesc.shapes.EndLineType;
 import myjavadesc.shapes.IShapeAction;
 import myjavadesc.shapes.SEllipse;
 import myjavadesc.shapes.SLine;
 import myjavadesc.shapes.SPenLine;
 import myjavadesc.shapes.SRectangle;
+import myjavadesc.shapes.STable;
 import myjavadesc.shapes.ShapeType;
 
 import userControl.EditGraphTools;
@@ -100,7 +104,7 @@ public class MyJavaCanvas extends JEditorPane {
     public EventAddShape EASh = new EventAddShape();
     
     // тип фигуры, который будет нарисован
-    public int shapeType = ShapeType.None;
+    public byte shapeType = ShapeType.None;
     
     // количество строк на доске
     private byte rowsCount = 30;
@@ -120,7 +124,15 @@ public class MyJavaCanvas extends JEditorPane {
     public float stroke;
     
     //тип линии
-    public int typeLine = 0;
+    public byte typeLine = 0;
+    
+    public byte startLineType=0;
+    public byte endLineType=0;
+    
+    //строки таблицы
+    public byte rows=1;
+    //колонки таблицы
+    public byte columns=1;
     
     //флаг (рисовать или нет фигуру при движении мышки)
     //Fonts  Courier, Andale Mono, Monaco, Profont, Consolas, Deja Vu Sans Mono
@@ -406,11 +418,11 @@ public class MyJavaCanvas extends JEditorPane {
                 case ShapeType.Line:
                 case ShapeType.LineHorizontal:
                 case ShapeType.LineVertical:
-                    MyJavaCanvas.this.shapes.add(new SLine(MyJavaCanvas.this.begP, MyJavaCanvas.this.curP, MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
+                    MyJavaCanvas.this.shapes.add(new SLine(begP, curP,LineColor, stroke, typeLine,startLineType,endLineType));
                     break;
                 case ShapeType.PenLine:
                     if (MyJavaCanvas.this.freeLine != null) {
-                        MyJavaCanvas.this.shapes.add(new SPenLine(MyJavaCanvas.this.freeLine.Poins(), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
+                        MyJavaCanvas.this.shapes.add(new SPenLine(MyJavaCanvas.this.freeLine.Poins(), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine,startLineType,endLineType));
                         MyJavaCanvas.this.freeLine = null;
                     }
                     break;
@@ -418,14 +430,18 @@ public class MyJavaCanvas extends JEditorPane {
                     MyJavaCanvas.this.shapes.add(new SEllipse(new Point(x1, y1), new Point(x2, y2), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
                     break;
                 case ShapeType.FillEllipse:
-                    MyJavaCanvas.this.shapes.add(new SEllipse(new Point(x1, y1), new Point(x2, y2), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.FillColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
+                    MyJavaCanvas.this.shapes.add(new SEllipse(new Point(x1, y1), new Point(x2, y2), LineColor, FillColor, stroke, typeLine));
                     break;
                 case ShapeType.Rectangle:
-                    MyJavaCanvas.this.shapes.add(new SRectangle(new Point(x1, y1), new Point(x2, y2), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
+                    MyJavaCanvas.this.shapes.add(new SRectangle(new Point(x1, y1), new Point(x2, y2), LineColor, stroke, typeLine));
                     break;
                 case ShapeType.FillRectangle:
-                    MyJavaCanvas.this.shapes.add(new SRectangle(new Point(x1, y1), new Point(x2, y2), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.FillColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine));
+                    MyJavaCanvas.this.shapes.add(new SRectangle(new Point(x1, y1), new Point(x2, y2), LineColor, FillColor, stroke, typeLine));
                     break;
+                case ShapeType.Table:
+                    MyJavaCanvas.this.shapes.add(new STable(new Point(x1, y1), new Point(x2, y2), LineColor, stroke, typeLine, rows,columns));
+                    break;
+                    
             }
             addShape(MyJavaCanvas.this.shapeType);
 
@@ -550,8 +566,9 @@ public class MyJavaCanvas extends JEditorPane {
                         break;
                     case ShapeType.PenLine:
                         if (MyJavaCanvas.this.freeLine == null) {
-                            MyJavaCanvas.this.freeLine = new SPenLine(MyJavaCanvas.this.begP, MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine);
-                        } else {
+                            MyJavaCanvas.this.freeLine = new SPenLine(MyJavaCanvas.this.begP,LineColor, stroke, typeLine, startLineType, endLineType);
+                        } 
+                        else {
                             MyJavaCanvas.this.freeLine.AddPoint(new Point(me.getX(), me.getY()));
                         }
 
@@ -636,6 +653,51 @@ public class MyJavaCanvas extends JEditorPane {
             MyJavaCanvas.this.addSelect();
         }
     };
+    
+    //изменение количества строк
+   public  ActionListener rowCount= new ActionListener()
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+           JComboBox cb= (JComboBox)e.getSource();
+          rows=Byte.parseByte(cb.getSelectedItem().toString());
+        }
+    
+    
+    };
+   
+   //изменение количества столбцов
+    public ActionListener colCount= new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           JComboBox cb= (JComboBox)e.getSource();
+          columns=Byte.parseByte(cb.getSelectedItem().toString());
+        }
+    };       
+    
+    //установка типа начала линии
+    public ActionListener startLineAL= new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+           JComboBox cb= (JComboBox)e.getSource();
+          startLineType=Byte.parseByte(cb.getSelectedItem().toString());
+        }
+    };  
+    
+    //установка типа конца линии
+    public ActionListener endLineAL= new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           JComboBox cb= (JComboBox)e.getSource();
+          endLineType=Byte.parseByte(cb.getSelectedItem().toString());
+        }
+    };  
 
     /**
      * изменился выбранный объект в перечне графических фигур
@@ -748,8 +810,6 @@ public class MyJavaCanvas extends JEditorPane {
                 Element lineElem = map.getElement(row);
                 int col = pos - lineElem.getStartOffset();
                 MyJavaCanvas.this.indexRow = (byte) row;
-              // System.out.println("   row " + MyJavaCanvas.this.indexRow);
-               //System.out.println("   col " + col);
             }
 
         });
@@ -767,7 +827,7 @@ public class MyJavaCanvas extends JEditorPane {
         this.setDrawColors(SC.LineColor, SC.FillColor);
         this.setColors(SC.Background, SC.Foreground);
         this.stroke = SC.thicknessLine;
-        this.typeLine = SC.typeLine;
+        this.typeLine = (byte) SC.typeLine;
         this.TST.start();
         this.TSG.start();
 
@@ -927,6 +987,38 @@ public class MyJavaCanvas extends JEditorPane {
         g2D.setComposite(A2);
 
     }
+    
+    private void drawEndLine(Graphics g)
+    {
+        switch(this.startLineType)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowStart(g,this.begP,this.curP);
+                break;
+            case EndLineType.CIRCLE:
+                g.fillOval(this.begP.x-EndLineType.CIRCLE_SIZE, this.begP.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g.fillRect(this.begP.x-EndLineType.RECTANGLE_SIZE, this.begP.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+        switch(this.endLineType)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowEnd(g,this.begP,this.curP);
+                break;
+            case EndLineType.CIRCLE:
+                g.fillOval(this.curP.x-EndLineType.CIRCLE_SIZE, this.curP.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g.fillRect(this.curP.x-EndLineType.RECTANGLE_SIZE, this.curP.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+    
+    
+    }
 
     /**
      * прорисовка текущей фигуры в режиме рисования
@@ -954,6 +1046,7 @@ public class MyJavaCanvas extends JEditorPane {
             case ShapeType.LineHorizontal:
             case ShapeType.LineVertical:
                 g2D.drawLine(this.begP.x, this.begP.y, this.curP.x, this.curP.y);
+                drawEndLine(g);
                 break;
             case ShapeType.PenLine:
                 this.freeLine.draw(g);
@@ -971,6 +1064,18 @@ public class MyJavaCanvas extends JEditorPane {
             case ShapeType.FillRectangle:
                 g2D.setColor(this.FillColor);
                 g2D.fillRect(x1, y1, x2 - x1, y2 - y1);
+                break;
+            case ShapeType.Table:
+                g2D.drawRect(x1, y1, x2 - x1, y2 - y1);
+                int w=x2 - x1;
+                int h=y2 - y1;
+                
+                for(int i=1;i<rows;i++)
+                    g2D.drawLine(x1, y1+h/rows*i,x1+ w,  y1+h/rows*i);
+        
+                for(int i=1;i<columns; i++)
+                    g2D.drawLine(x1+w/columns*i, y1, x1+w/columns*i, y1+h);
+                
                 break;
         }
 
@@ -1207,6 +1312,9 @@ public class MyJavaCanvas extends JEditorPane {
                         case ShapeType.FillRectangle:
                             ((SRectangle) shape).BinaryWrite(DOS);
                             break;
+                         case ShapeType.Table:
+                             ((STable) shape).BinaryWrite(DOS);
+                            break;
                     }
                 }
             }
@@ -1248,6 +1356,9 @@ public class MyJavaCanvas extends JEditorPane {
                         case ShapeType.Rectangle:
                         case ShapeType.FillRectangle:
                             ((SRectangle) shape).BinaryWrite(DOS);
+                            break;
+                        case ShapeType.Table:
+                            ((STable) shape).BinaryWrite(DOS);
                             break;
                     }
                 }
@@ -1333,7 +1444,7 @@ public class MyJavaCanvas extends JEditorPane {
             }
 
             int length = DIS.readInt();
-            int type = -1;
+            byte type = -1;
 
             for (int i = 0; i < length; i++) {
 
@@ -1355,6 +1466,10 @@ public class MyJavaCanvas extends JEditorPane {
                         case ShapeType.Rectangle:
                         case ShapeType.FillRectangle:
                             sa = new SRectangle(DIS, type);
+                            break;
+                            
+                        case ShapeType.Table:
+                            sa = new STable(DIS, type);
                             break;
                     }
                     if (sa != null && sa.getType() > 0) {

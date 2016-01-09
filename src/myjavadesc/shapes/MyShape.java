@@ -22,16 +22,16 @@ import java.io.DataOutputStream;
  */
 public class MyShape
 {    
-    protected int Type;
+    protected byte Type;
     protected float thicknessLine=0;
-    protected int typeLine=0;
+    protected byte typeLine=0;
     protected Color ColorLine;
     protected Rectangle SRect;
     protected Rectangle RectEditable=null;
     protected boolean isEditable=false;
     
     public MyShape(){}
-    public MyShape(DataInputStream DIS, int type)
+    public MyShape(DataInputStream DIS, byte type)
     {
         try{
         this.Type=type;
@@ -43,7 +43,7 @@ public class MyShape
         
     }
     
-    public MyShape(Point Begin, Point End, Color c, float s, int t)
+    public MyShape(Point Begin, Point End, Color c, float s, byte t)
     {
         this.SRect = new Rectangle(
                 (Begin.x < End.x) ? Begin.x : End.x,

@@ -49,9 +49,10 @@ public class CanvasScreen extends JPanel
     private BufferedImage bi;
     public RegimeView regimeCurrent;
     private Dimension imgD;
-    private Point p= new Point(0,0);
+   
     public boolean isControl;
     private int scale_point=1;
+    private Point p= new Point(0,0);
     public TCP_RemoteAccessThr SenderCommand;
     
     class MyMouseMotionListener extends MouseMotionAdapter

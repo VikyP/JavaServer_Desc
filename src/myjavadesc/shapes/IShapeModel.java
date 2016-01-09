@@ -11,7 +11,7 @@ package myjavadesc.shapes;
  */
 public interface IShapeModel
 {
-    public int getType();
+    public byte getType();
     public String getName();
     public String getToolTipText();
 }

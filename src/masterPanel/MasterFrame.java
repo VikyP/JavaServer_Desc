@@ -26,6 +26,7 @@ import teacher_teamviewer.MasterTeamViewer;
 import teacher_teamviewer.event_package.IFullScreen;
 import userControl.ModeChanger;
 import screen_stream.Thread_SenderImage;
+import userControl.ImageIconURL;
 import userControl.ModeType;
 
 
@@ -156,7 +157,7 @@ public class MasterFrame extends JFrame
             System.exit(0);        
         }
         
-       
+            this.setIconImage(ImageIconURL.get("resources/board45.png").getImage());
             this.TV= new MasterTeamViewer(this.StartDim, SC);
             
             this.recordHead= new RecordInfo();
@@ -207,7 +208,7 @@ public class MasterFrame extends JFrame
 
 
             this.setContentPane(this.Desc);
-            this.setTitle("Java-Доска (преподаватель)");
+            this.setTitle("Java-Доска (преподаватель) IP "+SC.IP);
             this.addWindowListener(new WindowAdapter()
             {
                 @Override

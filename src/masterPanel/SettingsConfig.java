@@ -46,7 +46,7 @@ public class SettingsConfig
     public Color FillColor;
     
     public float thicknessLine;
-    public int typeLine=0;
+    public byte typeLine=0;
     public int fontSize;
     private final int MIN_FONTSIZE=16;
     
@@ -149,7 +149,7 @@ public class SettingsConfig
             this.thicknessLine=Float.parseFloat(thickness.getTextContent());
             
             Element dash = (Element)doc.getElementsByTagName("Dash").item(0);
-            this.typeLine=Integer.parseInt(dash.getTextContent());
+            this.typeLine=Byte.parseByte(dash.getTextContent());
             
             Element fSize = (Element)doc.getElementsByTagName("FontSize").item(0);
             this.fontSize=Integer.parseInt(fSize.getTextContent());    
@@ -158,12 +158,36 @@ public class SettingsConfig
             Element ip = (Element)doc.getElementsByTagName("IP").item(0); 
             this.IP=InetAddress.getByName(ip.getTextContent().trim());
             
-             // уточняем IP
-            if(this.IP!=InetAddress.getLocalHost())
-                this.IP=InetAddress.getLocalHost();
             
             Element ip_udp = (Element)doc.getElementsByTagName("IP_UDP").item(0); 
             this.IP_UDP=InetAddress.getByName(ip_udp.getTextContent().trim());
+          
+           
+            //System.out.println("        IP "+ InetAddress.);
+             // уточняем IP
+            if(!this.IP.getHostAddress().equals(InetAddress.getLocalHost().getHostAddress()))
+            { 
+                this.IP=InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
+                
+                byte[] mask=this.IP_UDP.getAddress();
+                byte [] newUDP=this.IP.getAddress();
+                for(int i=0; i<mask.length;i++)
+                { 
+                    System.out.println(" " +(mask[i]&0x000000FF));
+                    if (((mask[i]&0x000000FF)^0xFF)==0)
+                    {
+                       
+                        newUDP[i]=(byte) 0xFF;
+                    }                
+                }
+               this.IP_UDP=InetAddress.getByAddress(newUDP);
+               System.out.println(" this.IP_UDP   "+this.IP_UDP.getHostName());
+               ip.setTextContent(this.IP.getHostAddress());
+               ip_udp.setTextContent(this.IP_UDP.getHostAddress());
+               saveDoc();
+            }
+            
+            
             
             Element p_udp = (Element)doc.getElementsByTagName("PORT_UDP").item(0); 
             this.PORT_UDP=Integer.parseInt(p_udp.getTextContent());
@@ -192,81 +216,57 @@ public class SettingsConfig
         return false;
     }
     
+    public void saveIP()
+    {
+    
+    }
+    
     public void saveSettingsThemes(Color f, Color b, int fSize)
     {
-        try
-        {
-           
-            Element back = (Element)doc.getElementsByTagName("Background").item(0);            
-            back.setTextContent(String.format( "%02X%02X%02X", b.getRed(), b.getGreen(), b.getBlue() ));
-            Element fore = (Element)doc.getElementsByTagName("Foreground").item(0); 
-            fore.setTextContent(String.format( "%02X%02X%02X", f.getRed(), f.getGreen(), f.getBlue() ));
-            
-            Element fS = (Element)doc.getElementsByTagName("FontSize").item(0); 
-            fS.setTextContent(String.valueOf(fSize));
-            
-            Source domSource = new DOMSource(this.doc);
-            Result fileResult = new StreamResult(new File("Settings.xml"));
-            TransformerFactory factory = TransformerFactory.newInstance();
-            Transformer transformer = factory.newTransformer();
-            transformer.transform(domSource, fileResult);
-        }
-        catch (TransformerConfigurationException ex)
-        {
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (TransformerException ex)
-        {
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
+        Element back = (Element)doc.getElementsByTagName("Background").item(0);            
+        back.setTextContent(String.format( "%02X%02X%02X", b.getRed(), b.getGreen(), b.getBlue() ));
+        Element fore = (Element)doc.getElementsByTagName("Foreground").item(0); 
+        fore.setTextContent(String.format( "%02X%02X%02X", f.getRed(), f.getGreen(), f.getBlue() ));
+
+        Element fS = (Element)doc.getElementsByTagName("FontSize").item(0); 
+        fS.setTextContent(String.valueOf(fSize));            
+        saveDoc();
+        
     }
     
     public void saveColorsDraw(Color l, Color f)
     {
-        try
-        {
-            Element back = (Element)doc.getElementsByTagName("LineColor").item(0);            
-            back.setTextContent(String.format( "%02X%02X%02X", l.getRed(), l.getGreen(), l.getBlue() ));
-            Element fore = (Element)doc.getElementsByTagName("FillColor").item(0); 
-            fore.setTextContent(String.format( "%02X%02X%02X", f.getRed(), f.getGreen(), f.getBlue() ));
-            Source domSource = new DOMSource(this.doc);
-            Result fileResult = new StreamResult(new File("Settings.xml"));
-            TransformerFactory factory = TransformerFactory.newInstance();
-            Transformer transformer = factory.newTransformer();
-            transformer.transform(domSource, fileResult);
-        }
-        catch (TransformerConfigurationException ex)
-        {
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (TransformerException ex)
-        {
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
+       
+        Element back = (Element)doc.getElementsByTagName("LineColor").item(0);            
+        back.setTextContent(String.format( "%02X%02X%02X", l.getRed(), l.getGreen(), l.getBlue() ));
+        Element fore = (Element)doc.getElementsByTagName("FillColor").item(0); 
+        fore.setTextContent(String.format( "%02X%02X%02X", f.getRed(), f.getGreen(), f.getBlue() ));
+        saveDoc();
     }
     
     public void saveLineSetting(float w, int type)
     {
-        try
-        {
-            Element thickness = (Element)doc.getElementsByTagName("Thickness").item(0);            
-            thickness.setTextContent(String.valueOf(w));
-            Element dash = (Element)doc.getElementsByTagName("Dash").item(0);
-            dash.setTextContent(String.valueOf(type));
+       
+        Element thickness = (Element)doc.getElementsByTagName("Thickness").item(0);            
+        thickness.setTextContent(String.valueOf(w));
+        Element dash = (Element)doc.getElementsByTagName("Dash").item(0);
+        dash.setTextContent(String.valueOf(type));
+        saveDoc();
+        
+    }
+    
+    
+    public void saveDoc()
+    {
+        try {
             Source domSource = new DOMSource(this.doc);
             Result fileResult = new StreamResult(new File("Settings.xml"));
             TransformerFactory factory = TransformerFactory.newInstance();
             Transformer transformer = factory.newTransformer();
             transformer.transform(domSource, fileResult);
-        }
-        catch (TransformerConfigurationException ex)
-        {
+        } catch (TransformerConfigurationException ex) {
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (TransformerException ex)
-        {
+        } catch (TransformerException ex) {
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
     

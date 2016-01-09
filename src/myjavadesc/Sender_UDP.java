@@ -8,6 +8,9 @@ package myjavadesc;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import masterPanel.ReportException;
 
 /**
@@ -18,11 +21,19 @@ public class Sender_UDP
 {
     private final InetAddress IP_UDP;
     private final int port;
-
+    DatagramSocket DS;
     public Sender_UDP(InetAddress ip, int port)
     {      
         this.IP_UDP = ip;
         this.port = port;
+        try
+        {
+            this.DS = new DatagramSocket();
+        } 
+        catch (SocketException ex)
+        {
+            Logger.getLogger(Sender_UDP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public synchronized void Send(byte[] ByteSream)
@@ -35,11 +46,11 @@ public class Sender_UDP
             }
            System.out.println(" LENGTH SEND "+ByteSream.length);   
             
-            DatagramSocket DS = new DatagramSocket();
+            
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
-            DS.close();            
+                        
 
         }
         catch (Exception se)

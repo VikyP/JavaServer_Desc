@@ -24,6 +24,8 @@ public class SettingTools extends JPanel
      public JButton colorFill;
      public DashLineComboBox styleLine;
      public WidthLineComboBox thicnessLine;
+     public StartLineComboBox startLineCB;
+     public EndLineComboBox endLineCB;
      public int rowsClose=2;
      
      private Object[][] widthLine={{1,"resources/lineCB1.png","resources/lineCB1_s.png"},
@@ -35,6 +37,17 @@ public class SettingTools extends JPanel
      {1,"resources/lineCB_d2.png","resources/lineCB_d2.png"},{2,"resources/lineCB_d3.png","resources/lineCB_d3.png"},
      {3,"resources/lineCB_d4.png","resources/lineCB_d4.png"},{4,"resources/lineCB_d5.png","resources/lineCB_d5.png"}
      };
+     
+     private Object[][] startLine={{0,"resources/startLine.png","resources/startLine.png"},
+     {1,"resources/startLineArrow.png","resources/startLineArrow.png"},{2,"resources/startLineCircle.png","resources/startLineCircle.png"},
+     {3,"resources/startLineRect.png","resources/startLineRect.png"}
+     };
+     
+     private Object[][] endLine={{0,"resources/startLine.png","resources/startLine.png"},
+     {1,"resources/endLineArrow.png","resources/endLineArrow.png"},{2,"resources/endLineCircle.png","resources/endLineCircle.png"},
+     {3,"resources/endLineRect.png","resources/endLineRect.png"}
+     };
+     
      
      public SettingTools( float w, int t)
      {
@@ -66,8 +79,7 @@ public class SettingTools extends JPanel
         rows++;
         this.add( new JLabel("Толщина линии"));
         rows++;
-        this.thicnessLine= new WidthLineComboBox();
-        
+        this.thicnessLine= new WidthLineComboBox();        
         this.thicnessLine.setEditable(true);
         this.thicnessLine.addItems(widthLine);
         this.add(this.thicnessLine); 
@@ -84,6 +96,25 @@ public class SettingTools extends JPanel
         this.add(this.styleLine);
         rows++;
         this.styleLine.setEnabled(false);
+        
+        this.add( new JLabel("Начало и конец линии"));
+        rows++;
+        this.startLineCB=  new StartLineComboBox();
+        this.startLineCB.setEditable(true);
+        this.startLineCB.addItems(startLine);
+        this.startLineCB.setSelectedItem(getSelectedDash(t));
+        this.add(this.startLineCB);
+       
+        this.startLineCB.setEnabled(false);
+        
+        this.endLineCB=  new EndLineComboBox();
+        this.endLineCB.setEditable(true);
+        this.endLineCB.addItems(endLine);
+        this.endLineCB.setSelectedItem(getSelectedDash(t));
+        this.add(this.endLineCB);
+        rows++;
+        this.endLineCB.setEnabled(false);
+        
         this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rows+btnSize.height));
         
      
@@ -141,6 +172,8 @@ public class SettingTools extends JPanel
      this.colorFill.setEnabled(true);
      this.thicnessLine.setEnabled(true);
      this.styleLine.setEnabled(true);
+     this.startLineCB.setEnabled(true);
+     this.endLineCB.setEnabled(true);
      
      }
     

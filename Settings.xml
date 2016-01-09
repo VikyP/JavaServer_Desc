@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
 <Configuration>
-<!-- IP Teacher  -->192.168.0
-	<IP>192.168.0.101</IP>
+<!-- IP Teacher  -->
+	<IP>192.168.0.104</IP>
 	
 	<!-- Broad Cast UDP-->
 	<IP_UDP>192.168.0.255</IP_UDP>
@@ -23,10 +23,10 @@
 		
 </Configuration>
 	<Colors>
-		<Background>999999</Background>
+		<Background>6666FF</Background>
 		<Foreground>FFFF33</Foreground>
 		<LineColor>11CD08</LineColor>
-		<FillColor>9999FF</FillColor>	 
+		<FillColor>CCFFCC</FillColor>	 
 	</Colors>
 	<Line>
 		<Thickness>2.0</Thickness>

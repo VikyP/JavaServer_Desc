@@ -6,11 +6,8 @@
 package screen_stream;
 
 import java.awt.AWTException;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -41,15 +38,17 @@ import masterPanel.RecordInfo;
 // фомирование массива байт необходимых блоков
 public class ScreenTiles
 {
-
-    
+    //запись заголовка
     public RecordInfo recordHead;
     
+    //подготовка картинки
     private ScreenProperties ImageToSend;
+    
     //индексы блоков для отправки
     ArrayList<Integer> blocks = new ArrayList<>();
     
     private Robot robot;
+    
     //первая строка пакета для отправки
     private int startRow=0;
     //последняя строка пакета для отправки
@@ -59,19 +58,31 @@ public class ScreenTiles
     private byte typeSend=TypeImageSend.Fast;
     
     //время отправки пакета
-    public int time=500;
-    //максимальный объем пакета, который после сжатия можно переслать по UDP
-    private static int DataMax=300000;
+    public int time= 200;
+    //время отпрвки быстрой картинки
+    private final int  TIME_FAST=128; 
+    //время отправки при  построчном обновлении
+    private final int  TIME_ROWS=64;
+    //время  отправки изменений
+    private final int  TIME_DIFFERENCE=200;
+    
     
     //кратность полного обновления картинки
-    private int rowsTime=0;
+    private byte rowsTime=0;    
+    private final byte rowsTimeUpdate= 30;
+    
+    //параметры для метода getChanges()
+    private int blockFullLines=0;
+    private int blockInNotFullLine=0;
+    private int startByte=0;
+    private int EndByte=0;
     
     private int getDiffereceDataSize()
     {
         return blocks.size()*ImageToSend.blockPixelHeight*ImageToSend.blockPixelWidth*2;
     }
        
-
+        //BufferedImage BI;
     public ScreenTiles(RecordInfo r)
     {
         try
@@ -89,6 +100,7 @@ public class ScreenTiles
         ImageToSend.setDimensionScreenNow(ImageToSend.newPictureBuffer.getWidth(), ImageToSend.newPictureBuffer.getHeight());
         ImageToSend.NewSize();
         this.recordHead=r;
+        //BI= new BufferedImage(ImageToSend.newPictureBuffer.getWidth(), ImageToSend.newPictureBuffer.getHeight(),BufferedImage.TYPE_INT_RGB );
     }
 
     /**
@@ -124,18 +136,17 @@ public class ScreenTiles
      */
     public byte[] PrScrToBytes()
     {
-        // получаем снимок экрана с огрублением цветов
-        BufferedImage BI=MakePrintScreen();
+        // получаем снимок экрана с огрублением цветов       
+        BufferedImage BI =MakePrintScreen();
         // подгоняем размеры картинки для кратности необходимым параметрам
         ImageToSend.getOptimalImage(BI);
         // определяем объем изменений
         getChanges();
         //определяем количество изменений    
-        int diff=getDiffereceDataSize();
         
         byte[] body; 
         //в зависимости от количества изменений
-        if(diff>DataMax ) // оно превышает максимум 
+        if(getDiffereceDataSize()>ImageToSend.DataMax ) // оно превышает максимум 
         {
             //формируем уменьшенную копию экрана
            ImageToSend.getFastlImage(BI);
@@ -148,7 +159,7 @@ public class ScreenTiles
            this.stopRow=0;
            rowsTime=0;
            // время отправки 
-           time=200;
+           time=TIME_FAST;
         } 
         else// изменения не превышают максимум
         {
@@ -159,7 +170,7 @@ public class ScreenTiles
             typeSend=TypeImageSend.Row;
             body= gzip(this.byteCompressorRow());
             // время отправки
-            time=100;
+            time=TIME_ROWS;
            }
            else
            {
@@ -170,7 +181,7 @@ public class ScreenTiles
                
                body= gzip(this.byteCompressor()); 
                // время отправки
-               time=200;
+               time=TIME_DIFFERENCE;
            }
         }
         //пакет для отправки 
@@ -192,9 +203,7 @@ public class ScreenTiles
             try
             {
                 byte[] buffer = new byte[32768];
-
                 GZIPOutputStream gzos = new GZIPOutputStream(BAOS);
-
                 int length;
                 while ((length = BAIS.read(buffer)) > 0)
                 {
@@ -210,49 +219,50 @@ public class ScreenTiles
                 return null;
             }
             //сжатый массив
-            byte[] bodyZip = BAOS.toByteArray();
-            // размер массива           длина массива    длина        тип информации      
-            byte[] head = this.getHead(bodyZip.length + Integer.BYTES+Byte.BYTES);//int(4 byte)+byte
-
+            byte[] bodyZip = BAOS.toByteArray();            
+            byte[] head = this.getHead(bodyZip.length);
             BAOS.reset();
             //запись заголовка
             BAOS.write(head);
             //запись сжатого массива
-            BAOS.write(bodyZip, 0, bodyZip.length);
+            BAOS.write(bodyZip);
 
             return BAOS.toByteArray();
 
-        } catch (IOException ex)
+        } 
+        catch (IOException ex)
         {
             return null;
         }
     }
 
+    /**
+     * Определение отличий и запись блоков  базовой и новой картинок
+     */
     private void getChanges()
     {
-       
         this.ImageToSend.CheckDimension();
         DataBuffer DB_Base = this.ImageToSend.DataBase();
         DataBuffer DB_New = this.ImageToSend.DataNew();
         int W=this.ImageToSend.dOptimal.width;
-        
+        int value_Base=0;
+        int value_New=0;
         this.blocks.clear();
         for (int block = 0; block < this.ImageToSend.getTotalCountOfBlocks(); block++)
         {
             //опредеяет переход на новую строку блока
-            int blockFullLines = block / this.ImageToSend.widthCountOfBlocks;
+            blockFullLines = block / this.ImageToSend.widthCountOfBlocks;            
+            blockInNotFullLine = block % this.ImageToSend.widthCountOfBlocks;
             
-            int blockInNotFullLine = block % this.ImageToSend.widthCountOfBlocks;
-            
-            int startByte = blockFullLines * this.ImageToSend.getPixelsInLine() + blockInNotFullLine * this.ImageToSend.blockPixelWidth;
-            int EndByte = startByte + this.ImageToSend.blockPixelHeight * W - 1;
+            startByte = blockFullLines * this.ImageToSend.getPixelsInLine() + blockInNotFullLine * this.ImageToSend.blockPixelWidth;
+            EndByte = startByte + this.ImageToSend.blockPixelHeight * W - 1;
             
             for (int i = startByte; i < EndByte; i += W)
             {
                 for (int j = 0; j < this.ImageToSend.blockPixelWidth; j++)
                 {
-                    int value_Base = DB_Base.getElem(i + j);
-                    int value_New = DB_New.getElem(i + j);
+                    value_Base = DB_Base.getElem(i + j);
+                    value_New = DB_New.getElem(i + j);
                     if ((value_Base ^ value_New) != 0)
                     {                        
                         this.blocks.add(block);
@@ -273,39 +283,47 @@ public class ScreenTiles
     {
         ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
         DataOutputStream DOS = new DataOutputStream(BAOS);
-
         DataBuffer DB_Row = this.ImageToSend.DataNew();
         try
-        {
-
-            int w = this.ImageToSend.newPictureBuffer.getWidth();
+        {   int w = this.ImageToSend.newPictureBuffer.getWidth();
             int h = this.ImageToSend.newPictureBuffer.getHeight();
             
-            
-            DOS.writeInt(w);//4
-            //System.out.println("    w=" + w);
-            DOS.writeInt(h);//4
-           // System.out.println("    h=" + h);
-            
+           /*
+            WritableRaster BIR =BI.getRaster();
+            DataBuffer tmplll=BIR.getDataBuffer();*/
+            DOS.writeInt(w);
+            System.out.println("    w=" + w);
+            DOS.writeInt(h);
+            System.out.println("    h=" + h);
             
             this.stopRow=this.startRow+h/this.ImageToSend.countRow;
-            DOS.writeInt(this.startRow);
-           // System.out.println("  startRow   "+startRow);
+            DOS.writeInt(this.startRow);          
             DOS.writeInt(this.stopRow);
-            System.out.println("  stopRow   "+stopRow);
+            
+            System.out.println("  startRow   "+startRow);
+            System.out.println("  ***********stopRow   "+stopRow);
+            
+            int value1=0;
+            int value2=0;
+            int pixel=0;
             for (int i = this.startRow; i < this.stopRow; i++)
             {
                 for (int j = 0; j < w; j = j + 2)
                 {
-                    int value1 = DB_Row.getElem(i * w + j) & 0x00F0F0F0;                   
-                    int value2 = DB_Row.getElem(i * w + j + 1) & 0x00F0F0F0;
-                    int pixel = (value1 | ((value2 & 0x00FFFFFF) >> 4));
+                    value1 = DB_Row.getElem(i * w + j) & 0x00F0F0F0;                   
+                    value2 = DB_Row.getElem(i * w + j + 1) & 0x00F0F0F0;
+                    pixel = (value1 | ((value2 & 0x00FFFFFF) >> 4));
                     DOS.writeInt(pixel);
+                    
+                    /*
+                    tmplll.setElem(i * w + j,DB_Row.getElem(i * w + j));
+                    tmplll.setElem(i * w + j + 1,DB_Row.getElem(i * w + j + 1));*/
+                    
                 }
             }
             
-            this.ImageToSend.nextImage(startRow, stopRow);
-            
+            this.ImageToSend.nextImage(startRow, stopRow); 
+                
             if(this.stopRow<h)
             {
                 this.startRow=this.stopRow;
@@ -313,10 +331,10 @@ public class ScreenTiles
             else
             {
                 this.startRow=0;
-                rowsTime=40;
+                rowsTime=rowsTimeUpdate;               
             }
 
-            DOS.flush();
+            DOS.close();
             byte[] body= BAOS.toByteArray();
             BAOS.close();
             return body;
@@ -363,19 +381,23 @@ public class ScreenTiles
             int hFast=this.ImageToSend.FastPictureBuffer.getHeight();
             DOS.writeInt(hFast);
            // System.out.println("  hFast   "+hFast);
+            
+            int value1=0;
+            int value2=0;
+            int pixel =0;
             for (int i = 0; i < hFast; i++)
             {
                 for (int j = 0; j < wFast; j = j + 2)
                 {
-                    int value1 = DB_small.getElem(i * wFast + j) & 0x00F0F0F0;                   
-                    int value2 = DB_small.getElem(i * wFast + j + 1) & 0x00F0F0F0;
-                    int pixel = (value1 | ((value2 & 0x00FFFFFF) >> 4));
+                    value1 = DB_small.getElem(i * wFast + j) & 0x00F0F0F0;                   
+                    value2 = DB_small.getElem(i * wFast + j + 1) & 0x00F0F0F0;
+                    pixel = (value1 | ((value2 & 0x00FFFFFF) >> 4));
                     DOS.writeInt(pixel);
                 }
             }
             
-            DOS.flush();
-            return BAOS.toByteArray();
+            byte[] body=BAOS.toByteArray();
+            return body;
         } catch (IOException ex)
         {
             return null;
@@ -385,13 +407,14 @@ public class ScreenTiles
             try
             {
                 DOS.close();
+                BAOS.close();
             } catch (IOException ex)
             {
                 Logger.getLogger(ScreenTiles.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
+    /*
     public byte[] byteCompressorTEST()
     {
         ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
@@ -490,7 +513,7 @@ public class ScreenTiles
     
     }
     
-    
+    */
     
 
     /**
@@ -556,11 +579,11 @@ public class ScreenTiles
             {
                 DOS.writeInt(blocks.get(b));
 
-                int blockFullLines = blocks.get(b) / this.ImageToSend.widthCountOfBlocks;
-                int blockInNotFullLine = blocks.get(b) % this.ImageToSend.widthCountOfBlocks;
-                int startByte = blockFullLines * this.ImageToSend.getPixelsInLine() + blockInNotFullLine * this.ImageToSend.blockPixelWidth;
-                int endByte = startByte + this.ImageToSend.blockPixelHeight * this.ImageToSend.Width - 1;
-                for (int i = startByte; i < endByte; i += this.ImageToSend.Width)
+                blockFullLines = blocks.get(b) / this.ImageToSend.widthCountOfBlocks;
+                blockInNotFullLine = blocks.get(b) % this.ImageToSend.widthCountOfBlocks;
+                startByte = blockFullLines * this.ImageToSend.getPixelsInLine() + blockInNotFullLine * this.ImageToSend.blockPixelWidth;
+                EndByte = startByte + this.ImageToSend.blockPixelHeight * this.ImageToSend.Width - 1;
+                for (int i = startByte; i < EndByte; i += this.ImageToSend.Width)
                 {
                     for (int j = 0; j < this.ImageToSend.blockPixelWidth - 1; j = j + 2)
                     {

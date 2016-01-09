@@ -30,7 +30,7 @@ public class DashArrays
        return
         new BasicStroke(f,
                         BasicStroke.CAP_ROUND,
-                        BasicStroke.CAP_ROUND,
+                        BasicStroke.JOIN_ROUND,
                         20.0f, dash[index], 0.0f);
    
    }

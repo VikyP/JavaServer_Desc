@@ -63,7 +63,6 @@ public class WidthLineItemEditor extends BasicComboBoxEditor
        
         Object[] item = (Object[]) obj;
         selectedValue =(int) item[0];
-     //   labelItem.setText(selectedValue);
         labelItem.setIcon(ImageIconURL.get((String)item[1]));
         }
         catch(Exception ex)                

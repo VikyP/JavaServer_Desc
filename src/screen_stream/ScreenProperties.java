@@ -28,16 +28,20 @@ public class ScreenProperties
     public int blockPixelWidth, blockPixelHeight;
     //количество блоков по ширине и высоте
     public int widthCountOfBlocks, heightCountOfBlocks;
+    
+    //максимальный объем пакета, который после сжатия можно переслать по UDP
+    public static int DataMax=300000;
+    public static int DataMaxUDP=40000;
 
     // максимальная  разница между истинной высотой экрана и
     //высотой кратной количеству строк
-    int precision = 5;
+    byte precision = 4;
 
     // стартовая высота строки
-    int heightRow = 111;
+    byte heightRow = 111;
 
     // стартовое количество строк
-    public int countRow = 10;
+    public byte countRow = 10;
 
     // разрешение экрана
     //ширина
@@ -192,7 +196,6 @@ public class ScreenProperties
     {
         DataBuffer DB_Base = this.DataBase();
         DataBuffer DB_New= this.DataNew();
-
         int index = 0;
         for (int i = start; i < stop; i++)
         {
@@ -202,17 +205,13 @@ public class ScreenProperties
                 DB_Base.setElem(index, DB_New.getElem(index));
             }
         }
-        
-        // this.testImage(this.basePictureBuffer," BBBBB");         
-        //  testImage(this.newPictureBuffer,"NNNNNN");
-
+       
     }
 
     //определение размеров панели предпросмотра
     //заданы в файле конфигурации
     public void setDimentionOptimal()
     {
-
         int h = setOptimalValue(this.newPictureBuffer.getHeight());
         int w = this.newPictureBuffer.getWidth() * h / this.newPictureBuffer.getHeight();
         if ((w % 2) != 0)
@@ -220,8 +219,6 @@ public class ScreenProperties
             w = w + 1;
         }
         this.dOptimal = new Dimension(w, h);
-       // System.out.println("    w  " + this.dOptimal.width);
-       // System.out.println("    h  " + this.dOptimal.height);
         this.newPictureBuffer = new BufferedImage(this.dOptimal.width, this.dOptimal.height, BufferedImage.TYPE_INT_ARGB);
 
     }
@@ -235,24 +232,25 @@ public class ScreenProperties
     private int setOptimalValue( int h)
     {
        
-        int countRow_tmp = 0;
-
-        do
-        {
+        byte countRow_tmp = 0;
+        while (
+                (Math.abs(h - (heightRow * countRow_tmp)) > precision)
+               ||               
+                (heightRow*this.newPictureBuffer.getWidth()*Integer.BYTES/2>DataMax)
+                )
+        { 
             heightRow--;
-            countRow_tmp = h / heightRow;
-
-        } while (Math.abs(h - (heightRow * countRow_tmp)) > precision);
+            countRow_tmp = (byte) (h / heightRow);        
+        }
         this.countRow = countRow_tmp;
-
+        /*
+        System.out.println("   *************"+(heightRow*this.newPictureBuffer.getWidth()*Integer.BYTES/2>DataMax));
+        System.out.println("    row  "+ this.countRow);
+        System.out.println("   DataMax " +heightRow*this.newPictureBuffer.getWidth()*Integer.BYTES/2);
+        System.out.println("    H  " +( h + (heightRow * countRow_tmp - h)));*/
+        
         //оптимальная для передачи высота снимка экрана
         return h + (heightRow * countRow_tmp - h);
-              
-      //  int countRow_tmp = 1;
-      //  heightRow=h;
-      //  return h;
-       
-
     }
     
     private void setFastDimension()
@@ -264,7 +262,7 @@ public class ScreenProperties
         float ratio=(float) w/h;
         int data=w*h*2;
        // System.out.println("    ratio==="+ratio);
-        for(int i=1;data>300000;i++)
+        for(int i=1;data>DataMax;i++)
         {
             h=this.screenNow.height/i;
             w=(int)(h*ratio); 
@@ -274,11 +272,8 @@ public class ScreenProperties
         if ((w % 2) != 0)
         {
             w = w + 1;
-        }
-       // System.out.println("**    W= "+w+"  H="+h);        
+        }      
         this.FastPictureBuffer= new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        
-    
     }
     
     //масштабирование экрана для предпросмота

@@ -8,6 +8,7 @@ package screen_stream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.RecordInfo;
@@ -19,15 +20,13 @@ import masterPanel.ReportException;
  */
 public class Thread_SenderImage extends Thread
 {
-   // private Socket client;
+  
     private ScreenTiles ST;
    
     private final InetAddress IP_UDP;
     private final int port;
-    
-    
-    
     private boolean Status=false;
+    private DatagramSocket DS;
     
     public Thread_SenderImage(InetAddress ip, int port,RecordInfo r) 
     {
@@ -36,7 +35,13 @@ public class Thread_SenderImage extends Thread
         this.port = port;
         this.ST = new  ScreenTiles(r);
         this.setDaemon(true);
-       System.out.println(" Thread_SenderImage "+  port);
+        try 
+        {
+            this.DS = new DatagramSocket();
+        } catch (SocketException ex) {
+            Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(" Thread_SenderImage "+  port);
     }
             
     
@@ -46,6 +51,7 @@ public class Thread_SenderImage extends Thread
      
        try
        {
+          
            while(true)
            {
                
@@ -57,13 +63,14 @@ public class Thread_SenderImage extends Thread
                 byte[] ByteSream=  ST.PrScrToBytes();
                 if(ByteSream!=null)
                 {
-                    System.out.println("Send "+ ByteSream.length); 
+                   // System.out.println("Send Screeen "+ ByteSream.length); 
                     Send(ByteSream) ;       
                 }
                 else 
                 { 
                     System.out.println("Send Null"); 
                 }
+                
                 Thread.sleep(ST.time);
               }
             }
@@ -73,6 +80,10 @@ public class Thread_SenderImage extends Thread
        { 
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         } 
+       finally
+       {
+           this.DS.close();       
+       }
        
        
     }
@@ -85,14 +96,10 @@ public class Thread_SenderImage extends Thread
             {
                 return;
             }
-           System.out.println(" LENGTH SEND "+ByteSream.length);   
-            
-            DatagramSocket DS = new DatagramSocket();
+           //System.out.println(" LENGTH SEND "+ByteSream.length);   
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
-            DS.close();            
-
         }
         catch (Exception se)
         {

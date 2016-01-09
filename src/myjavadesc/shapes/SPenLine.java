@@ -30,8 +30,12 @@ public class SPenLine  extends MyShape implements IShapeAction
     
     private Point Begin_Editable=null;
     private Point End_Editable=null;
+    private byte startLine=0;
+    private byte endLine=0;
+    
     
     private static final int step=3;
+    private int nextPoint=5;
     private ArrayList <Point> BezierPoints;
     public ArrayList Poins()
     { 
@@ -39,7 +43,7 @@ public class SPenLine  extends MyShape implements IShapeAction
 
     }
     
-    public SPenLine( Point begin, Color c, float s, int t)            
+    public SPenLine( Point begin, Color c, float s, byte t, byte start, byte end)            
     { 
         super(begin, begin, c, s,t);
         this.Type=ShapeType.PenLine; 
@@ -47,19 +51,24 @@ public class SPenLine  extends MyShape implements IShapeAction
         BezierPoints.add(begin);
         this.Begin = begin;           
         this.End = begin; 
+        
+         this.startLine=start;
+        this.endLine=end;
     }
     
-    public SPenLine( ArrayList<Point> points, Color c, float s, int t)            
+    public SPenLine( ArrayList<Point> points, Color c, float s, byte t, byte start, byte end)            
     { 
         super(points.get(0),points.get(points.size()-1), c, s, t); 
         this.Type=ShapeType.PenLine; 
         BezierPoints = points;       
         this.Begin = points.get(0);           
         this.End = points.get(points.size()-1); 
+        this.startLine=start;
+        this.endLine=end;
     }
     
     
-    public SPenLine(DataInputStream DIS, int type)
+    public SPenLine(DataInputStream DIS, byte type)
     {
         super(DIS, type);
         try 
@@ -77,13 +86,16 @@ public class SPenLine  extends MyShape implements IShapeAction
             this.End = this.BezierPoints.get(this.BezierPoints.size()-1);
             
             this.thicknessLine=DIS.readFloat();
-            this.typeLine= (int)DIS.readByte();
+            this.typeLine= DIS.readByte();
             this.ColorLine=new Color(DIS.readInt());            
             this.SRect = new Rectangle(
             (Begin.x < End.x) ? Begin.x : End.x,
             (Begin.y < End.y) ? Begin.y : End.y,
             Math.abs(End.x - Begin.x),
             Math.abs(End.y - Begin.y));
+            
+            this.startLine=DIS.readByte();
+            this.endLine=DIS.readByte();
         } 
         catch (IOException ex)
         {
@@ -96,7 +108,7 @@ public class SPenLine  extends MyShape implements IShapeAction
     {
         Point Last = BezierPoints.get(BezierPoints.size()-1); 
         // добавление в массив не всех точек, а только те, что дальше от последней на 10
-        if (Math.abs(Last.x - p.x) >10 || Math.abs(Last.y - p.y) >10)
+        if (Math.abs(Last.x - p.x) >nextPoint || Math.abs(Last.y - p.y) >nextPoint)
         {
             BezierPoints.add(new Point(p.x, p.y));
         }
@@ -123,6 +135,8 @@ public class SPenLine  extends MyShape implements IShapeAction
             DOS.writeFloat(this.thicknessLine);
             DOS.writeByte(this.typeLine);
             DOS.writeInt(this.ColorLine.getRGB());
+            DOS.writeByte(this.startLine);
+            DOS.writeByte(this.endLine);
             
         }
         catch (IOException ex) 
@@ -150,7 +164,37 @@ public class SPenLine  extends MyShape implements IShapeAction
             BezierPoints.get(i+2).x, BezierPoints.get(i+2).y);          
         }
         Graphics2D g2 = (Graphics2D) g;
+        
+        
+        switch(this.startLine)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowStart(g,this.Begin,BezierPoints.get(step-1));
+                break;
+            case EndLineType.CIRCLE:
+                g2.fillOval(this.Begin.x-EndLineType.CIRCLE_SIZE, this.Begin.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g2.fillRect(this.Begin.x-EndLineType.RECTANGLE_SIZE, this.Begin.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+        switch(this.endLine)
+        {
+            case EndLineType.ARROW:
+                EndLineType.drawArrowEnd(g,BezierPoints.get(BezierPoints.size()-step+1),this.End);
+                break;
+            case EndLineType.CIRCLE:
+                g2.fillOval(this.End.x-EndLineType.CIRCLE_SIZE, this.End.y-EndLineType.CIRCLE_SIZE,EndLineType.CIRCLE_SIZE*2, EndLineType.CIRCLE_SIZE*2);
+            break;
+                case EndLineType.RECTANGLE:
+                g2.fillRect(this.End.x-EndLineType.RECTANGLE_SIZE, this.End.y-EndLineType.RECTANGLE_SIZE,EndLineType.RECTANGLE_SIZE*2, EndLineType.RECTANGLE_SIZE*2);
+            break;
+        
+        }
+        
         g2.draw(gp); 
+        
     }
 
     @Override
@@ -173,8 +217,7 @@ public class SPenLine  extends MyShape implements IShapeAction
 
     @Override
     public Rectangle getRectangle()
-    {
-        
+    {        
        return this.SRect;
     }
 
@@ -223,7 +266,7 @@ public class SPenLine  extends MyShape implements IShapeAction
        {
             newLine.add(new Point(p.x+x, p.y+y));
        }
-       return new  SPenLine( newLine, this.ColorLine, this.thicknessLine, this.typeLine);
+       return new  SPenLine( newLine, this.ColorLine, this.thicknessLine, this.typeLine, this.startLine, this.endLine);
     }
     
 }

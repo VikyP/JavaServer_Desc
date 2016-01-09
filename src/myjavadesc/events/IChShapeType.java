@@ -11,6 +11,6 @@ package myjavadesc.events;
  */
 public interface IChShapeType 
 {
-    public void setShapeType( int ShapeType );  
+    public void setShapeType( byte ShapeType );  
     
 }

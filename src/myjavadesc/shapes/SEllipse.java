@@ -21,20 +21,20 @@ import java.util.logging.Logger;
  */
 public class SEllipse extends SContour implements IShapeAction 
 {
-    public SEllipse(Point Begin, Point End, Color c, float s, int t)
+    public SEllipse(Point Begin, Point End, Color c, float s, byte t)
     {
         super(Begin, End, c, s,t);
         this.Type=ShapeType.Ellipse;
     }
     
-    public SEllipse(Point Begin, Point End, Color c, Color f, float s, int t) 
+    public SEllipse(Point Begin, Point End, Color c, Color f, float s, byte t) 
     {
         super(Begin, End, c, s, t);
         this.Filling=f;
         this.Type=ShapeType.FillEllipse;
     }
     
-    public SEllipse (DataInputStream DIS, int type)
+    public SEllipse (DataInputStream DIS, byte type)
     {
         super( DIS, type);
         

@@ -11,15 +11,16 @@ package myjavadesc.shapes;
  */
 public class ShapeType
 {
-    public static final int None=0;
-    public static final int Line=1;
-    public static final int LineHorizontal=2;
-    public static final int LineVertical=3;
-    public static final int PenLine=4;
-    public static final int Ellipse=5;
-    public static final int FillEllipse=6;
-    public static final int Rectangle=10;  
-    public static final int FillRectangle=11;  
+    public static final byte None=0;
+    public static final byte Line=1;
+    public static final byte LineHorizontal=2;
+    public static final byte LineVertical=3;
+    public static final byte PenLine=4;
+    public static final byte Ellipse=5;
+    public static final byte FillEllipse=6;
+    public static final byte Rectangle=10;  
+    public static final byte FillRectangle=11;  
+    public static final byte Table=20;
     
     
     
@@ -27,7 +28,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.Line;
         }
@@ -49,7 +50,7 @@ public class ShapeType
     {
      
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.LineHorizontal;
         }
@@ -71,7 +72,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.LineVertical;
         }
@@ -93,7 +94,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.PenLine;
         }
@@ -115,7 +116,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.Ellipse;
         }
@@ -138,7 +139,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.FillEllipse;
         }
@@ -160,7 +161,7 @@ public class ShapeType
     {
        
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.Rectangle;
         }
@@ -182,7 +183,7 @@ public class ShapeType
     {
         
         @Override
-        public int getType()
+        public byte getType()
         {
             return ShapeType.FillRectangle;
         }
@@ -201,8 +202,32 @@ public class ShapeType
         
     }
     
+    public static class TableCl implements IShapeModel
+    {
+        
+        @Override
+        public byte getType()
+        {
+            return ShapeType.Table;
+        }
+
+        @Override
+        public String getName()
+        {
+            return "Table";
+        }
+
+        @Override
+        public String getToolTipText()
+        {
+            return "Таблица";
+        }
+        
+    }
+    
     public static final IShapeModel[] Shapes={ new LineCl(), new LineHorizontalCl(), new LineVerticalCl(),new PenLineCl(), 
                                                new EllipseCl(),new FillEllipseCl(),new RectangleCl(),new FillRectangleCl()
+                                               ,new TableCl()
     
     };
     
@@ -227,6 +252,8 @@ public class ShapeType
                 case ShapeType.FillRectangle:
                     
                 return "Прямоугольник";
+                case ShapeType.Table:
+                    return " Таблица";
         
         }
     return "Shape ?2";
