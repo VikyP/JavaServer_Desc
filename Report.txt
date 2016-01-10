@@ -48706,3 +48706,17 @@ teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: 
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Software caused connection abort: recv failed		
+teacher_teamviewer.TCP_Client_RecieverPrScr	2	Recived - 1 bytes		

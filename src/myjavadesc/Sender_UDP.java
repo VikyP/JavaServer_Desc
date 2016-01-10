@@ -45,7 +45,7 @@ public class Sender_UDP
             {
                 return;
             }
-           System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString());   
+          ///////// System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString());   
             
             
             DatagramPacket DP = new DatagramPacket(

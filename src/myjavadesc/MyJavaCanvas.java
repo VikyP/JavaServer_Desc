@@ -421,7 +421,8 @@ public class MyJavaCanvas extends JEditorPane {
                     MyJavaCanvas.this.shapes.add(new SLine(begP, curP,LineColor, stroke, typeLine,startLineType,endLineType));
                     break;
                 case ShapeType.PenLine:
-                    if (MyJavaCanvas.this.freeLine != null) {
+                    if (MyJavaCanvas.this.freeLine != null) 
+                    {
                         MyJavaCanvas.this.shapes.add(new SPenLine(MyJavaCanvas.this.freeLine.Poins(), MyJavaCanvas.this.LineColor, MyJavaCanvas.this.stroke, MyJavaCanvas.this.typeLine,startLineType,endLineType));
                         MyJavaCanvas.this.freeLine = null;
                     }
@@ -1062,7 +1063,8 @@ public class MyJavaCanvas extends JEditorPane {
                 drawEndLine(g);
                 break;
             case ShapeType.PenLine:
-                this.freeLine.draw(g);
+                if(this.freeLine!=null)
+                    this.freeLine.draw(g);
                 break;
             case ShapeType.Ellipse:
                 g2D.drawOval(x1, y1, x2 - x1, y2 - y1);
