@@ -381,7 +381,7 @@ public class ArchiveFiles
         {
             this.lm.addElement(f.getName());
 
-            System.out.println(i + "    " + f.getName());
+           // System.out.println(i + "    " + f.getName());
             i++;
             // проверка на наличие папки-Сегодня для выбранной группы
             if (f.getName().equals(this.todayTostring()))
@@ -404,7 +404,7 @@ public class ArchiveFiles
      */
     public void setDay(String day)
     {
-        System.out.println(day);
+       // System.out.println(day);
 
         this.isTodayDir = false;
         //очищаем список
@@ -659,7 +659,7 @@ public class ArchiveFiles
         }
         if (!this.listBoard.isEmpty())
         {
-            System.out.println("    index" +index);
+          //  System.out.println("    index" +index);
             this.BoardsToday.setSelectedIndex(--index);
             this.currentBoard = this.listBoard.get(index);
         }

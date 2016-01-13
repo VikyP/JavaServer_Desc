@@ -95,8 +95,8 @@ public class MasterTeamViewer extends JPanel {
             }
 
            // System.out.println("Applicants.size()***" + MasterTeamViewer.this.connector.Applicants.size());
-            while (MasterTeamViewer.this.connector.Applicants.size() != 0) {
-                System.out.println("TimerTask");
+            while (!MasterTeamViewer.this.connector.Applicants.isEmpty()) {
+            //    System.out.println("TimerTask");
                 MasterTeamViewer.this.addStudent(MasterTeamViewer.this.connector.Applicants.remove(0));
 
             }
@@ -108,12 +108,14 @@ public class MasterTeamViewer extends JPanel {
 
         public void addNewStudent(final Student sNew) {
             //Если студента нет в основном списке
-            if (!students.contains(sNew)) {
-                System.out.println("try add");
+            if (!students.contains(sNew)) 
+            {
+              //  System.out.println("try add");
                 MasterTeamViewer.this.connector.addItem(sNew);
                // sNew.startSenderMessage();
-
-            } else {
+            } 
+            else
+            {
                 System.out.println("-----------" + sNew.getIP() + " exists");
             }
         }
@@ -122,14 +124,14 @@ public class MasterTeamViewer extends JPanel {
 
     IEventRemoveStudent removeSt = new IEventRemoveStudent() {
         public void removeStudent(String ip) {
-            System.out.println("removeStudent");
+           // System.out.println("removeStudent");
             Student s = MasterTeamViewer.this.getStudentByIP(ip);
 
             if (s == null) {
-                System.out.println(ip + " not found");
+              //  System.out.println(ip + " not found");
                 return;
             }
-            System.out.println("Find :" + s);
+           // System.out.println("Find :" + s);
 
             MasterTeamViewer.this.PreviewPane.remove(s.SP);
             if(s.equals(MaxSizeStudent))
@@ -323,7 +325,7 @@ public class MasterTeamViewer extends JPanel {
     private Student getStudentByIP(String ip) {
         for (Student s : students) {
             if (s.getStudentByIP(ip) != null) {
-                System.out.println("Find :" + s);
+               // System.out.println("Find :" + s);
                 return s;
 
             }
@@ -354,8 +356,8 @@ public class MasterTeamViewer extends JPanel {
 
             this.scrollPane.setViewportView(s.CS);
             
-            System.out.println("W = " + this.scrollPane.getWidth() + " H = " + this.scrollPane.getHeight());
-            System.out.println(this.scrollPane.getViewport().getComponent(0).toString());
+           // System.out.println("W = " + this.scrollPane.getWidth() + " H = " + this.scrollPane.getHeight());
+            //System.out.println(this.scrollPane.getViewport().getComponent(0).toString());
 
         } catch (InterruptedException ex) {
             Logger.getLogger(MasterTeamViewer.class.getName()).log(Level.SEVERE, null, ex);
@@ -447,10 +449,10 @@ public class MasterTeamViewer extends JPanel {
         this.PreviewPane.validate();
         this.PreviewPane.repaint();
     }
-
+/*
     private void removeStudent(String ip)
     {
-        System.out.println("removeStudent");
+      //  System.out.println("removeStudent");
 
         Student s = this.getStudentByIP(ip);
 
@@ -470,7 +472,7 @@ public class MasterTeamViewer extends JPanel {
         }
 
     }
-
+*/
     public ImageIcon getImageIcon(String resImgName) {
 
         java.net.URL imgUrl = MasterTeamViewer.class.getResource(resImgName);

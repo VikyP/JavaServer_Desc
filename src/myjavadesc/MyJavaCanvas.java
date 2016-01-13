@@ -213,7 +213,7 @@ public class MyJavaCanvas extends JEditorPane {
                         count=0;
                     if(count%frequency==0)
                     {
-                    System.out.println("    TEXT ");
+                   // System.out.println("    TEXT ");
                     MyJavaCanvas.this.sender.Send(MyJavaCanvas.this.textToBytes());
                     }
                     count++;
@@ -238,7 +238,7 @@ public class MyJavaCanvas extends JEditorPane {
         public void run() {
             while (true) {
                 try {
-                    System.out.println("    Graph ");
+                  //  System.out.println("    Graph ");
 
                     synchronized (MyJavaCanvas.this.shapes) {
                         MyJavaCanvas.this.sender.Send(MyJavaCanvas.this.graphToBytes());
@@ -352,7 +352,7 @@ public class MyJavaCanvas extends JEditorPane {
             if (MyJavaCanvas.this.isEdit) {
                 int index = MyJavaCanvas.this.editTools.shapesList.getSelectedIndex();
                 if (index >= 0) {
-                    System.out.println("    isEdit");
+                   // System.out.println("    isEdit");
                     MyJavaCanvas.this.isManipulation = true;
                     MyJavaCanvas.this.begP = new Point(me.getX(), me.getY());
                     MyJavaCanvas.this.shapes.get(index).setEditable(true);
@@ -361,13 +361,14 @@ public class MyJavaCanvas extends JEditorPane {
                 MyJavaCanvas.this.begP = new Point(me.getX(), me.getY());
                 MyJavaCanvas.this.curP = MyJavaCanvas.this.begP;
                 //выход, если действие не назначено
-                if (MyJavaCanvas.this.shapeType == ShapeType.None) {
-                    System.out.println("ShapeType.None");
+                if (MyJavaCanvas.this.shapeType == ShapeType.None) 
+                {
+                   // System.out.println("ShapeType.None");
                     return;
                 }
 
                 if (me.getButton() == MouseEvent.BUTTON3) {
-                    System.out.println("    isDraw");
+                  //  System.out.println("    isDraw");
                     MyJavaCanvas.this.isDraw = true;
                     MyJavaCanvas.this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                     MyCaretPos = MyJavaCanvas.this.getCaretPosition();
@@ -529,14 +530,14 @@ public class MyJavaCanvas extends JEditorPane {
                     /// for line
                     /// 
                     case EditAction.sizeLineBeginPoint:
-                        System.out.println("   sizeLineBeginPoint ");
+                       // System.out.println("   sizeLineBeginPoint ");
                         EditAnchors = new AnchorsManipulations(shapeEditable.getType(),
                                 shapeEditable.resize_moveRightBottom(me.getPoint().x - MyJavaCanvas.this.begP.x, me.getPoint().y - MyJavaCanvas.this.begP.y),
                                 new Point(shapeEditable.getBegin().x + (me.getPoint().x - MyJavaCanvas.this.begP.x),
                                         shapeEditable.getBegin().y + (me.getPoint().y - shapeEditable.getBegin().y)), shapeEditable.getEnd());
                         break;
                     case EditAction.sizeLineEndPoint:
-                        System.out.println("   sizeLineEndPoint ");
+                      //  System.out.println("   sizeLineEndPoint ");
                         EditAnchors = new AnchorsManipulations(shapeEditable.getType(),
                                 shapeEditable.resize_moveLeftTop(me.getPoint().x - MyJavaCanvas.this.begP.x, me.getPoint().y - MyJavaCanvas.this.begP.y),
                                 shapeEditable.getBegin(),
@@ -921,7 +922,7 @@ public class MyJavaCanvas extends JEditorPane {
      * @param name название фигуры
      */
     private void addShape(int type) {
-        System.out.println(" type   " + type);
+       // System.out.println(" type   " + type);
         this.editTools.dlm.addElement(ShapeType.toStr(type));
     }
 
@@ -1466,7 +1467,7 @@ public class MyJavaCanvas extends JEditorPane {
                 try {
                     IShapeAction sa = null;
                     type = DIS.readByte();
-                    System.out.println("Type " + type);
+                   // System.out.println("Type " + type);
                     switch (type) {
                         case ShapeType.Line:
                             sa = new SLine(DIS, type);

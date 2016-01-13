@@ -49,7 +49,7 @@ public class ModeChanger extends JPanel
         @Override
         public void mousePressed(MouseEvent me)
         {
-            System.out.println("   mousePressed ");
+           // System.out.println("   mousePressed ");
             
             ModeChanger.this.beginMoveY=me.getY();   
             
@@ -68,7 +68,7 @@ public class ModeChanger extends JPanel
           int Y=ModeChanger.this.closeRect.y+y-ModeChanger.this.beginMoveY;
           if(Y<0 ||(Y+ModeChanger.this.closeRect.height)>ModeChanger.this.getParent().getHeight())
                 return;                
-          System.out.println( " y" +y);
+         // System.out.println( " y" +y);
           ModeChanger.this.closeRect.y=Y;
           ModeChanger.this.openRect.y=Y;
           ModeChanger.this.setPosition();        

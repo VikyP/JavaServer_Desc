@@ -91,8 +91,8 @@ public class TCP_Client_RecieverPrScr extends Thread
                 {
                     System.out.println("Error  lengthByteArr");
                 }
-                System.out.println(" lengthByteArr"+lengthByteArr);
-                System.out.println(" type"+type);
+               // System.out.println(" lengthByteArr"+lengthByteArr);
+              // System.out.println(" type"+type);
                 byte[] dataBuffer = new byte[32768];
                 do
                 {
@@ -112,7 +112,7 @@ public class TCP_Client_RecieverPrScr extends Thread
                 byte[] bodyZip = BAOS.toByteArray();
                 body= unzip(bodyZip);
                 
-                System.out.println("    Get "+body.length);
+               // System.out.println("    Get "+body.length);
                 ByteArrayInputStream BAIS = new ByteArrayInputStream(body);
                 DataInputStream DIS = new DataInputStream(BAIS);
 
@@ -131,7 +131,7 @@ public class TCP_Client_RecieverPrScr extends Thread
             {
                 ReportException.write(this.getClass().getName()+"\t2\t"+ex.getMessage());
                 String ip=this.client.getInetAddress().toString().substring(1);
-                System.out.println("1 " + ex.getMessage() + "Begin remove_"+ ip );
+               // System.out.println("1 " + ex.getMessage() + "Begin remove_"+ ip );
                 IEventRemoveStudent ers = (IEventRemoveStudent) this.ERS.getListener();
                 ers.removeStudent(ip);
                 this.client.close();
@@ -201,7 +201,7 @@ public class TCP_Client_RecieverPrScr extends Thread
              ReportException.write("TCP_Client_RecieverPrScr.unzip()  IOException\t"+ex.getMessage());
         }
          byte [] body =Baos.toByteArray();
-         System.out.println("   size"+body.length);
+        // System.out.println("   size"+body.length);
     return  body;
     
     }

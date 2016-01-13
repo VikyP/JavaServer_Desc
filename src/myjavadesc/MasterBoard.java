@@ -91,7 +91,7 @@ public class MasterBoard extends JPanel {
             }
             else
             {
-               System.out.println(" MasterBoard.this.fileCurrentBoard " +MasterBoard.this.fileCurrentBoard.getName());
+              // System.out.println(" MasterBoard.this.fileCurrentBoard " +MasterBoard.this.fileCurrentBoard.getName());
                MasterBoard.this.saveCurrentBoard();
                MasterBoard.this.fileCurrentBoard=f;            
             }
@@ -417,7 +417,7 @@ public class MasterBoard extends JPanel {
     {
         if(this.fileCurrentBoard!=null)
         {
-            System.out.println(" file" + fileCurrentBoard.getName());
+          // System.out.println(" file" + fileCurrentBoard.getName());
             
             this.myCanvas.readBoard(fileCurrentBoard);
             this.myCanvas.numberPage=this.archF.isTodayDir?

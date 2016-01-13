@@ -110,7 +110,7 @@ public class SContour extends MyShape
             h = this.SRect.height + deltaHeight;
         }
         this.RectEditable = new Rectangle(x, y, w, h);
-        System.out.println("   x "+ x +" y"+y);
+      //  System.out.println("   x "+ x +" y"+y);
     }
     protected void SetRE_ResizeMoveLeftTop(int deltaWidth, int deltaHeight)
     {

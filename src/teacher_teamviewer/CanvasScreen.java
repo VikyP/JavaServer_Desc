@@ -67,7 +67,7 @@ public class CanvasScreen extends JPanel
             if(CanvasScreen.this.isControl && Screen.contains(me.getPoint()))
             { 
                 Point M= CanvasScreen.this.getUserPoint(me.getPoint());
-                System.out.println("X ="+M.x + "   Y="+M.y);         
+                //System.out.println("X ="+M.x + "   Y="+M.y);         
                 CanvasScreen.this.SenderCommand.Send(new MessageAction(ActionType.Mouse_Move, M.x,M.y));
                 
             }
@@ -85,7 +85,7 @@ public class CanvasScreen extends JPanel
             if(CanvasScreen.this.isControl && Screen.contains(e.getPoint()))
             { 
                 Point M= CanvasScreen.this.getUserPoint(e.getPoint());                
-                System.out.println("X ="+M.x + "   Y="+M.y);
+                //System.out.println("X ="+M.x + "   Y="+M.y);
                 CanvasScreen.this.SenderCommand.Send(new MessageAction(ActionType.Mouse_Move, M.x,M.y));
                 
             }

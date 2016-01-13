@@ -292,16 +292,16 @@ public class ScreenTiles
             WritableRaster BIR =BI.getRaster();
             DataBuffer tmplll=BIR.getDataBuffer();*/
             DOS.writeInt(w);
-            System.out.println("    w=" + w);
+          //  System.out.println("    w=" + w);
             DOS.writeInt(h);
-            System.out.println("    h=" + h);
+         //   System.out.println("    h=" + h);
             
             this.stopRow=this.startRow+h/this.ImageToSend.countRow;
             DOS.writeInt(this.startRow);          
             DOS.writeInt(this.stopRow);
             
-            System.out.println("  startRow   "+startRow);
-            System.out.println("  ***********stopRow   "+stopRow);
+         //   System.out.println("  startRow   "+startRow);
+         //   System.out.println("  ***********stopRow   "+stopRow);
             
             int value1=0;
             int value2=0;

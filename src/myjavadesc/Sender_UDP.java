@@ -51,7 +51,7 @@ public class Sender_UDP
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
-                        
+             System.out.println(" LENGTH SEND "+ByteSream.length);           
 
         }
         catch (Exception se)

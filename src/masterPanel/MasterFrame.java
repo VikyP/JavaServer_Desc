@@ -245,7 +245,7 @@ public class MasterFrame extends JFrame
         PrevY = MasterFrame.this.getY();
         PrevWidth = MasterFrame.this.getWidth();
         PrevHeight = MasterFrame.this.getHeight();
-        System.out.println("W "+ PrevWidth + " H " + PrevHeight);   
+      //  System.out.println("W "+ PrevWidth + " H " + PrevHeight);   
     
     }
     

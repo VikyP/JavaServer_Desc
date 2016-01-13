@@ -173,7 +173,7 @@ public class SettingsConfig
                 byte [] newUDP=this.IP.getAddress();
                 for(int i=0; i<mask.length;i++)
                 { 
-                    System.out.println(" " +(mask[i]&0x000000FF));
+                   // System.out.println(" " +(mask[i]&0x000000FF));
                     if (((mask[i]&0x000000FF)^0xFF)==0)
                     {
                        
@@ -181,7 +181,7 @@ public class SettingsConfig
                     }                
                 }
                this.IP_UDP=InetAddress.getByAddress(newUDP);
-               System.out.println(" this.IP_UDP   "+this.IP_UDP.getHostName());
+              // System.out.println(" this.IP_UDP   "+this.IP_UDP.getHostName());
                ip.setTextContent(this.IP.getHostAddress());
                ip_udp.setTextContent(this.IP_UDP.getHostAddress());
                saveDoc();

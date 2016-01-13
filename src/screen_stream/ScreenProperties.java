@@ -30,12 +30,12 @@ public class ScreenProperties
     public int widthCountOfBlocks, heightCountOfBlocks;
     
     //максимальный объем пакета, который после сжатия можно переслать по UDP
-    public static int DataMax=300000;
-    public static int DataMaxUDP=40000;
+    public static int DataMax=120000;
+    public static int DataMaxUDP=20000;
 
     // максимальная  разница между истинной высотой экрана и
     //высотой кратной количеству строк
-    byte precision = 4;
+    byte precision = 8;
 
     // стартовая высота строки
     byte heightRow = 111;
@@ -181,7 +181,7 @@ public class ScreenProperties
             }
         }
         getBlocksCount();
-        System.out.println(" Exit new size  W=" + D.width + "  H =" + D.height);
+      //  System.out.println(" Exit new size  W=" + D.width + "  H =" + D.height);
 
     }
 
@@ -304,7 +304,7 @@ public class ScreenProperties
         if (this.basePictureBuffer.getHeight() != this.newPictureBuffer.getHeight()
                 || this.basePictureBuffer.getWidth() != this.newPictureBuffer.getWidth())
         {
-            System.out.println("Error  getChanges()");
+          //  System.out.println("Error  getChanges()");
             NewSize();
             getBlocksCount();
         }

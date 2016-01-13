@@ -47,11 +47,11 @@ public class ConnectionManagerLeader extends Thread
                 {
                     try
                     {
-                        System.out.println("Start  TCP");
+                      //  System.out.println("Start  TCP");
                         InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), S.config.PORT_TCP_IMG);
-                        System.out.println("IP " + clientSocketAdress.toString());
+                       // System.out.println("IP " + clientSocketAdress.toString());
                         client.connect(clientSocketAdress, 5000);
-                        System.out.println("  TCP_image  OK ");
+                      // System.out.println("  TCP_image  OK ");
                     } 
                     catch (Exception exc)
                     {
@@ -67,11 +67,11 @@ public class ConnectionManagerLeader extends Thread
                 {
                     try
                     {
-                        System.out.println("Start  TCP");
+                      //  System.out.println("Start  TCP");
                         InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), S.config.PORT_TCP_COMMAND);
-                        System.out.println("IP " + clientSocketAdress.toString());
+                       // System.out.println("IP " + clientSocketAdress.toString());
                         clientCC.connect(clientSocketAdress, 5000);
-                        System.out.println("  TCP_command  OK");
+                       // System.out.println("  TCP_command  OK");
                     } 
                     catch (Exception exc)
                     {
@@ -91,7 +91,7 @@ public class ConnectionManagerLeader extends Thread
                     S.createRecieverPrScr(client);
                     S.CS.SenderCommand.setSocket(clientCC);
                     Applicants.add(S);
-                    System.out.println("  TCP  OK " +Applicants.size());
+                  //  System.out.println("  TCP  OK " +Applicants.size());
                 }
                 else
                 {
@@ -122,7 +122,7 @@ public class ConnectionManagerLeader extends Thread
         // иначе добавляем в очередь
        
         this.WaitingConnection.add(s);
-        System.out.println(" add ok" );
+      //  System.out.println(" add ok" );
         this.notify();
         
     }
@@ -130,9 +130,9 @@ public class ConnectionManagerLeader extends Thread
     // первый в очереди на подключение
     public synchronized Student getItem()
     {
-        while (this.WaitingConnection.size() == 0)
+        while (this.WaitingConnection.isEmpty())
         {
-            System.out.println("  ConnectionManagerLeader  ");
+          //  System.out.println("  ConnectionManagerLeader  ");
             try
             {
                 this.wait();

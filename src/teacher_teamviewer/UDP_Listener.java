@@ -32,7 +32,7 @@ public class UDP_Listener extends Thread
         this.EL= new EventAddStudent();
         this.setDaemon(true);
         this.config=c;       
-        System.out.println("    port " + c.PORT_UDP);       
+       // System.out.println("    port " + c.PORT_UDP);       
     }
     
 
@@ -46,15 +46,17 @@ public class UDP_Listener extends Thread
             DatagramPacket DP= new DatagramPacket (b, 0, b.length);
             while(true)
             {
-                System.out.println("Start UDP");
+               // System.out.println("Start UDP");
                 DS.receive(DP);
                 String msg= new String (DP.getData(), 0, DP.getLength(),"UTF8");
-                
+               
                 String [] studentInfo=msg.split(";");
+                /*
                 for (int i = 0; i < studentInfo.length; i++)
                 {
                     System.out.println(studentInfo[i]);   
                 }
+                */
                 
                 if(studentInfo[0].equals("NEW"))
                 {
@@ -70,9 +72,9 @@ public class UDP_Listener extends Thread
                    // newS.addNewStudent(newStudent); 
                   
                     
-                    System.out.println( " Received from :" +DP.getAddress().toString()+ " : " + msg);  
+                  //  System.out.println( " Received from :" +DP.getAddress().toString()+ " : " + msg);  
                 }
-                System.out.println("Stop UDP");
+             //   System.out.println("Stop UDP");
               
              Thread.sleep(1000);
             }

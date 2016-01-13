@@ -48,7 +48,7 @@ public class DrawTools extends JPanel
     public DrawTools(  )
     {
         this.setLayout(new FlowLayout());
-        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSize.height*6));
+        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSize.height*8));
         this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         
         this.EvShapeType=new EventShapeTypeChanged();
@@ -84,8 +84,8 @@ public class DrawTools extends JPanel
         JPanel p= new JPanel();
       //  p.setLayout();
         p.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        p.setPreferredSize(new Dimension(80,btnSize.height*3));
-        p.setSize(80,btnSize.height*3);
+        p.setPreferredSize(new Dimension(80,btnSize.height*4));
+        p.setSize(80,btnSize.height*4);
         
         
        JLabel rows= new JLabel (ImageIconURL.get("resources/row.png"));

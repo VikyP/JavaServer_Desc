@@ -79,7 +79,7 @@ public class TV_ToolsPanel extends JPanel
           int Y=TV_ToolsPanel.this.closeRect.y+y-TV_ToolsPanel.this.beginMoveY;
           if(Y<0 ||(Y+TV_ToolsPanel.this.closeRect.height)>TV_ToolsPanel.this.getParent().getHeight())
                 return;                
-          System.out.println( " y" +y);
+          //System.out.println( " y" +y);
           TV_ToolsPanel.this.closeRect.y=Y;
           TV_ToolsPanel.this.openRect.y=Y;
           TV_ToolsPanel.this.setPosition();        

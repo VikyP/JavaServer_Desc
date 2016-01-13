@@ -41,7 +41,7 @@ public class Thread_SenderImage extends Thread
         } catch (SocketException ex) {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(" Thread_SenderImage "+  port);
+       // System.out.println(" Thread_SenderImage "+  port);
     }
             
     
@@ -55,7 +55,7 @@ public class Thread_SenderImage extends Thread
            while(true)
            {
                
-               System.out.println(" Thread_SenderImage   run");
+             //  System.out.println(" Thread_SenderImage   run");
                getStatus();
             
               {
@@ -98,15 +98,18 @@ public class Thread_SenderImage extends Thread
             {
                 return;
             }
-           //System.out.println(" LENGTH SEND "+ByteSream.length);   
+            System.out.println(" LENGTH SEND "+ByteSream.length); 
+           
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
+            ReportException.write("Sender_UDP_Image.Send( OK)  " +ByteSream.length);
+            
         }
         catch (Exception se)
         {
-            ReportException.write("Sender_UDP_Image.Send(..)" + se.getMessage());
-            System.out.println("Sender_UDP_Image.Send(..)" + se.getMessage());
+            ReportException.write("Sender_UDP_Image.Send(..)" + se.getMessage()+ByteSream.length);
+            System.out.println("Sender_UDP_Image.Send(..)" + se.getMessage() +ByteSream.length);
 
         }
     }
@@ -117,7 +120,7 @@ public class Thread_SenderImage extends Thread
         this.Status=flag;
         if(Status)
         {   this.notify();
-            System.out.println(" Thread_SenderImage   start");
+           // System.out.println(" Thread_SenderImage   start");
         }    
            
     }
@@ -127,7 +130,7 @@ public class Thread_SenderImage extends Thread
          if(!Status)
              try 
             {
-                System.out.println(" Thread_SenderImage   stop");
+               // System.out.println(" Thread_SenderImage   stop");
                 this.wait();
         } catch (InterruptedException ex) {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);

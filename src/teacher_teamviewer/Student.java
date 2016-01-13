@@ -84,7 +84,7 @@ public class Student extends Object implements Comparable
        
         this.RecieverPrScr= new TCP_Client_RecieverPrScr(client); 
         this.RecieverPrScr.ER.addEventUnpack(UR);        
-        System.out.println("After");
+        //System.out.println("After");
     }
      //создание потока для работы с упралением
     public void createSenderMessage(Socket client)
@@ -116,7 +116,7 @@ public class Student extends Object implements Comparable
     @Override
     public int compareTo(Object o)
     {
-        System.out.println(" compare " + this.IP + "  "+ ((Student)o).IP);   
+       // System.out.println(" compare " + this.IP + "  "+ ((Student)o).IP);   
         try
         { 
             

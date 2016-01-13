@@ -103,17 +103,16 @@ class StudentPane extends Component
         try
         {
             int w=DIS.readInt();
-            System.out.println("W          "+ w);
+           // System.out.println("W          "+ w);
             
             int h=DIS.readInt();
-            System.out.println("H         " + h);
+           // System.out.println("H         " + h);
             synchronized(this.BI)
             {
             if(this.BI.getWidth()!=w || this.BI.getHeight()!=h)
             {
                 this.BI= new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-            }
-             System.out.println("    ////////////////////////");
+            }            
             WritableRaster WR_Small = this.BI.getRaster();      
             DataBuffer DB_small = WR_Small.getDataBuffer();
             for (int i = 0; i <this.BI.getHeight(); i++)

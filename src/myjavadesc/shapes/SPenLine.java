@@ -231,7 +231,7 @@ public class SPenLine  extends MyShape implements IShapeAction
     public void setEditable(boolean flag)
     {
         this.isEditable=flag;
-        System.out.println("  setEditable ");
+        //System.out.println("  setEditable ");
     }
 
     @Override
