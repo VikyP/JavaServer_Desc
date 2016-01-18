@@ -24,6 +24,7 @@ import myjavadesc.events.EventShapeTypeChanged;
 import myjavadesc.events.IChShapeType;
 import myjavadesc.shapes.IShapeModel;
 import myjavadesc.shapes.ShapeType;
+import myjavadesc.shapes.ShapeType.TableCl;
 
 /**
  *
@@ -45,48 +46,72 @@ public class DrawTools extends JPanel
     private JComboBox colCB;
     private JComboBox rowsCB;
     private Dimension btnSizeTable= new Dimension(35,35);
+    private int countRowComponents=4;
     public DrawTools(  )
     {
-        this.setLayout(new FlowLayout());
-        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSize.height*8));
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        
         this.EvShapeType=new EventShapeTypeChanged();
-        
-        
-        
         ButtonGroup bg = new ButtonGroup();
-        for(final IShapeModel type:ShapeType.Shapes)
+        for(int j=0;j<ShapeType.Shapes.length/countRowComponents;j++)
         {
+            
+            JPanel row= new JPanel(new FlowLayout(FlowLayout.CENTER));
+            row.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSize.height));
+            for (int i = 0; i <countRowComponents; i++)
+            {
+            final IShapeModel shape=ShapeType.Shapes[i+j*countRowComponents];
             JToggleButton tb= new JToggleButton();
-            tb.setIcon(ImageIconURL.get("resources/shapes/"+type.getName()+".png"));
-            tb.setSelectedIcon(ImageIconURL.get("resources/shapes/"+type.getName()+"_selected.png"));
-            if(type.getType()==ShapeType.Table)
-                tb.setPreferredSize(btnSizeTable);
-                else
-                tb.setPreferredSize(btnSize);
+            tb.setIcon(ImageIconURL.get("resources/shapes/"+shape.getName()+".png"));
+            tb.setSelectedIcon(ImageIconURL.get("resources/shapes/"+shape.getName()+"_selected.png"));
+            tb.setPreferredSize(btnSize);
             this.setButtonPaintOff(tb);
             bg.add(tb);
-            tb.setToolTipText(type.getToolTipText());
-            tb.addActionListener( 
-                    new  ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-              IChShapeType IShapeType= (IChShapeType)EvShapeType.getListener();
-              IShapeType.setShapeType(type.getType());  
-            }}
-        );
-            this.add(tb);        
+            tb.setToolTipText(shape.getToolTipText());
+            tb.addActionListener
+            ( 
+                    new  ActionListener()
+                    {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                  IChShapeType IShapeType= (IChShapeType)EvShapeType.getListener();
+                  
+                  IShapeType.setShapeType(shape.getType());  
+                }}
+             );
+             row.add(tb);
+            }
+            this.add(row); 
         }
         
+        JToggleButton tb= new JToggleButton();
+        final TableCl table =new TableCl();
+        tb.setIcon(ImageIconURL.get("resources/shapes/"+table.getName()+".png"));
+        tb.setSelectedIcon(ImageIconURL.get("resources/shapes/"+table.getName()+"_selected.png"));
+        tb.setPreferredSize(btnSizeTable);
+        this.setButtonPaintOff(tb);
+        bg.add(tb);
+        tb.setToolTipText(table.getToolTipText());
+        
+        JPanel row= new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,btnSizeTable.height));
+        tb.addActionListener
+        ( 
+            new  ActionListener()
+            {
+               @Override
+               public void actionPerformed(ActionEvent e)
+               {
+                 IChShapeType IShapeType= (IChShapeType)EvShapeType.getListener();
+                 IShapeType.setShapeType(table.getType());  
+               }
+         });
+        row.add(tb);
+        this.add(row);    
         
         JPanel p= new JPanel();
-      //  p.setLayout();
         p.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        p.setPreferredSize(new Dimension(80,btnSize.height*4));
-        p.setSize(80,btnSize.height*4);
-        
         
        JLabel rows= new JLabel (ImageIconURL.get("resources/row.png"));
        p.add(rows);

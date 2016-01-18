@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -102,6 +104,9 @@ public class MasterBoard extends JPanel {
     };
 /**
  * конструктор создания доски
+     * @param SC
+     * @param r
+     * @param b
  */
     public MasterBoard(SettingsConfig SC, RecordInfo r, JToggleButton b) 
     {    
@@ -132,13 +137,12 @@ public class MasterBoard extends JPanel {
         this.canvasPanel.setBackground(getPanelBackground(this.myCanvas.getBackground()));
       
         this.plan = new JTextArea();
-        this.MasterPane.setLayout(new BorderLayout());
+        
         this.scrollPane = new JScrollPane(this.canvasPanel);
         JSplitPane SP= new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,this.scrollPane,new JTextArea());
         SP.setDividerLocation(600);
         SP.setResizeWeight(1);
         this.tools = new ToolsPanel();
-        this.MasterPane.add(SP, BorderLayout.CENTER);
         this.settings= new SettingTools (SC.thicknessLine,SC.typeLine);
         initTools();
         settings.currFill.setBackground(SC.FillColor);
@@ -146,6 +150,11 @@ public class MasterBoard extends JPanel {
         settings.currLine.setProperties(SC.LineColor, SC.thicknessLine, SC.typeLine);
         this.archF.rec=b;
         this.archF.fontSize.setValue(SC.fontSize);
+        
+        this.MasterPane.setLayout(new BorderLayout());
+        this.MasterPane.add(SP, BorderLayout.CENTER);
+        this.MasterPane.add(this.scrollPaneTools, BorderLayout.WEST);
+        
         this.add(this.MasterPane, BorderLayout.CENTER);
         
     }
@@ -163,9 +172,9 @@ public class MasterBoard extends JPanel {
         this.scrollPaneTools = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         this.scrollPaneTools.setViewportView(this.tools);  
-        this.MasterPane.add(this.scrollPaneTools, BorderLayout.WEST);
         
-        this.tools.setPreferredSize(new Dimension(SizeSketch.TOOLPANEL_WIDTH,this.BoardDim.height));
+        
+       this.tools.setPreferredSize(new Dimension(SizeSketch.TOOLPANEL_WIDTH,this.BoardDim.height));
         
         this.colorChooser= new JColorChooser(this.myCanvas.getForeground());
         
@@ -173,7 +182,7 @@ public class MasterBoard extends JPanel {
        //заполняем список папок групп( заполнение в конструкторе)
        this.listGour = new Groups();
         // инструменты работы с группой
-       this.tools.Group.setPanel(this.listGour.groupPanel,this.listGour.rowsClose  );
+       this.tools.Group.setPanels(this.listGour.groupPanel,this.listGour.groupPanelHide  );
         //событие изменения выбранной группы
        this.listGour.setActionGroups(new ActionListener()
        {
@@ -214,7 +223,7 @@ public class MasterBoard extends JPanel {
          });
         
         //инструменты работы с архивом ( добавить счетчик !!!)
-       this.tools.Hystory.setPanel(this.archF.toolsArchive(),this.archF.rowsClose);
+      this.tools.Hystory.setPanels(this.archF.archPanel,this.archF.archPanelHide);
        
        //кнопка изменения цвета текста
         this.archF.colorText.addActionListener(new ActionListener() 
@@ -311,7 +320,7 @@ public class MasterBoard extends JPanel {
             }
 
         });
-        this.tools.Setting.setPanel(this.settings,this.settings.rowsClose);
+        this.tools.Setting.setPanels(this.settings.settingPanel,this.settings.settingPanelHide);
         this.settings.thicnessLine.addActionListener(new ActionListener()
         {
 

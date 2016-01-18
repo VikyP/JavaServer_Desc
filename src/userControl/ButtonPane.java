@@ -8,6 +8,7 @@ package userControl;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import java.awt.Insets;
 
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 
 import javax.swing.JPanel;
@@ -34,6 +36,8 @@ public class ButtonPane extends JPanel
     
     private Dimension open;
     private Dimension close;
+    private JPanel pCenter;
+    private JPanel pSouth;
    
     
     Icon openIcon=ImageIconURL.get("resources/closeGreen.png");
@@ -48,13 +52,15 @@ public class ButtonPane extends JPanel
      */
     public ButtonPane(String btn_text)
     {      
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.state=false;
         this.B= new JToggleButton (btn_text);
-        this.B.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH,SizeSketch.CONTROL_HEIGHT));
+        this.B.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH,SizeSketch.CONTROL_HEIGHT));
+        this.B.setSize(this.B.getPreferredSize());
         this.B.setHorizontalAlignment(SwingConstants.LEFT);
         this.B.setMargin( new Insets(2, 2, 2, 14));
-        this.B.setIcon(closeIcon);        
+        this.B.setIcon(closeIcon);  
+        
         this.B.setFocusPainted(false);//нет рамки фокуса
         
         //размеры кнопки разворачивания панели
@@ -68,38 +74,46 @@ public class ButtonPane extends JPanel
                 String tmp=ButtonPane.this.B.getText();
               if(ButtonPane.this.state)
                 {
-                  ButtonPane.this.setPreferredSize(ButtonPane.this.close);  
+                  //ButtonPane.this.setPreferredSize(ButtonPane.this.close);  
                   ButtonPane.this.B.setText("1");
                   ButtonPane.this.B.setText(tmp);
                   ButtonPane.this.B.setIcon(closeIcon);
                 }
                else
                 {
-                  ButtonPane.this.setPreferredSize(ButtonPane.this.open);
+                  //ButtonPane.this.setPreferredSize(ButtonPane.this.open);
                   ButtonPane.this.B.setText("2");
                   ButtonPane.this.B.setText(tmp);
                   ButtonPane.this.B.setIcon(openIcon);
                 }
                ButtonPane.this.state=!ButtonPane.this.state;
+               ButtonPane.this.pSouth.setVisible(state);
              }
              
-        });        
-        this.add(this.B, BorderLayout.NORTH);   
+        }); 
+        JPanel p=new JPanel(new FlowLayout(FlowLayout.CENTER));
+        p.add(this.B);
+        this.add(p);
         this.setBorder(BorderFactory.createLoweredBevelBorder());
     }
     
     
      /**
      * задаем уже сформированную панель
-     * @param p 
-     * @param rowsClose 
+     * @param pC
+     * @param pS 
      */
-    public void setPanel (JPanel p, int rowsClose)
-    {  
-        this.open=p.getPreferredSize();
-        this.close=new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rowsClose);
-        this.add(p,BorderLayout.CENTER);
-        setOpen ();
+    public void setPanels (JPanel pC,JPanel pS)
+    {
+        
+        this.pCenter=pC;       
+        this.add(this.pCenter);
+        
+        this.pSouth=pS;    
+        this.add(this.pSouth);
+        this.B.setIcon(openIcon);
+        this.state=true;
+        this.B.setSelected(state);  
     }
     
     /**
@@ -107,7 +121,7 @@ public class ButtonPane extends JPanel
      */
     public void setOpen ()
     {
-      this.setPreferredSize(ButtonPane.this.open);
+    //  this.setPreferredSize(ButtonPane.this.open);
       this.B.setIcon(openIcon);
       this.state=true;
       this.B.setSelected(state);     

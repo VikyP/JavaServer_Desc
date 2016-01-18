@@ -5,8 +5,11 @@
  */
 package myjavadesc;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +22,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import static javax.swing.GroupLayout.Alignment.BASELINE;
+import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -110,8 +118,12 @@ public class ArchiveFiles
     public JToggleButton rec;
     public int rowsClose=3;
     
+    // панель всегда доступна
+    public JPanel archPanel;
+    //панель может быть скрыта
+    public JPanel archPanelHide;
     
-    
+   
 
     
     // фильтр выбирает только файлы с заданным расширением
@@ -264,9 +276,10 @@ public class ArchiveFiles
         
         //запрет редактирования тексттового поля счетчика
         JTextField tf = ((JSpinner.DefaultEditor) this.fontSize.getEditor()).getTextField();
+        tf.setFont(tf.getFont().deriveFont(20));
         tf.setEditable(false);
         setPaintOff(this.fontSize);
-       
+       toolsArchive();
        
     }
     
@@ -288,43 +301,75 @@ public class ArchiveFiles
      * Компановка инструмента на панели     
      * @return панель с инструментом
      */
-    public JPanel toolsArchive()
+    public void toolsArchive()
     {
+      
+        this.archPanel = new JPanel(); 
+        GroupLayout layout = new GroupLayout(this.archPanel);
+        this.archPanel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
         
-        int rows=0;
-        JPanel p = new JPanel();
-        p.setLayout(new FlowLayout(FlowLayout.CENTER));
-       
-        //row 1 H=buttonSize
-        p.add(this.newBoard);
-        p.add(this.deleteBoard);
-        p.add(this.previosBoard);
-        p.add(this.nextBoard);
-        rows++;
-
-        //row 2 H=buttonSize
+        JPanel row= new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row.add(this.newBoard);
+        row.add(this.deleteBoard);
+        row.add(this.previosBoard);
+        row.add(this.nextBoard);
+        this.archPanel.add(row);
         this.BoardsToday.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
-        p.add(this.BoardsToday);
-        rows++;
+        layout.setHorizontalGroup(layout.createParallelGroup(LEADING) 
+                
+                .addGroup(layout.createSequentialGroup() 
+                    .addComponent(this.newBoard)
+                    .addComponent(this.deleteBoard)
+                    .addComponent(this.previosBoard)
+                    .addComponent(this.nextBoard)    
+                )
+                .addComponent(this.BoardsToday)
+                );
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                
+                .addGroup(layout.createParallelGroup(BASELINE) 
+                    .addComponent(this.newBoard)
+                    .addComponent(this.deleteBoard)                   
+                    .addComponent(this.previosBoard)
+                    .addComponent(this.nextBoard)    
+                )
+                .addComponent(this.BoardsToday)
+        );
         
-        //row3 H=buttonSize*4
+       
+        this.archPanelHide= new JPanel();
+        layout = new GroupLayout(this.archPanelHide);
+        this.archPanelHide.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        
         JScrollPane scroll_H = new JScrollPane(this.archiveGroup);
         scroll_H.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.LISTBOX_HEIGHT));
-        p.add(scroll_H);
-        rows+=4;
         
-        ///row4  H=buttonSize
-        p.add(this.themesBoard);
-        p.add(this.colorText);
-        p.add(this.fontSizeIcon);
-        p.add(this.fontSize);
-        rows++;
+        layout.setHorizontalGroup(layout.createParallelGroup(LEADING) 
+                .addComponent(scroll_H)
+                .addGroup(layout.createSequentialGroup() 
+                    .addComponent(this.themesBoard)
+                    .addComponent(this.colorText)
+                    .addComponent(this.fontSizeIcon)
+                    .addComponent(this.fontSize)    
+                )
+                );
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addComponent(scroll_H)
+                .addGroup(layout.createParallelGroup(BASELINE) 
+                    .addComponent(this.themesBoard)
+                    .addComponent(this.colorText)
+                    .addComponent(this.fontSizeIcon)
+                    .addComponent(this.fontSize) 
+                )
+        );
          
-        p.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rows));
-        return p;
-
+     
     }
-
+    
     /**
      *
      * Заполнение списка заняний для выбранной группы
@@ -459,7 +504,8 @@ public class ArchiveFiles
         B.setBorderPainted(false);
         B.setContentAreaFilled(false);
         B.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH, SizeSketch.CONTROL_HEIGHT));
-        B.setEnabled(false);       
+        B.setEnabled(false);  
+        B.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
     
     /**
@@ -469,7 +515,7 @@ public class ArchiveFiles
     {
         B.setBorder(null);
        // B.setUI(null);
-        B.setPreferredSize(new Dimension(SizeSketch.SPINNER_WIDTH, SizeSketch.CONTROL_HEIGHT));
+      // B.setPreferredSize(new Dimension(SizeSketch.SPINNER_WIDTH, SizeSketch.CONTROL_HEIGHT));
     }
 
     /**

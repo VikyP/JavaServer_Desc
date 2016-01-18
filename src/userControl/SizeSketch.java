@@ -19,8 +19,9 @@ public class SizeSketch
     public final static int ROW_WIDTH=TOOLPANEL_WIDTH-20;
     public final static int TEXTBOX_WIDTH=ROW_WIDTH-BUTTON_WIDTH-20;
     
-    public final static int COMBOBOX_WIDTH=ROW_WIDTH-6;
+    public final static int COMBOBOX_WIDTH=ROW_WIDTH-15;
     public final static int LABEL_WIDTH=(ROW_WIDTH-20)/2;
+    public final static int LABEL_HEIGHT=30;
     public final static int CONTROL_HEIGHT=22;
     public final static int LISTBOX_HEIGHT=80;
     public final static int ROW_HEIGHT=28;

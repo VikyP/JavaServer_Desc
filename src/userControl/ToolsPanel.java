@@ -6,6 +6,8 @@
 package userControl;
 
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
 /**
@@ -29,9 +31,8 @@ public class ToolsPanel extends JPanel
     
 
     public ToolsPanel()
-    {       
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
-      
+    {  
+       this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         //<editor-fold defaultstate="collapsed" desc="Группа ">
         this.Group = new ButtonPane("Группа");
         this.add(this.Group);
@@ -39,17 +40,17 @@ public class ToolsPanel extends JPanel
         //<editor-fold defaultstate="collapsed" desc="История ">
         this.Hystory = new ButtonPane("История");
         this.add(this.Hystory);
-        //</editor-fold>  
-        
+        //</editor-fold> 
         //<editor-fold defaultstate="collapsed" desc="Настройки">
         this.Setting = new ButtonPane("Настройки");
         this.add(this.Setting);
         //</editor-fold> 
+        
+        
         //<editor-fold defaultstate="collapsed" desc="Графика">
         this.GraphObjects = new JPanel();
         
-      //</editor-fold>   
-       
+      //</editor-fold>  
         //<editor-fold defaultstate="collapsed" desc="Редактор">
         this.GraphEdit = new JPanel();
         //</editor-fold>  

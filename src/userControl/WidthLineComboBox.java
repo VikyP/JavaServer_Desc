@@ -23,7 +23,7 @@ public class WidthLineComboBox extends JComboBox
     {
         model = new DefaultComboBoxModel();
         this.setToolTipText("Толщина линии");
-        this.setPreferredSize(new Dimension(SizeSketch.LineChoserW, SizeSketch.CONTROL_HEIGHT));
+        this.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
         setModel(model);
         WLIR = new WidthLineItemRenderer();
         WLIR.unit=" px";

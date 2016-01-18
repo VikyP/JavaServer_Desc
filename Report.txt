@@ -49787,3 +49787,5 @@ Sender_UDP_Image.Send( OK)  48
 Sender_UDP_Image.Send( OK)  48		
 Sender_UDP_Image.Send( OK)  10370		
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset		
+Sender_UDP.Send(..)!!!!!!!!!!!!Address already in use: JVM_Bind		
+Sender_UDP.Send(..)!!!!!!!!!!!!Address already in use: JVM_Bind		

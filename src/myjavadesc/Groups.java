@@ -5,12 +5,17 @@
  */
 package myjavadesc;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import static javax.swing.GroupLayout.Alignment.BASELINE;
+import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,9 +41,12 @@ public class Groups {
     DefaultComboBoxModel cbm;    
     private JComboBox Groups;
     private JTextField tb= new JTextField();
-    private JButton addGroup;
+    private final JButton addGroup;
+    
+    // панель всегда доступна
     public JPanel groupPanel;
-    public int rowsClose=2;
+    //панель может быть скрыта
+    public JPanel groupPanelHide;
     
     public Groups()
     {
@@ -94,23 +102,35 @@ public class Groups {
               Groups.this.tb.setText("");
             }
         });
-        
-        int rows=0;
-        groupPanel= new JPanel(new FlowLayout(FlowLayout.CENTER));
-        rows++;       
+        this.addGroup.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+       
+        groupPanel= new JPanel(new FlowLayout(FlowLayout.CENTER));           
         this.groupPanel.add(this.Groups);
         
-        JLabel l = new JLabel("Новая группа");
-        l.setPreferredSize(new Dimension(SizeSketch.TEXTBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
-        rows++;  
-        this.groupPanel.add(l);
-        rows++;     
-        this.groupPanel.add(tb); 
-        rows++;
-        this.groupPanel.add(this.addGroup);
-        rows++;
+        groupPanelHide= new JPanel();
+        GroupLayout layout = new GroupLayout(groupPanelHide);
+        groupPanelHide.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        
+        
+        JLabel label = new JLabel("Новая группа");
+        label.setPreferredSize(new Dimension(SizeSketch.TEXTBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER) 
+                .addComponent(label)
+                .addGroup(layout.createSequentialGroup() 
+                    .addComponent(this.tb)
+                    .addComponent(this.addGroup))
+                );
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addComponent(label)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE) 
+                    .addComponent(this.tb)
+                    .addComponent(this.addGroup))
+        );
+          
        
-        this.groupPanel.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.CONTROL_HEIGHT*rows));
+        
     }
     
     public String getSelectedGroup()

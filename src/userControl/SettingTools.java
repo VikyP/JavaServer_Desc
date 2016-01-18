@@ -7,15 +7,19 @@ package userControl;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import static javax.swing.GroupLayout.Alignment.BASELINE;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author viky
  */
-public class SettingTools extends JPanel
+public class SettingTools 
 {
      private Dimension btnSize= new Dimension(40,30);  
      public LinePreview currLine;
@@ -26,7 +30,11 @@ public class SettingTools extends JPanel
      public WidthLineComboBox thicnessLine;
      public StartLineComboBox startLineCB;
      public EndLineComboBox endLineCB;
-     public int rowsClose=2;
+     
+     // панель всегда доступна
+    public JPanel settingPanel;
+    //панель может быть скрыта
+    public JPanel settingPanelHide;
      
      private Object[][] widthLine={{1,"resources/lineCB1.png","resources/lineCB1_s.png"},
      {2,"resources/lineCB2.png", "resources/lineCB2_s.png"},{4,"resources/lineCB4.png","resources/lineCB4_s.png"},
@@ -51,59 +59,71 @@ public class SettingTools extends JPanel
      
      public SettingTools( float w, int t)
      {
-         int rows=0;
-        this.setLayout(new FlowLayout());  
+         
+        this.settingPanel= new JPanel();
+        GroupLayout layout = new GroupLayout(this.settingPanel);
+        this.settingPanel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        
        // this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         
         this.currLine= new LinePreview();
-        this.currLine.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));        
-        
+        this.currLine.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.LABEL_HEIGHT));        
+        this.currLine.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.currFill= new JPanel();
-        this.currFill.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        this.currFill.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.LABEL_HEIGHT));
         this.currFill.setToolTipText("Цвет заливки");
+        this.currFill.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+       
         
-        this.add(this.currLine);
-        this.add(this.currFill);
-        rows++;
         this.colorLine= new JButton(ImageIconURL.get("resources/colorPen30.png"));
         this.colorLine.setPressedIcon(ImageIconURL.get("resources/colorPen30_press.png"));
         this.colorLine.setPreferredSize(btnSize);
         this.setButtonPaintOff(this.colorLine);
-        this.add(this.colorLine);
+      
        
+        
         this.colorFill= new JButton(ImageIconURL.get("resources/colorBrush30.png"));
         this.colorFill.setPressedIcon(ImageIconURL.get("resources/colorBrush30_press.png"));
         this.colorFill.setPreferredSize(btnSize);
+       
         this.setButtonPaintOff(this.colorFill);
-        this.add(this.colorFill);
-        rows++;
-        this.add( new JLabel("Толщина линии"));
-        rows++;
+        
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+                .addComponent(this.currLine)
+                .addComponent(this.currFill)                
+                );
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                .addComponent(this.currLine)
+                .addComponent(this.currFill)
+               
+        );        
+        
+        JLabel labThincness= new JLabel("Толщина линии");
+        labThincness.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
+       
         this.thicnessLine= new WidthLineComboBox();        
         this.thicnessLine.setEditable(true);
         this.thicnessLine.addItems(widthLine);
-        this.add(this.thicnessLine); 
-        rows++;
         this.thicnessLine.setSelectedItem(getSelectedThickness((int) w));
         this.thicnessLine.setEnabled(false);
-        
-        this.add( new JLabel("Тип линии  "));
-        rows++;
+      //  this.thicnessLine.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        JLabel labStyle= new JLabel("Тип линии");
+        labStyle.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
+       
         this.styleLine=  new DashLineComboBox();
         this.styleLine.setEditable(true);
         this.styleLine.addItems(dashLine);
-        this.styleLine.setSelectedItem(getSelectedDash(t));
-        this.add(this.styleLine);
-        rows++;
+        this.styleLine.setSelectedItem(getSelectedDash(t));       
         this.styleLine.setEnabled(false);
-        
-        this.add( new JLabel("Начало и конец линии"));
-        rows++;
+        JLabel lineStart= new JLabel("Начало линии");
+        JLabel lineEnd= new JLabel("Конец линии");
         this.startLineCB=  new StartLineComboBox();
         this.startLineCB.setEditable(true);
         this.startLineCB.addItems(startLine);
         this.startLineCB.setSelectedItem(getSelectedDash(t));
-        this.add(this.startLineCB);
+        
        
         this.startLineCB.setEnabled(false);
         
@@ -111,11 +131,44 @@ public class SettingTools extends JPanel
         this.endLineCB.setEditable(true);
         this.endLineCB.addItems(endLine);
         this.endLineCB.setSelectedItem(getSelectedDash(t));
-        this.add(this.endLineCB);
-        rows++;
+        
+        
         this.endLineCB.setEnabled(false);
         
-        this.setPreferredSize(new Dimension(SizeSketch.ROW_WIDTH, SizeSketch.ROW_HEIGHT*rows+btnSize.height));
+        this.settingPanelHide= new JPanel();
+        layout = new GroupLayout(this.settingPanelHide);
+        this.settingPanelHide.setLayout(layout);
+        layout.setAutoCreateGaps(false);
+        layout.setAutoCreateContainerGaps(true);
+        layout.linkSize(SwingConstants.HORIZONTAL, this.thicnessLine, this.styleLine,this.startLineCB,this.endLineCB);
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+               .addGroup(layout.createSequentialGroup() 
+                    .addComponent(this.colorLine)
+                    .addComponent(this.colorFill))
+                .addComponent(labThincness)
+                .addComponent(this.thicnessLine)
+                .addComponent(labStyle)
+                .addComponent(this.styleLine)
+                .addComponent(lineStart)
+                .addComponent(this.startLineCB)
+                .addComponent(lineEnd)
+                .addComponent(this.endLineCB)
+               
+                );
+        
+        layout.setVerticalGroup( layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE) 
+                    .addComponent(this.colorLine)
+                    .addComponent(this.colorFill))
+                .addComponent(labThincness)
+                .addComponent(this.thicnessLine)
+                .addComponent(labStyle)
+                .addComponent(this.styleLine)
+                .addComponent(lineStart)
+                .addComponent(this.startLineCB)
+                .addComponent(lineEnd)
+                .addComponent(this.endLineCB)
+        );
         
      
      }

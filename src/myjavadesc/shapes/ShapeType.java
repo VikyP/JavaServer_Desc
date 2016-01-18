@@ -227,7 +227,7 @@ public class ShapeType
     
     public static final IShapeModel[] Shapes={ new LineCl(), new LineHorizontalCl(), new LineVerticalCl(),new PenLineCl(), 
                                                new EllipseCl(),new FillEllipseCl(),new RectangleCl(),new FillRectangleCl()
-                                               ,new TableCl()
+                                              // ,new TableCl()
     
     };
     
