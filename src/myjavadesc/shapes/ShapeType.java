@@ -11,16 +11,16 @@ package myjavadesc.shapes;
  */
 public class ShapeType
 {
-    public static final byte None=0;
-    public static final byte Line=1;
-    public static final byte LineHorizontal=2;
-    public static final byte LineVertical=3;
-    public static final byte PenLine=4;
-    public static final byte Ellipse=5;
-    public static final byte FillEllipse=6;
-    public static final byte Rectangle=10;  
-    public static final byte FillRectangle=11;  
-    public static final byte Table=20;
+    public static final byte None=-1;
+    public static final byte Line=0;
+    public static final byte LineHorizontal=1;
+    public static final byte LineVertical=2;
+    public static final byte PenLine=3;
+    public static final byte Ellipse=4;
+    public static final byte FillEllipse=5;
+    public static final byte Rectangle=6;  
+    public static final byte FillRectangle=7;  
+    public static final byte Table=8;
     
     
     
@@ -225,11 +225,7 @@ public class ShapeType
         
     }
     
-    public static final IShapeModel[] Shapes={ new LineCl(), new LineHorizontalCl(), new LineVerticalCl(),new PenLineCl(), 
-                                               new EllipseCl(),new FillEllipseCl(),new RectangleCl(),new FillRectangleCl()
-                                              // ,new TableCl()
-    
-    };
+   
     
     
     public static String toStr(int Type)

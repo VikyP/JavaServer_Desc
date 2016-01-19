@@ -1245,7 +1245,8 @@ public class MyJavaCanvas extends JEditorPane {
             BAOS.close();
             return b;
 
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);
             ReportException.write("MyJavaCanvas.graphToBytes(..)" + ex.getMessage());
             return null;
@@ -1274,8 +1275,6 @@ public class MyJavaCanvas extends JEditorPane {
             DOS.write(this.recordHead.getHeadDesc());
             DOS.writeByte(this.numberPage);
             DOS.writeByte((byte) type);
-            
-
         } catch (IOException ex) {
             ReportException.write(this.getClass().getName() + "\t1\t" + ex.getMessage());
             Logger.getLogger(MyJavaCanvas.class.getName()).log(Level.SEVERE, null, ex);

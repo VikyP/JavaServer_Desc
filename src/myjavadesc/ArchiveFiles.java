@@ -310,15 +310,9 @@ public class ArchiveFiles
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
         
-        JPanel row= new JPanel(new FlowLayout(FlowLayout.CENTER));
-        row.add(this.newBoard);
-        row.add(this.deleteBoard);
-        row.add(this.previosBoard);
-        row.add(this.nextBoard);
-        this.archPanel.add(row);
         this.BoardsToday.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        
         layout.setHorizontalGroup(layout.createParallelGroup(LEADING) 
-                
                 .addGroup(layout.createSequentialGroup() 
                     .addComponent(this.newBoard)
                     .addComponent(this.deleteBoard)
@@ -509,13 +503,11 @@ public class ArchiveFiles
     }
     
     /**
-     * отменяет прорисовку рамки, фона кнопки
+     * отменяет прорисовку рамки
      */
     private void setPaintOff(JSpinner B)
     {
         B.setBorder(null);
-       // B.setUI(null);
-      // B.setPreferredSize(new Dimension(SizeSketch.SPINNER_WIDTH, SizeSketch.CONTROL_HEIGHT));
     }
 
     /**
