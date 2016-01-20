@@ -89,7 +89,6 @@ public class MasterFrame extends JFrame
                 case ModeType.viewer :
                     MasterFrame.this.setContentPane(TV);
                     MasterFrame.this.Desc.setVisibleCanvas(false);
-                    MasterFrame.this.setTitle("JavaDesc - TeamViewer ");                   
                     MasterFrame.this.invalidate();
                     MasterFrame.this.repaint();
                     
@@ -100,7 +99,6 @@ public class MasterFrame extends JFrame
                     if(MasterFrame.this.Desc.fileCurrentBoard!=null)
                     MasterFrame.this.Desc.setVisibleCanvas(true);
                     MasterFrame.this.setContentPane(Desc);
-                    MasterFrame.this.setTitle("JavaDesc  - BlackBoard");
                     MasterFrame.this.TV.unSelect();
                     MasterFrame.this.TV.TP.closeMode();
                     break;
@@ -165,9 +163,9 @@ public class MasterFrame extends JFrame
             this.Modes= new ModeChanger(this.StartDim);
             this.Desc= new MasterBoard(SC,this.recordHead, this.Modes.Record);
             
-            
+            if(SC.isCanVideo)
+            {
             this.SenderImage = new Thread_SenderImage(SC.IP_UDP,SC.PORT_TCP_ScStr, this.recordHead);
-           
             this.Modes.setActionListenerSendScreen(new ActionListener()
             {
                 @Override
@@ -190,6 +188,12 @@ public class MasterFrame extends JFrame
                     MasterFrame.this.recordHead.setIsImageSender(btn.isSelected());
                 }
             });
+            }
+            else
+            {
+                this.Modes.SendScreen.setEnabled(SC.isCanVideo);
+                this.Modes.SendScreen.setToolTipText("Опция недоступна.");
+            }
             
             this.Modes.setActionListenerRecord(
                     new ActionListener()
@@ -229,12 +233,14 @@ public class MasterFrame extends JFrame
                 }
             }); 
             this.setVisible(true);
+            
             // запуск потоков  прослушки маяков студентов и соединения 
              this.TV.connector_finder_Start(); 
              
-             this.SenderImage.start();
+             if(SC.isCanVideo)
+                this.SenderImage.start();
        
-      
+    
     }
     
     

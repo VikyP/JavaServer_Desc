@@ -38,10 +38,11 @@ public class Thread_SenderImage extends Thread
         try 
         {
             this.DS = new DatagramSocket();
-        } catch (SocketException ex) {
+        } 
+        catch (SocketException ex)
+        {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         }
-       // System.out.println(" Thread_SenderImage "+  port);
     }
             
     
@@ -98,19 +99,13 @@ public class Thread_SenderImage extends Thread
             {
                 return;
             }
-            System.out.println(" LENGTH SEND "+ByteSream.length); 
-           
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
-            ReportException.write("Sender_UDP_Image.Send( OK)  " +ByteSream.length);
-            
         }
         catch (Exception se)
         {
             ReportException.write("Sender_UDP_Image.Send(..)" + se.getMessage()+ByteSream.length);
-            System.out.println("Sender_UDP_Image.Send(..)" + se.getMessage() +ByteSream.length);
-
         }
     }
     
@@ -130,7 +125,7 @@ public class Thread_SenderImage extends Thread
          if(!Status)
              try 
             {
-               // System.out.println(" Thread_SenderImage   stop");
+               
                 this.wait();
         } catch (InterruptedException ex) {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);

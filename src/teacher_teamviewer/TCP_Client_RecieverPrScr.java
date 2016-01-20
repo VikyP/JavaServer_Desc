@@ -35,23 +35,18 @@ public class TCP_Client_RecieverPrScr extends Thread
     public EventUnpack ER;
     public EventRemoveStudent ERS;
     
-    private String FULL="FULL";
-    private String PREVIEW ="PREVIEW";
-    
     private long time;
-    public String msg;
+    public byte messageTypeView;
     
 
     public TCP_Client_RecieverPrScr(Socket client )
-    {
-        
+    {  
         this.ER= new EventUnpack();
         this.ERS = new  EventRemoveStudent();        
         this.client=client;
         this.setTime(1000);        
         this.setDaemon(true);       
-        this.msg=PREVIEW;
-        
+        this.messageTypeView=Student.PREVIEW;
     }
         
     
@@ -70,11 +65,8 @@ public class TCP_Client_RecieverPrScr extends Thread
             
             // обмен данными
             while(true)
-            {    
-               
-                byte[] a = msg.getBytes("UTF8");
-
-                this.client.getOutputStream().write(a, 0, a.length);
+            { 
+                this.client.getOutputStream().write(this.messageTypeView);
                 ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
                 int size = 0;
                 byte[] s = new byte[5];
@@ -89,65 +81,52 @@ public class TCP_Client_RecieverPrScr extends Thread
                 }
                 else
                 {
-                    System.out.println("Error  lengthByteArr");
+                    ReportException.write("lengthByteArr ="+lengthByteArr);
                 }
-               // System.out.println(" lengthByteArr"+lengthByteArr);
-              // System.out.println(" type"+type);
-                byte[] dataBuffer = new byte[32768];
-                do
+                //если пакет получен 
+                if(type!=Student.NULL && lengthByteArr>0)
                 {
-                    int cnt = this.client.getInputStream().read(dataBuffer, 0, dataBuffer.length);
-                    if (cnt == -1)
+                    byte[] dataBuffer = new byte[32768];
+                    do
                     {
-                        throw new IOException("Recived - 1 bytes");
-                    }
+                        int cnt = this.client.getInputStream().read(dataBuffer, 0, dataBuffer.length);
+                        if (cnt == -1)
+                        {
+                            ReportException.write("( cnt==-1) lengthByteArr ="+lengthByteArr);
+                            ReportException.write("type ="+type);
+                            throw new IOException("Recived - 1 bytes");
+                        }
 
-                    BAOS.write(dataBuffer, 0, cnt);
-                    size = size + cnt;
-                } 
-                while (lengthByteArr - size - 5 > 0);
+                        BAOS.write(dataBuffer, 0, cnt);
+                        size = size + cnt;
+                    } 
+                    while (lengthByteArr - size  > 0);
 
+                    byte [] body;
+                    byte[] bodyZip = BAOS.toByteArray();
+                    body= unzip(bodyZip);
+                    ByteArrayInputStream BAIS = new ByteArrayInputStream(body);
+                    DataInputStream DIS = new DataInputStream(BAIS);
 
-                byte [] body;
-                byte[] bodyZip = BAOS.toByteArray();
-                body= unzip(bodyZip);
-                
-               // System.out.println("    Get "+body.length);
-                ByteArrayInputStream BAIS = new ByteArrayInputStream(body);
-                DataInputStream DIS = new DataInputStream(BAIS);
+                    IUnpack RPS= (IUnpack) this.ER.getListener();            
+                    RPS.unpackImg(DIS,type ); 
 
-               IUnpack RPS= (IUnpack) this.ER.getListener();            
-                RPS.unpackImg(DIS,type );  
-
-
-                DIS.close();
+                    DIS.close();
+                }
                 Thread.sleep(this.time);
-
             }
         }
         catch (IOException ex)
-        {  
-            try
-            {
-                ReportException.write(this.getClass().getName()+"\t2\t"+ex.getMessage());
-                String ip=this.client.getInetAddress().toString().substring(1);
-               // System.out.println("1 " + ex.getMessage() + "Begin remove_"+ ip );
-                IEventRemoveStudent ers = (IEventRemoveStudent) this.ERS.getListener();
-                ers.removeStudent(ip);
-                this.client.close();
-                
-            }
-            catch (IOException ex1)
-            {
-                ReportException.write("TCP_Client_RecieverPrScr.run()  IOException\t"+ex.getMessage());
-                System.out.println("Can't close client");   
-            }
-            
+        {
+            ReportException.write(this.getClass().getName()+"\t2\t"+ex.getMessage());
+            String ip=this.client.getInetAddress().toString().substring(1);
+            IEventRemoveStudent ers = (IEventRemoveStudent) this.ERS.getListener();
+            ers.removeStudent(ip);
+            ReportException.write(" Remove student IP "+ip);
         }
         
         catch (InterruptedException ex)
-        {
-            Logger.getLogger(TCP_Client_RecieverPrScr.class.getName()).log(Level.SEVERE, null, ex);
+        {  
             ReportException.write("TCP_Client_RecieverPrScr.run()  InterruptedException\t"+ex.getMessage());
         }
         
@@ -159,25 +138,23 @@ public class TCP_Client_RecieverPrScr extends Thread
             }
             catch (IOException ex)
             {
-              System.out.println("3 " + ex.getMessage());
+              ReportException.write(" client.close() "+ex.getMessage());
             }
             this.client=null;
             
         }
     }
-    
-    private boolean isConnect()
-    {
-        return  this.client.isConnected();
-    }
-    
-     
+        
+     /**
+      * распаковка данных от студента
+      * @param tmp запакованный пакет
+      * @return пакет для формирования картинки
+      */
     private byte [] unzip(byte [] tmp)
     {
         byte[] buffer = new byte[8192]; 
         ByteArrayOutputStream Baos = new ByteArrayOutputStream();
         ByteArrayInputStream BAIS = new ByteArrayInputStream(tmp);
-       
         try
         {
             GZIPInputStream gzipis = new GZIPInputStream(BAIS);
@@ -188,7 +165,6 @@ public class TCP_Client_RecieverPrScr extends Thread
             }
             BAIS.close();
             
-            
         } 
         catch (FileNotFoundException ex)
         {
@@ -198,15 +174,12 @@ public class TCP_Client_RecieverPrScr extends Thread
         catch (IOException ex)
         {
             System.out.println(ex.getMessage());
-             ReportException.write("TCP_Client_RecieverPrScr.unzip()  IOException\t"+ex.getMessage());
+            ReportException.write("TCP_Client_RecieverPrScr.unzip()  IOException\t"+ex.getMessage());
         }
          byte [] body =Baos.toByteArray();
-        // System.out.println("   size"+body.length);
     return  body;
     
     }
     
-
-
 }
 

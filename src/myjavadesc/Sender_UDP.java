@@ -9,9 +9,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
 import masterPanel.ReportException;
 
 /**
@@ -23,6 +24,8 @@ public class Sender_UDP
     private final InetAddress IP_UDP;
     private final int port;
     DatagramSocket DS;
+    
+    public JEditorPane canvas;
     public Sender_UDP(InetAddress ip, int port)
     {      
         this.IP_UDP = ip;
@@ -37,29 +40,28 @@ public class Sender_UDP
         }
     }
 
-    public synchronized void Send(byte[] ByteSream)
+    public synchronized boolean Send(byte[] ByteSream)
     {
         try
         {
             if (ByteSream.length == 0)
             {
-                return;
+                return true;
             }
-          ///////// System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString());   
-            
-            
+          ///////// System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString()); 
+           
             DatagramPacket DP = new DatagramPacket(
                     ByteSream, ByteSream.length, this.IP_UDP, this.port);
             DS.send(DP);
-             System.out.println(" LENGTH SEND "+ByteSream.length);           
+            return true;
 
         }
         catch (Exception se)
-        {
+        {            
             ReportException.write("Sender_UDP.Send(..)" + se.getMessage());
-            System.out.println("Sender_UDP.Send(..)" + se.getMessage());
-
         }
+        
+        return false;
     }
 
 }

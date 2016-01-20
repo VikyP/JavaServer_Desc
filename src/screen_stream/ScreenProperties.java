@@ -158,12 +158,8 @@ public class ScreenProperties
             cnt++;
         } while (true);
 
-        blockPixelWidth = this.Width / widthCountOfBlocks;
-        // System.out.println("blockPixelWidth "+ blockPixelWidth); 
-        //  System.out.println(" widthCountOfBlocks "+  widthCountOfBlocks);   
-        blockPixelHeight = this.Height / heightCountOfBlocks;
-        // System.out.println("blockPixelHeight"+ blockPixelHeight);   
-
+        blockPixelWidth = this.Width / widthCountOfBlocks; 
+        blockPixelHeight = this.Height / heightCountOfBlocks;  
     }
 
     // размер изображения 
@@ -181,14 +177,11 @@ public class ScreenProperties
             }
         }
         getBlocksCount();
-      //  System.out.println(" Exit new size  W=" + D.width + "  H =" + D.height);
-
     }
 
     // новый кадр 
     public void NextImage()
-    {
-        
+    {   
         this.basePictureBuffer = this.newPictureBuffer;
     }
 
@@ -226,7 +219,7 @@ public class ScreenProperties
     
 
     /**
-     * опредиеление оптимальных параметров изображения
+     * определение оптимальных параметров изображения
      *
      */
     private int setOptimalValue( int h)
@@ -243,11 +236,6 @@ public class ScreenProperties
             countRow_tmp = (byte) (h / heightRow);        
         }
         this.countRow = countRow_tmp;
-        /*
-        System.out.println("   *************"+(heightRow*this.newPictureBuffer.getWidth()*Integer.BYTES/2>DataMax));
-        System.out.println("    row  "+ this.countRow);
-        System.out.println("   DataMax " +heightRow*this.newPictureBuffer.getWidth()*Integer.BYTES/2);
-        System.out.println("    H  " +( h + (heightRow * countRow_tmp - h)));*/
         
         //оптимальная для передачи высота снимка экрана
         return h + (heightRow * countRow_tmp - h);

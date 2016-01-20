@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
 <Configuration>
 <!-- IP Teacher  -->
-	<IP>192.168.0.100</IP>
+
+	<IP>192.168.0.102</IP>
 	
 	<!-- Broad Cast UDP-->
 	<IP_UDP>192.168.0.255</IP_UDP>
@@ -20,6 +21,9 @@
 		
 	<!--port UDP for get ScreenStream +4 -->		
 	<!--PORT_TCP_ScStr>9840</PORT_TCP_ScStr-->
+        
+        <SizeMaxUDP>65535</SizeMaxUDP>
+        <Define>False</Define>
 		
 </Configuration>
 	<Colors>
@@ -29,9 +33,9 @@
 		<FillColor>CCFFCC</FillColor>	 
 	</Colors>
 	<Line>
-		<Thickness>2.0</Thickness>
-		<Dash>0</Dash>
+		<Thickness>6.0</Thickness>
+		<Dash>3</Dash>
 	</Line>
-	<FontSize>21</FontSize>
+	<FontSize>17</FontSize>
 
 </application>

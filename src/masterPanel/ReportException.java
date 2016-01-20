@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class ReportException
          }
         
         FW = new FileWriter (file,true);
-        FW.write(exc+"\t\t"+"\r\n");//+ LocalDateTime.now().toString()
+        FW.write(exc+"\t\tTime:\t"+ Calendar.getInstance().getTime().toString()+"\r\n");
         FW.close();   
        }
        

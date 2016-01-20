@@ -67,9 +67,7 @@ public class CanvasScreen extends JPanel
             if(CanvasScreen.this.isControl && Screen.contains(me.getPoint()))
             { 
                 Point M= CanvasScreen.this.getUserPoint(me.getPoint());
-                //System.out.println("X ="+M.x + "   Y="+M.y);         
                 CanvasScreen.this.SenderCommand.Send(new MessageAction(ActionType.Mouse_Move, M.x,M.y));
-                
             }
             
            
@@ -84,10 +82,8 @@ public class CanvasScreen extends JPanel
             Rectangle Screen =new Rectangle(CanvasScreen.this.p.x,CanvasScreen.this.p.y,CanvasScreen.this.imgD.width,CanvasScreen.this.imgD.height);
             if(CanvasScreen.this.isControl && Screen.contains(e.getPoint()))
             { 
-                Point M= CanvasScreen.this.getUserPoint(e.getPoint());                
-                //System.out.println("X ="+M.x + "   Y="+M.y);
+                Point M= CanvasScreen.this.getUserPoint(e.getPoint()); 
                 CanvasScreen.this.SenderCommand.Send(new MessageAction(ActionType.Mouse_Move, M.x,M.y));
-                
             }
         }
 
@@ -104,7 +100,6 @@ public class CanvasScreen extends JPanel
             if(CanvasScreen.this.isControl )
             { 
              CanvasScreen.this.SenderCommand.Send(new MessageAction(ActionType.Mouse_Press, e.getButton()));
-                  
             }
         
         }
@@ -187,7 +182,7 @@ public class CanvasScreen extends JPanel
         DataOutputStream DOS = new DataOutputStream(BAOS);
         try
         {   
-            {
+          
                 BAOS.reset();
                 DOS.flush();
                 MA.write(DOS); 
@@ -200,8 +195,7 @@ public class CanvasScreen extends JPanel
                 {
                     System.out.println( " ERROR  !!!!!!!!!");
                 }
-                    
-            }
+                   
             
         }
         catch (IOException ex)
@@ -211,13 +205,13 @@ public class CanvasScreen extends JPanel
         } 
         
         finally
-        {
-            
+        {  
             try
             {
                 BAOS.close();
                 DOS.close();
-            } catch (IOException ex)
+            } 
+            catch (IOException ex)
             {
                 Logger.getLogger(CanvasScreen.class.getName()).log(Level.SEVERE, null, ex);
                 ReportException.write(this.getClass().getName()+"\t2\t"+ex.getMessage());
@@ -288,7 +282,7 @@ public class CanvasScreen extends JPanel
 
     void getImage(BufferedImage BI)
     {
-        try
+       try
         {
         this.bi=BI;
         switch(this.regimeCurrent)
@@ -308,29 +302,28 @@ public class CanvasScreen extends JPanel
                 
             case INSCRIBED:
                 UpdateSize();
-              //  this.setPreferredSize(this.imgD);
                 break;
         }
         
         }
-        catch(Exception ex)
+       catch(Exception ex)
         {
             System.out.println(ex.getMessage());   
-            ReportException.write(this.getClass().getName()+"\t2\t"+ex.getMessage());
+            ReportException.write(this.getClass().getName()+"\tgetImage(BufferedImage В)\t"+ex.getMessage());
         }
     }
     
     private void UpdateSize()
     {
-        int w= this.getParent().getWidth();
-        int h =this.getParent().getHeight(); 
+        // панель уже не отрисовывается
+        if(this.getParent()==null)
+            return;
         
-       // System.out.println("scaleH  =" + w + "    ="+h);   
+        int w= this.getParent().getWidth();
+        int h =this.getParent().getHeight();    
         this.setPreferredSize(new Dimension(w,h));
         
         int scaleW=(w*1000)/this.bi.getWidth();
-       // System.out.println("scaleW  = " + scaleW);   
-                 
         int scaleH=(h*1000)/this.bi.getHeight();
          
         if(scaleW<scaleH)
@@ -342,13 +335,11 @@ public class CanvasScreen extends JPanel
         }
         else
         {
-          //  System.out.println(scaleH*this.bi.getHeight());
             this.scale_point=h*1000/this.bi.getHeight();
             this.imgD=new Dimension(this.bi.getWidth()*this.scale_point/1000,h);
             this.p.x= (w-this.imgD.width)/2;
             this.p.y=0;
         }
-    
     
     }
     

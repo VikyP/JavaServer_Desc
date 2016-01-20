@@ -39,9 +39,7 @@ class StudentPane extends Component
     public static Dimension PaneSize=new Dimension(250,250);
       
     public StudentPane(String ip)
-    { 
-       //System.out.println(" Create StudentPane");
-      
+    {
        this.DImg= new Dimension(PaneSize.width-10,PaneSize.height-20);
        this.BI= new BufferedImage(this.DImg.width,this.DImg.height, BufferedImage.TYPE_INT_RGB); 
        
@@ -87,7 +85,6 @@ class StudentPane extends Component
     }
     
     public void drawCenter(String s, int w, int h, Graphics g)
-    
     {
         FontMetrics fm= g.getFontMetrics();
         
@@ -140,12 +137,13 @@ class StudentPane extends Component
    
     }
     
-    
+    /**
+     * распаковка картинки
+     * @param DIS 
+     */
     public  void UnPackImage( DataInputStream DIS ) 
     {
-        
-       
-        try{
+     try{
         int blockPixelWidth = DIS.readByte()&0xFF;//System.out.println("blockPixelWidth "+blockPixelWidth);   
         int blockPixelHeight = DIS.readByte()&0xFF;// System.out.println("blockPixelHeight "+blockPixelHeight);
         int widthCountOfBlocks = DIS.readInt();// System.out.println("widthCountOfBlocks "+widthCountOfBlocks);
@@ -204,7 +202,6 @@ class StudentPane extends Component
     }
     catch(Exception ex)
     {
-        ex.getMessage();
         ReportException.write("StudentPane.UnPackImage()  Exception\t"+ex.getMessage());
     }
 

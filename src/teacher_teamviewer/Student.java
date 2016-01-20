@@ -18,8 +18,10 @@ import teacher_teamviewer.event_package.IUnpack;
  */
 public class Student extends Object implements Comparable
 {
-    public static final String FULL="FULL";
-    public static final String PREVIEW="PREVIEW";
+    
+    public static final byte NULL=0;
+    public static final byte PREVIEW=1;
+    public static final byte FULL=2;    
     
     public StudentPane SP;
     public CanvasScreen CS;
@@ -35,18 +37,18 @@ public class Student extends Object implements Comparable
         @Override
         public void unpackImg(DataInputStream dis, byte type)
         {
-            if(type==(byte)1)
+            switch(type)
             {
-                Student.this.SP.UnPackImage(dis);
-                Student.this.CS.getImage(Student.this.SP.BI);
-                Student.this.CS.repaint();
+                case PREVIEW:
+                     Student.this.SP.UnPackPreview(dis);
+                     break;
+                     
+                case FULL:
+                    Student.this.SP.UnPackImage(dis);
+                    Student.this.CS.getImage(Student.this.SP.BI);
+                    Student.this.CS.repaint();
+                break;
             }
-            if(type==(byte)0)
-            {
-               
-                Student.this.SP.UnPackPreview(dis);
-            }
-            
         }
 
     };
@@ -83,8 +85,7 @@ public class Student extends Object implements Comparable
     {
        
         this.RecieverPrScr= new TCP_Client_RecieverPrScr(client); 
-        this.RecieverPrScr.ER.addEventUnpack(UR);        
-        //System.out.println("After");
+        this.RecieverPrScr.ER.addEventUnpack(UR);  
     }
      //создание потока для работы с упралением
     public void createSenderMessage(Socket client)

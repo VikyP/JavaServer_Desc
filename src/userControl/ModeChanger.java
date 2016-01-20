@@ -34,7 +34,7 @@ public class ModeChanger extends JPanel
     
     private JToggleButton Mode;
     private boolean status=false;
-    private JToggleButton SendScreen;
+    public JToggleButton SendScreen;
     public JToggleButton Record;
     private JToggleButton board;
     private JToggleButton viewers;

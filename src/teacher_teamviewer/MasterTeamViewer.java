@@ -123,7 +123,8 @@ public class MasterTeamViewer extends JPanel {
     };
 
     IEventRemoveStudent removeSt = new IEventRemoveStudent() {
-        public void removeStudent(String ip) {
+        public void removeStudent(String ip) 
+        {
            // System.out.println("removeStudent");
             Student s = MasterTeamViewer.this.getStudentByIP(ip);
 
@@ -143,7 +144,7 @@ public class MasterTeamViewer extends JPanel {
             MasterTeamViewer.this.PreviewPane.validate();
             MasterTeamViewer.this.PreviewPane.repaint();
 
-            if (!MasterTeamViewer.this.isPreview && MasterTeamViewer.this.MaxSizeStudent.RecieverPrScr.msg == Student.FULL) {
+            if (!MasterTeamViewer.this.isPreview && MasterTeamViewer.this.MaxSizeStudent.RecieverPrScr.messageTypeView == Student.FULL) {
                 MasterTeamViewer.this.MaxSizeStudent.CS.regimeCurrent = RegimeView.EXIT;
             }
 
@@ -167,9 +168,7 @@ public class MasterTeamViewer extends JPanel {
                 if (e.getKeyCode() == 27) {
                    
                     IFullScreen IFS = (IFullScreen) ESFS.getListener();
-
                     IFS.setIsFullScreen(false);
-                    //   Master.this.Tools.setSize(Master.this.Tools.getWidth(),Master.this.higthTools);
                 }
             }
 
@@ -351,14 +350,9 @@ public class MasterTeamViewer extends JPanel {
             this.MaxSizeStudent = s;            
             this.MaxSizeStudent.RecieverPrScr.setTime(150);
             this.MaxSizeStudent.SP.setSelected(!this.isPreview);
-            this.MaxSizeStudent.RecieverPrScr.msg = Student.FULL;
+            this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.FULL;
             Thread.sleep(1);
-
             this.scrollPane.setViewportView(s.CS);
-            
-           // System.out.println("W = " + this.scrollPane.getWidth() + " H = " + this.scrollPane.getHeight());
-            //System.out.println(this.scrollPane.getViewport().getComponent(0).toString());
-
         } catch (InterruptedException ex) {
             Logger.getLogger(MasterTeamViewer.class.getName()).log(Level.SEVERE, null, ex);
             ReportException.write(ex.getMessage());
@@ -387,7 +381,7 @@ public class MasterTeamViewer extends JPanel {
             this.MaxSizeStudent.CS.isControl=false;
             setTimeForeach(1000);
            // this.MaxSizeStudent.RecieverPrScr.setTime(1000);
-            this.MaxSizeStudent.RecieverPrScr.msg = Student.PREVIEW;
+            this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.PREVIEW;
             this.TP.b_control.setSelected(false);
             }
             this.scrollPane.setViewportView(this.PreviewPane);
