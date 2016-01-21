@@ -6,6 +6,7 @@
 package userControl;
 
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
@@ -13,20 +14,21 @@ import javax.swing.JComboBox;
  *
  * @author Viky
  */
-public class StartLineComboBox extends JComboBox 
+public class StartEndLine_ComboBox extends JComboBox 
 {
     private DefaultComboBoxModel model;
-    private WidthLineItemEditor WLIE;
+    private LineParam_ItemEditor WLIE;
     
-    public  StartLineComboBox ()
+    public  StartEndLine_ComboBox ( String toolTipText)
     {
         model = new DefaultComboBoxModel();
-        this.setToolTipText("Начало линии");
-        this.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));
+        this.setToolTipText(toolTipText);
+        this.setPreferredSize(new Dimension(50,20));//SizeSketch.LABEL_WIDTH, SizeSketch.CONTROL_HEIGHT));
         setModel(model);
-        setRenderer(new WidthLineItemRenderer());        
-        WLIE=new WidthLineItemEditor();
+        setRenderer(new LineParam_ItemRenderer());        
+        WLIE=new LineParam_ItemEditor();
         setEditor(WLIE);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
      
     /**

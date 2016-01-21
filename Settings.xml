@@ -2,7 +2,7 @@
 <Configuration>
 <!-- IP Teacher  -->
 
-	<IP>192.168.0.102</IP>
+	<IP>192.168.0.104</IP>
 	
 	<!-- Broad Cast UDP-->
 	<IP_UDP>192.168.0.255</IP_UDP>
@@ -22,8 +22,10 @@
 	<!--port UDP for get ScreenStream +4 -->		
 	<!--PORT_TCP_ScStr>9840</PORT_TCP_ScStr-->
         
-        <SizeMaxUDP>65535</SizeMaxUDP>
-        <Define>False</Define>
+        <SizeMaxUDP>65507</SizeMaxUDP>
+        
+         <!-- Флаг определяющий выполнять или нет автоопределение IP и допустимый размер UDP пакета  -->
+        <Define>True</Define>
 		
 </Configuration>
 	<Colors>
@@ -33,9 +35,9 @@
 		<FillColor>CCFFCC</FillColor>	 
 	</Colors>
 	<Line>
-		<Thickness>6.0</Thickness>
-		<Dash>3</Dash>
+		<Thickness>1.0</Thickness>
+		<Dash>0</Dash>
 	</Line>
-	<FontSize>17</FontSize>
+	<FontSize>16</FontSize>
 
 </application>

@@ -1,2 +1,15 @@
 teacher_teamviewer.TCP_Client_RecieverPrScr	2	Connection reset by peer: socket write error		Time:	Wed Jan 20 02:54:09 EET 2016
  Remove student IP 192.168.0.102		Time:	Wed Jan 20 02:54:09 EET 2016
+DataMaxUDP_OK : error send 0		Time:	Wed Jan 20 16:02:09 EET 2016
+DataMaxUDP_OK : error send 0		Time:	Thu Jan 21 11:05:17 EET 2016
+DataMaxUDP_OK : error send 0		Time:	Thu Jan 21 11:07:45 EET 2016
+DataMaxUDP_OK : error send 0		Time:	Thu Jan 21 11:08:00 EET 2016
+DataMaxUDP_OK : error send 0		Time:	Thu Jan 21 11:09:08 EET 2016
+ Ошибка чтения файла (графика) Board_05.jds		Time:	Thu Jan 21 11:11:29 EET 2016
+ Ошибка чтения файла (графика) Board_05.jds		Time:	Thu Jan 21 11:11:35 EET 2016
+ Ошибка чтения файла (графика) Board_06.jds		Time:	Thu Jan 21 11:13:07 EET 2016
+ Ошибка чтения файла (графика) Board_06.jds		Time:	Thu Jan 21 11:13:17 EET 2016
+UDP_Listener.run()Address already in use: Cannot bind		Time:	Thu Jan 21 11:14:57 EET 2016
+ Ошибка чтения файла (графика) Board_06.jds		Time:	Thu Jan 21 11:15:51 EET 2016
+ Ошибка чтения файла (графика) Board_05.jds		Time:	Thu Jan 21 11:16:52 EET 2016
+ Ошибка чтения файла (графика) Board_06.jds		Time:	Thu Jan 21 11:27:20 EET 2016

@@ -16,15 +16,15 @@ import javax.swing.JComboBox;
 public class DashLineComboBox extends JComboBox 
 {
     private DefaultComboBoxModel model;
-    private WidthLineItemEditor WLIE;
+    private LineParam_ItemEditor WLIE;
     
     public DashLineComboBox() {
         model = new DefaultComboBoxModel();
         this.setToolTipText("Тип линии");
         this.setPreferredSize(new Dimension(120, 20));
         setModel(model);
-        setRenderer(new WidthLineItemRenderer());        
-        WLIE=new WidthLineItemEditor();
+        setRenderer(new LineParam_ItemRenderer());        
+        WLIE=new LineParam_ItemEditor();
         setEditor(WLIE);
     }
      

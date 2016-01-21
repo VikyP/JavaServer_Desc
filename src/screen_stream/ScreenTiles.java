@@ -360,7 +360,7 @@ public class ScreenTiles
     {
         ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
         DataOutputStream DOS = new DataOutputStream(BAOS);
-        this.ImageToSend.testImage(this.ImageToSend.FastPictureBuffer,"Test_FAST"); 
+       // this.ImageToSend.testImage(this.ImageToSend.FastPictureBuffer,"Test_FAST"); 
         DataBuffer DB_small = this.ImageToSend.DataFast();
         try
         {

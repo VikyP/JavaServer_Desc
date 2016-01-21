@@ -1452,6 +1452,7 @@ public class MyJavaCanvas extends JEditorPane {
     public void readBoard(File f) {
         try {
             String gr = f.getPath().substring(f.getPath().indexOf("_"), f.getPath().indexOf("\\"));
+            System.out.println("    path "+ f);
             this.recordHead.setNameGroup(gr);
         } catch (Exception exc) {
             System.out.println("     GROUP ????");
@@ -1463,6 +1464,7 @@ public class MyJavaCanvas extends JEditorPane {
         DataInputStream DIS = null;
         try {
             FIS = new FileInputStream(f);
+            
             DIS = new DataInputStream(FIS);
             if (DIS.available() == 0) {
                 return;

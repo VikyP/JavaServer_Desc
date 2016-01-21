@@ -30,10 +30,9 @@ import myjavadesc.events.IChShapeType;
 import userControl.DashLineComboBox;
 
 import userControl.DrawTools;
-import userControl.EndLineComboBox;
 import userControl.SettingTools;
 import userControl.SizeSketch;
-import userControl.StartLineComboBox;
+import userControl.StartEndLine_ComboBox;
 import userControl.ToolsPanel;
 import userControl.WidthLineComboBox;
 
@@ -47,12 +46,11 @@ public class MasterBoard extends JPanel {
     private JPanel canvasPanel;
     private JScrollPane scrollPane;
     private JScrollPane scrollPaneTools;
-    private JSplitPane mainPanel;
-    private JTextArea plan;
     private SettingsConfig styles;
     
     
     public File fileCurrentBoard;
+   
 
     public MyJavaCanvas myCanvas;
     JColorChooser colorChooser ;
@@ -136,7 +134,6 @@ public class MasterBoard extends JPanel {
         this.canvasPanel.add(this.myCanvas);
         this.canvasPanel.setBackground(getPanelBackground(this.myCanvas.getBackground()));
       
-        this.plan = new JTextArea();
         
         this.scrollPane = new JScrollPane(this.canvasPanel);
         JSplitPane SP= new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,this.scrollPane,new JTextArea());
@@ -214,10 +211,9 @@ public class MasterBoard extends JPanel {
                     {
                         if(MasterBoard.this.archF.archiveGroup.getSelectedIndex()<0)
                         return;
-                        String groupName=MasterBoard.this.listGour.getSelectedGroup();
-                        String day=MasterBoard.this.archF.archiveGroup.getSelectedValue().toString();                        
-                        String path = MasterBoard.this.listGour.getSelectedGroup()+"/" + MasterBoard.this.archF.archiveGroup.getSelectedValue().toString();                        
-                        MasterBoard.this.archF.setDay(path);
+                        String groupName=MasterBoard.this.listGour.getSelectedGroup();                       
+                        MasterBoard.this.archF.dayPath = MasterBoard.this.listGour.getSelectedGroup()+"/" + MasterBoard.this.archF.archiveGroup.getSelectedValue().toString();                        
+                        MasterBoard.this.archF.setDay(MasterBoard.this.archF.dayPath);
                         
                     }
          });
@@ -350,7 +346,7 @@ public class MasterBoard extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                StartLineComboBox slcb= (StartLineComboBox)e.getSource();
+                StartEndLine_ComboBox slcb= (StartEndLine_ComboBox)e.getSource();
                 myCanvas.startLineType = (byte) slcb.getSelectedValue();
                 
             }
@@ -363,7 +359,7 @@ public class MasterBoard extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                EndLineComboBox slcb= (EndLineComboBox)e.getSource();
+                StartEndLine_ComboBox slcb= (StartEndLine_ComboBox)e.getSource();
                 myCanvas.endLineType = (byte) slcb.getSelectedValue();                
             }
         }

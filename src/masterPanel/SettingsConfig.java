@@ -47,8 +47,8 @@ public class SettingsConfig
     private boolean isDefine;
     
     //  максимально допустимый размер пакета для передаче по UDP 
-    public static int DataMaxUDP=60000;
-    
+    public static int DataMaxUDP=65507 ;
+    // public static int DataMaxUDP=70000 ;
     // максимально допустимый размер пакета для передаче по UDP
     public static int DataMaxUDP_OK;
     
@@ -161,7 +161,7 @@ public class SettingsConfig
             // если установлена проверка, определяем размер пакета
             if(this.isDefine)
             {
-                for (int i = 512; i < 70000; i=i*2)
+                for (int i = 512; i < DataMaxUDP; i=i*2)
                 {
                     size=i;
                     byte[] test = new byte[i];
@@ -174,7 +174,7 @@ public class SettingsConfig
             }
             else
             {
-                byte[] test = new byte[DataMaxUDP];
+                byte[] test = new byte[DataMaxUDP_OK];
                 DP = new DatagramPacket(
                         test, test.length, this.IP_UDP, PORT_TEST);
                 DS.send(DP);
@@ -183,7 +183,8 @@ public class SettingsConfig
         }
         catch (SocketException ex)
         {
-            DataMaxUDP_OK=size--;
+            ReportException.write("DataMaxUDP_OK : error send "+DataMaxUDP_OK);
+            DataMaxUDP_OK=size/2;
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex); 
             Element sizeUDP = (Element)doc.getElementsByTagName("SizeMaxUDP").item(0);            
             sizeUDP.setTextContent(String.valueOf(size));
@@ -192,19 +193,21 @@ public class SettingsConfig
         } 
         catch (IOException ex)
         {
+            ReportException.write("DataMaxUDP_OK : error IOException "+ex.getMessage());
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);            
         } 
         catch (InterruptedException ex) 
         {
+            ReportException.write("DataMaxUDP_OK : error InterruptedException "+ex.getMessage());
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally
         {
             DS.close();        
         }
+        System.out.println(DataMaxUDP+ "  "+ DataMaxUDP_OK +"    **********" +! (DataMaxUDP_OK<DataMaxUDP));
         
-        
-        return DataMaxUDP_OK>DataMaxUDP; 
+        return ! (DataMaxUDP_OK<DataMaxUDP); 
     }
     
     /**
@@ -248,7 +251,9 @@ public class SettingsConfig
             
             Element isDef=(Element)doc.getElementsByTagName("Define").item(0);
             this.isDefine=Boolean.parseBoolean(isDef.getTextContent());
-          
+            
+            Element sizeUDP=(Element)doc.getElementsByTagName("SizeMaxUDP").item(0);
+            this.DataMaxUDP_OK=Integer.parseInt(sizeUDP.getTextContent());          
            
            if(this.isDefine)
            {
@@ -285,14 +290,17 @@ public class SettingsConfig
         }
         catch (ParserConfigurationException ex)
         { 
+            ReportException.write("ParserConfigurationException "+ex.getMessage());
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (SAXException ex)
         {
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
+            ReportException.write("SAXException "+ex.getMessage());
         }
         catch (IOException ex)
         {
+            ReportException.write("IOException "+ex.getMessage());
             Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
         

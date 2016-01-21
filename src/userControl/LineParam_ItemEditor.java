@@ -6,6 +6,7 @@
 package userControl;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -21,16 +22,15 @@ import javax.swing.plaf.basic.BasicComboBoxEditor;
  */
 
 
-public class WidthLineItemEditor extends BasicComboBoxEditor
+public class LineParam_ItemEditor extends BasicComboBoxEditor
 {
     private JPanel panel = new JPanel();
     private JLabel labelItem = new JLabel();
     private int selectedValue;
      
-    public WidthLineItemEditor() 
+    public LineParam_ItemEditor() 
     {
         panel.setLayout(new GridBagLayout());
-       
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.weightx = 1.0;

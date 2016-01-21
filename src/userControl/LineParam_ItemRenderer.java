@@ -19,14 +19,14 @@ import javax.swing.ListCellRenderer;
  *
  * @author viky
  */
-public class WidthLineItemRenderer extends JPanel implements ListCellRenderer
+public class LineParam_ItemRenderer extends JPanel implements ListCellRenderer
 {
 
     private JLabel labelItem = new JLabel();
     private Color c;
     public String unit = "";
 
-    public WidthLineItemRenderer()
+    public LineParam_ItemRenderer()
     {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();

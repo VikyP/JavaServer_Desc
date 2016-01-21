@@ -28,8 +28,8 @@ public class SettingTools
      public JButton colorFill;
      public DashLineComboBox styleLine;
      public WidthLineComboBox thicnessLine;
-     public StartLineComboBox startLineCB;
-     public EndLineComboBox endLineCB;
+     public StartEndLine_ComboBox startLineCB;
+     public StartEndLine_ComboBox endLineCB;
      
      // панель всегда доступна
     public JPanel settingPanel;
@@ -119,20 +119,14 @@ public class SettingTools
         this.styleLine.setEnabled(false);
         JLabel lineStart= new JLabel("Начало линии");
         JLabel lineEnd= new JLabel("Конец линии");
-        this.startLineCB=  new StartLineComboBox();
+        this.startLineCB=  new StartEndLine_ComboBox("Начало линии");
         this.startLineCB.setEditable(true);
         this.startLineCB.addItems(startLine);
-        this.startLineCB.setSelectedItem(getSelectedDash(t));
-        
-       
         this.startLineCB.setEnabled(false);
         
-        this.endLineCB=  new EndLineComboBox();
+        this.endLineCB=  new StartEndLine_ComboBox("Конец линии");
         this.endLineCB.setEditable(true);
         this.endLineCB.addItems(endLine);
-        this.endLineCB.setSelectedItem(getSelectedDash(t));
-        
-        
         this.endLineCB.setEnabled(false);
         
         this.settingPanelHide= new JPanel();
@@ -141,7 +135,7 @@ public class SettingTools
         layout.setAutoCreateGaps(false);
         layout.setAutoCreateContainerGaps(true);
         layout.linkSize(SwingConstants.HORIZONTAL, this.thicnessLine, this.styleLine,this.startLineCB,this.endLineCB);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup() 
                     .addComponent(this.colorLine)
                     .addComponent(this.colorFill))
@@ -155,7 +149,7 @@ public class SettingTools
                 .addComponent(this.endLineCB)
                
                 );
-        
+        layout.linkSize(SwingConstants.HORIZONTAL, this.startLineCB, this.endLineCB);
         layout.setVerticalGroup( layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE) 
                     .addComponent(this.colorLine)
@@ -165,6 +159,7 @@ public class SettingTools
                 .addComponent(labStyle)
                 .addComponent(this.styleLine)
                 .addComponent(lineStart)
+               
                 .addComponent(this.startLineCB)
                 .addComponent(lineEnd)
                 .addComponent(this.endLineCB)

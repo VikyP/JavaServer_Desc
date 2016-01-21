@@ -5,12 +5,7 @@
  */
 package myjavadesc;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -23,7 +18,6 @@ import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -71,6 +65,10 @@ public class ArchiveFiles
      */
     public boolean isTodayDir = false;
     private String todayStr;
+    /**
+     * 
+     */
+    public String dayPath;
 
     // папка выбранной группы
     private File groupDir;
@@ -413,7 +411,6 @@ public class ArchiveFiles
         }
         // считаем, что папкиСегодня для группы нет
         this.todayDir = null;
-        int i = 1;
         Arrays.sort(days);
         Collections.reverse(Arrays.asList(days));
         for (File f : days)
@@ -421,7 +418,7 @@ public class ArchiveFiles
             this.lm.addElement(f.getName());
 
            // System.out.println(i + "    " + f.getName());
-            i++;
+          
             // проверка на наличие папки-Сегодня для выбранной группы
             if (f.getName().equals(this.todayTostring()))
             {
@@ -552,7 +549,6 @@ public class ArchiveFiles
             try
             {
                 f.createNewFile();
-                
                 return f;
             }
             catch (IOException ex)
@@ -564,7 +560,7 @@ public class ArchiveFiles
         } 
         else
         {
-            return null;
+            return f;
         }
 
     }
@@ -620,8 +616,8 @@ public class ArchiveFiles
       // папка-Сегодня уже есть
         else
         {
-            
             index = this.listBoard.size() + 1;
+           // System.out.println("    index " +index);
             this.currentBoard = this.createNewBoard(index);
             this.listBoard.add(this.currentBoard);
             this.cbm.addElement(getNameBoard(this.currentBoard));
@@ -660,8 +656,7 @@ public class ArchiveFiles
            {
               
                if(this.lm.size()!=0)
-               {
-                  
+               {                  
                 File dir=f.getParentFile();
                 f.delete();
                 dir.delete();                  
@@ -677,28 +672,33 @@ public class ArchiveFiles
         if( JOptionPane.showConfirmDialog(  archiveGroup, "Удалить доску  "
             +boardName+" ?","Удаление доски",
             JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION)        
-        {
-            
+        {            
             return;
         }
+        
+        String path = this.dayPath;
+        System.out.println("  index   " + index);
+        
         this.listBoard.remove(index);
         this.BoardsToday.removeItemAt(index);
-        
-        String path = getPathArchive();
         f.delete();
-
         for (int i = index; i < this.listBoard.size(); i++)
         {
-            File ff = new File(path + "/" + "Board_" + (i + 1) + "." + this.ext);
-            
-            this.listBoard.get(i).renameTo(ff);
+            String path_boadr="";
+            if(i<9)
+                path_boadr= "/" + "Board_0" + (i+1) + "." + this.ext;
+                else
+                path_boadr= "/" + "Board_" + (i+1) + "." + this.ext;
+            File newNameFile = new File(path + path_boadr);
+            this.listBoard.get(i).renameTo(newNameFile);
             this.cbm.removeElementAt(i);
-            this.cbm.insertElementAt(getNameBoard(ff), i);
+            this.cbm.insertElementAt(getNameBoard(newNameFile), i);
         }
+        this.setDay(this.dayPath);
         if (!this.listBoard.isEmpty())
-        {
-          //  System.out.println("    index" +index);
+        {          
             this.BoardsToday.setSelectedIndex(--index);
+            System.out.println("  index   " + index);
             this.currentBoard = this.listBoard.get(index);
         }
       

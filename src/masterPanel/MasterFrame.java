@@ -251,10 +251,7 @@ public class MasterFrame extends JFrame
         PrevY = MasterFrame.this.getY();
         PrevWidth = MasterFrame.this.getWidth();
         PrevHeight = MasterFrame.this.getHeight();
-      //  System.out.println("W "+ PrevWidth + " H " + PrevHeight);   
     
     }
     
-    
-    //JOptionPane.showMessageDialog(this, "This is a Message Box.");
 }

@@ -16,8 +16,8 @@ import javax.swing.JComboBox;
 public class WidthLineComboBox extends JComboBox 
 {
     private DefaultComboBoxModel model;
-    private WidthLineItemRenderer WLIR;
-    private WidthLineItemEditor WLIE;
+    private LineParam_ItemRenderer WLIR;
+    private LineParam_ItemEditor WLIE;
      
     public WidthLineComboBox() 
     {
@@ -25,10 +25,10 @@ public class WidthLineComboBox extends JComboBox
         this.setToolTipText("Толщина линии");
         this.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
         setModel(model);
-        WLIR = new WidthLineItemRenderer();
+        WLIR = new LineParam_ItemRenderer();
         WLIR.unit=" px";
         setRenderer(WLIR);
-        WLIE=new WidthLineItemEditor();
+        WLIE=new LineParam_ItemEditor();
         setEditor(WLIE);
         
     }
