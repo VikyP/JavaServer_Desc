@@ -5,19 +5,12 @@
  */
 package userControl;
 
-import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
-import static javax.swing.GroupLayout.Alignment.BASELINE;
-import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +20,6 @@ import myjavadesc.events.EventShapeTypeChanged;
 import myjavadesc.events.IChShapeType;
 import myjavadesc.shapes.IShapeModel;
 import myjavadesc.shapes.ShapeType;
-import myjavadesc.shapes.ShapeType.TableCl;
 
 /**
  *

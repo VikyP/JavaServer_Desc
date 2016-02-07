@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
 <Configuration>
-<!-- IP Teacher  -->
-
-	<IP>192.168.0.104</IP>
 	
-	<!-- Broad Cast UDP-->
+	<!-- BroadCast UDP-->
 	<IP_UDP>192.168.0.255</IP_UDP>
 
-	<!--  port UDP for find new student-->
-	<PORT_UDP>9600</PORT_UDP>
+	<!-- UDP порт для поиска новых студентов-->
+	<PORT_UDP>9610</PORT_UDP>
 
 	<!--UDP порт приема данных доски  + 1 -->
-	<!--PORT_UDP_BOARD>9801</PORT_UDP_BOARD-->
-		
 	<!--TCP порт отправки экрана студета +2 -->
-	<!--PORT_TCP_IMG>9820</PORT_TCP_IMG-->
-		
-	<!--TCP порт получения команд  +3 -->		
-	<!--PORT_TCP_COMMAND>9830</PORT_TCP_COMMAND-->
-		
-	<!--port UDP for get ScreenStream +4 -->		
-	<!--PORT_TCP_ScStr>9840</PORT_TCP_ScStr-->
-        
-        <SizeMaxUDP>65507</SizeMaxUDP>
-        
-         <!-- Флаг определяющий выполнять или нет автоопределение IP и допустимый размер UDP пакета  -->
-        <Define>True</Define>
+	<!--TCP порт получения команд  +3 -->
+	<!--UDP порт для получения экрана преподавателя +4 -->
+	
+    <!--Допустимы размер пакета UDP для передачи экрана преподавателя  в byte-->    
+    <SizeMaxUDP>32000</SizeMaxUDP>  
+	
+    <!-- Флаг определяющий выполнять или нет автоопределение IP и допустимый размер UDP пакета  -->
+    <Define>True</Define>
 		
 </Configuration>
 	<Colors>
-		<Background>6666FF</Background>
-		<Foreground>FFFF33</Foreground>
-		<LineColor>FF33FF</LineColor>
-		<FillColor>CCFFCC</FillColor>	 
+		<!--Цвет фона-->
+		<Background>C9D4C9</Background>
+		<!--Цвет текста-->    
+		<Foreground>666600</Foreground>
+		<!--Цвет линии-->
+		<LineColor>660099</LineColor>
+		 <!--Цвет заливкик-->
+		<FillColor>0000FF</FillColor>	 
 	</Colors>
 	<Line>
-		<Thickness>1.0</Thickness>
+		<!--Толщина линии-->
+		<Thickness>2.0</Thickness>
+		<!--Тип линии-->
 		<Dash>0</Dash>
 	</Line>
-	<FontSize>16</FontSize>
-
+	<!--Высота шрифта от 15 до 25 -->
+	<FontSize>20</FontSize>
 </application>

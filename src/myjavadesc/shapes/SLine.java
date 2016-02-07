@@ -144,8 +144,8 @@ public class SLine extends MyShape implements IShapeAction
    public void BinaryWrite(DataOutputStream DOS)
    {
         try
-        {
-            DOS.writeByte((byte) this.Type);
+        {   
+            DOS.writeByte(this.Type);
             DOS.writeInt(this.Begin.x);
             DOS.writeInt(this.Begin.y);
             DOS.writeInt(this.End.x);

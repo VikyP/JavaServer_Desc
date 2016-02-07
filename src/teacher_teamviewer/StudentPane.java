@@ -55,8 +55,7 @@ class StudentPane extends Component
     }
     
     public boolean getSelect()
-      {return this.isSelected;}
-   
+    {return this.isSelected;}
     
     @Override
     public void paint(Graphics g)
@@ -70,12 +69,10 @@ class StudentPane extends Component
         g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(),5,5);   
         
         if(this.BI== null)return;
-       
-       // g.drawImage(this.BI, 20, 20,this.getWidth()-20*2,this.getHeight()-20*3, this);
         Point start= new Point((this.getWidth()-this.BI.getWidth())/2, (this.getHeight()-this.BI.getHeight())/2-20 );
         g.drawImage(this.BI, start.x, start.y,this.BI.getWidth(),this.BI.getHeight(), this);
         
-       // g.setColor(new Color (80,80,100));
+       
         g.setColor(Color.WHITE);
         Font F= new Font("Arial", Font.PLAIN,20);
         g.setFont(F);
@@ -100,10 +97,7 @@ class StudentPane extends Component
         try
         {
             int w=DIS.readInt();
-           // System.out.println("W          "+ w);
-            
             int h=DIS.readInt();
-           // System.out.println("H         " + h);
             synchronized(this.BI)
             {
             if(this.BI.getWidth()!=w || this.BI.getHeight()!=h)

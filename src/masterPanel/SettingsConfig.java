@@ -43,11 +43,11 @@ public class SettingsConfig
 {
     public boolean isValid;
     public boolean isFirst;
-    public boolean isCanVideo;
+    public static boolean isCanVideo;
     private boolean isDefine;
     
     //  максимально допустимый размер пакета для передаче по UDP 
-    public static int DataMaxUDP=65507 ;
+    public static int DataMaxUDP=20000 ;
     // public static int DataMaxUDP=70000 ;
     // максимально допустимый размер пакета для передаче по UDP
     public static int DataMaxUDP_OK;
@@ -64,38 +64,45 @@ public class SettingsConfig
     
     
     //<editor-fold defaultstate="collapsed" desc=" IP, ports ">
+    
+    /**
+     * broadcast UDP
+     */
+    public static InetAddress IP_UDP;   
+    private InetAddress ip;
   
     /**
      * порт прослушки маяков студентов
      */
-    public int  PORT_UDP; 
+    public static int  PORT_UDP; 
+    private int port_Base;
     /**
      * порт вещания доски
      */
-    public int  PORT_UDP_BOARD;
+    public static int  PORT_UDP_BOARD;
     private final int DELTA_UDP_BOARD=1;
     /**
      * порт TCP соединения для получения картинки
      */
-    public int  PORT_TCP_IMG;
+    public static int  PORT_TCP_IMG;
     private final int DELTA_TCP_IMG=2;
     /**
      * порт TCP соединения для отправки команды
      */
-    public int  PORT_TCP_COMMAND;
-    private final int DELTA_TCP_COMMAND=3;
+    public static int  PORT_TCP_COMMAND;
+    private  final int DELTA_TCP_COMMAND=3;
     
     /**
      * порт для отправки экрана преподавателя по UDP
-     */
-    public int  PORT_TCP_ScStr;
+     */ 
+    public static int  PORT_TCP_ScStr;
     private final int DELTA_TCP_ScStr=4;
     
     /**
      * порт для проверки запуска
      */
-    public int  PORT_TEST;
-    private final int DELTA_TEST=5;
+    public static int  PORT_TEST;
+    private  final int DELTA_TEST=5;
     
     
     
@@ -105,12 +112,9 @@ public class SettingsConfig
     /**
      * адресс компьютера
      */
-    public InetAddress IP;
+  //  public InetAddress IP;
     
-    /**
-     * broadcast UDP
-     */
-    public InetAddress IP_UDP;    
+    
     
     Document doc;
     
@@ -121,11 +125,26 @@ public class SettingsConfig
         isFirst=isFirst();
     }
     
+    public  void setCongig ()
+    {       
+       setAllPorts(); 
+       //если порт менялся, то изменения сохраняться
+       if(this.port_Base!=PORT_UDP || this.ip!=IP_UDP)
+       { 
+            Element p_udp = (Element)doc.getElementsByTagName("PORT_UDP").item(0);
+            p_udp.setTextContent(""+PORT_UDP);
+            Element ip_udp = (Element)doc.getElementsByTagName("IP_UDP").item(0); 
+            ip_udp.setTextContent(IP_UDP.getHostAddress());
+            saveDoc();
+       }
+    }
+    
     public boolean isFirst()
     {
         boolean flag=false;
          try 
          { 
+             DatagramSocket  DS  = new DatagramSocket (PORT_TEST);
              ServerSocket s=null;
              try
              {
@@ -134,12 +153,9 @@ public class SettingsConfig
              } 
              catch (Exception se)
              {
-                 ReportException.write(" Приложение уже запущено " + se.getMessage());
+                 ReportException.write(" Приложение уже запущено " + se.getMessage());                 
              }
-            finally
-            {
-                s.close();
-            }
+           
              
          } 
          catch (Exception ex)//(IOException ex)
@@ -166,7 +182,7 @@ public class SettingsConfig
                     size=i;
                     byte[] test = new byte[i];
                     DP = new DatagramPacket(
-                        test, test.length, this.IP_UDP, PORT_TEST);
+                        test, test.length, this.IP_UDP, PORT_TCP_ScStr);
                     DS.send(DP);
                     Thread.sleep(1);
                 }
@@ -176,19 +192,21 @@ public class SettingsConfig
             {
                 byte[] test = new byte[DataMaxUDP_OK];
                 DP = new DatagramPacket(
-                        test, test.length, this.IP_UDP, PORT_TEST);
+                        test, test.length, this.IP_UDP, PORT_TCP_ScStr);
                 DS.send(DP);
-                return true;
             }
         }
         catch (SocketException ex)
         {
             ReportException.write("DataMaxUDP_OK : error send "+DataMaxUDP_OK);
-            DataMaxUDP_OK=size/2;
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex); 
-            Element sizeUDP = (Element)doc.getElementsByTagName("SizeMaxUDP").item(0);            
-            sizeUDP.setTextContent(String.valueOf(size));
-            saveDoc();
+            if(this.isDefine)
+            {
+                DataMaxUDP_OK=size/2;
+                Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex); 
+                Element sizeUDP = (Element)doc.getElementsByTagName("SizeMaxUDP").item(0);            
+                sizeUDP.setTextContent(String.valueOf(size));
+                saveDoc();
+            }
             
         } 
         catch (IOException ex)
@@ -205,7 +223,6 @@ public class SettingsConfig
         {
             DS.close();        
         }
-        System.out.println(DataMaxUDP+ "  "+ DataMaxUDP_OK +"    **********" +! (DataMaxUDP_OK<DataMaxUDP));
         
         return ! (DataMaxUDP_OK<DataMaxUDP); 
     }
@@ -242,50 +259,21 @@ public class SettingsConfig
             this.fontSize=Integer.parseInt(fSize.getTextContent());    
             this.fontSize=(this.fontSize==0)?this.fontSize=MIN_FONTSIZE:this.fontSize;
             
-            Element ip = (Element)doc.getElementsByTagName("IP").item(0); 
-            this.IP=InetAddress.getByName(ip.getTextContent().trim());
-            
             
             Element ip_udp = (Element)doc.getElementsByTagName("IP_UDP").item(0); 
             this.IP_UDP=InetAddress.getByName(ip_udp.getTextContent().trim());
+            this.ip=this.IP_UDP;
             
             Element isDef=(Element)doc.getElementsByTagName("Define").item(0);
             this.isDefine=Boolean.parseBoolean(isDef.getTextContent());
             
             Element sizeUDP=(Element)doc.getElementsByTagName("SizeMaxUDP").item(0);
-            this.DataMaxUDP_OK=Integer.parseInt(sizeUDP.getTextContent());          
-           
-           if(this.isDefine)
-           {
-               // уточняем IP
-               if(!this.IP.getHostAddress().equals(InetAddress.getLocalHost().getHostAddress()))
-               { 
-                   this.IP=InetAddress.getByName(InetAddress.getLocalHost().getHostAddress());
-
-                   byte[] mask=this.IP_UDP.getAddress();
-                   byte [] newUDP=this.IP.getAddress();
-                   for(int i=0; i<mask.length;i++)
-                   { 
-                      // System.out.println(" " +(mask[i]&0x000000FF));
-                       if (((mask[i]&0x000000FF)^0xFF)==0)
-                       {
-                           newUDP[i]=(byte) 0xFF;
-                       }                
-                   }
-                  this.IP_UDP=InetAddress.getByAddress(newUDP);
-                  ip.setTextContent(this.IP.getHostAddress());
-                  ip_udp.setTextContent(this.IP_UDP.getHostAddress());
-                  saveDoc();
-               }
-           }
+            this.DataMaxUDP_OK=Integer.parseInt(sizeUDP.getTextContent()); 
             
             Element p_udp = (Element)doc.getElementsByTagName("PORT_UDP").item(0); 
             this.PORT_UDP=Integer.parseInt(p_udp.getTextContent());
-            this.PORT_UDP_BOARD=this.PORT_UDP+DELTA_UDP_BOARD;            
-            this.PORT_TCP_IMG=this.PORT_UDP+DELTA_TCP_IMG;
-            this.PORT_TCP_COMMAND=this.PORT_UDP+DELTA_TCP_COMMAND;
-            this.PORT_TCP_ScStr=this.PORT_UDP+DELTA_TCP_ScStr;
-            this.PORT_TEST=this.PORT_UDP+DELTA_TEST;
+            port_Base=this.PORT_UDP;
+            setAllPorts();
             return true;
         }
         catch (ParserConfigurationException ex)
@@ -307,6 +295,14 @@ public class SettingsConfig
         return false;
     }
     
+    private void  setAllPorts()
+    {
+        PORT_UDP_BOARD=PORT_UDP+DELTA_UDP_BOARD;            
+        PORT_TCP_IMG=PORT_UDP+DELTA_TCP_IMG;
+        PORT_TCP_COMMAND=PORT_UDP+DELTA_TCP_COMMAND;
+        PORT_TCP_ScStr=PORT_UDP+DELTA_TCP_ScStr;
+        PORT_TEST=PORT_UDP+DELTA_TEST;        
+    }
     
     public void saveSettingsThemes(Color f, Color b, int fSize)
     {
@@ -322,8 +318,7 @@ public class SettingsConfig
     }
     
     public void saveColorsDraw(Color l, Color f)
-    {
-       
+    {       
         Element back = (Element)doc.getElementsByTagName("LineColor").item(0);            
         back.setTextContent(String.format( "%02X%02X%02X", l.getRed(), l.getGreen(), l.getBlue() ));
         Element fore = (Element)doc.getElementsByTagName("FillColor").item(0); 
@@ -341,7 +336,6 @@ public class SettingsConfig
         saveDoc();
         
     }
-    
     
     public void saveDoc()
     {

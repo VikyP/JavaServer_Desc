@@ -6,13 +6,13 @@
 package userControl;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
+import masterPanel.ReportException;
 
 /**
  *
@@ -41,16 +41,19 @@ public class LineParam_ItemEditor extends BasicComboBoxEditor
         panel.add(labelItem, constraints);    
     }
      
+    @Override
     public Component getEditorComponent()
     {
         return this.panel;
     }
      
+    @Override
     public Object getItem() 
     {
         return this.selectedValue;
     }
      
+    @Override
     public void setItem(Object obj)
     {
         
@@ -62,12 +65,13 @@ public class LineParam_ItemEditor extends BasicComboBoxEditor
         {
        
         Object[] item = (Object[]) obj;
-        selectedValue =(int) item[0];
+       
+        selectedValue = Integer.parseInt(item[0].toString());
         labelItem.setIcon(ImageIconURL.get((String)item[1]));
         }
         catch(Exception ex)                
         { 
-            System.out.println("  setItem  *********"+obj.toString());
+            ReportException.write(this.toString()+"\t"+ex.getMessage() ); 
         }
     }  
 }

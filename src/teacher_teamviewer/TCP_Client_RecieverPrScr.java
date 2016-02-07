@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import java.util.zip.GZIPInputStream;
 import masterPanel.ReportException;
+import screen_stream.Thread_SenderImage;
 
 
 /**
@@ -37,6 +38,7 @@ public class TCP_Client_RecieverPrScr extends Thread
     
     private long time;
     public byte messageTypeView;
+    private boolean Status=false;
     
 
     public TCP_Client_RecieverPrScr(Socket client )
@@ -48,7 +50,30 @@ public class TCP_Client_RecieverPrScr extends Thread
         this.setDaemon(true);       
         this.messageTypeView=Student.PREVIEW;
     }
-        
+    
+    public synchronized void setStatus(boolean flag)
+    {
+        this.Status=flag;
+        if(Status)
+        {   
+            this.notify();
+        }    
+           
+    }
+    
+     public synchronized void getStatus()
+     {
+         if(!Status)
+             try 
+            {               
+                this.wait();
+            }
+             catch (InterruptedException ex)
+        {
+            Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+     }
     
     
     public void setTime(long t)
@@ -59,13 +84,12 @@ public class TCP_Client_RecieverPrScr extends Thread
     @Override
     public void run()
     {  
-        
         try
         {
-            
             // обмен данными
             while(true)
             { 
+                getStatus();
                 this.client.getOutputStream().write(this.messageTypeView);
                 ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
                 int size = 0;

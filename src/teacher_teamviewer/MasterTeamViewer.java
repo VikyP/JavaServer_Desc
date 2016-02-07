@@ -34,7 +34,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import masterPanel.ReportException;
-import masterPanel.SettingsConfig;
 import teacher_teamviewer.event_package.EventSetIsFullScreen;
 import teacher_teamviewer.event_package.IEventRemoveStudent;
 import teacher_teamviewer.event_package.IFullScreen;
@@ -45,13 +44,6 @@ import userControl.ImageIconURL;
  *
  * @author viky
  */
-enum RegimeView {
-
-    FULLSCREEN,
-    USERSIZE,
-    INSCRIBED,
-    EXIT
-}
 
 public class MasterTeamViewer extends JPanel {
 
@@ -59,26 +51,18 @@ public class MasterTeamViewer extends JPanel {
 
     private ConnectionManagerLeader connector;
     private final UDP_Listener finder;
-
+    private JScrollPane scrollPane;
+    private JPanel PreviewPane = new JPanel();
+    private Student MaxSizeStudent;
+    
+    public byte regimeCurrent;
     public boolean isPreview;
     public boolean haveControl;
 
-    private JScrollPane scrollPane;
-    private Student MaxSizeStudent;
-    public RegimeView regimeCurrent;
-
     public EventSetIsFullScreen ESFS = new EventSetIsFullScreen();
-
-    public JPanel MasterPane = new JPanel();
-    
-    private ConfigInfo config;
-
     
     public TV_ToolsPanel TP;
-
-    private int higthTools = 0;
-
-    private JPanel PreviewPane = new JPanel();
+    
 
     private Timer TimerCheck = new Timer();
     private TimerTask TaskCheck = new TimerTask() {
@@ -86,13 +70,12 @@ public class MasterTeamViewer extends JPanel {
         @Override
         public void run() {
 
-           // System.out.println("Students ");
-
-            int i = 1;
-            for (Student S : MasterTeamViewer.this.students) {
+            /*
+            for (Student S : MasterTeamViewer.this.students)
+            {
                 //  if(!S.isConnect)
                 System.out.println(i + " " + S.toString());
-            }
+            }*/
 
            // System.out.println("Applicants.size()***" + MasterTeamViewer.this.connector.Applicants.size());
             while (!MasterTeamViewer.this.connector.Applicants.isEmpty()) {
@@ -145,7 +128,7 @@ public class MasterTeamViewer extends JPanel {
             MasterTeamViewer.this.PreviewPane.repaint();
 
             if (!MasterTeamViewer.this.isPreview && MasterTeamViewer.this.MaxSizeStudent.RecieverPrScr.messageTypeView == Student.FULL) {
-                MasterTeamViewer.this.MaxSizeStudent.CS.regimeCurrent = RegimeView.EXIT;
+                MasterTeamViewer.this.MaxSizeStudent.CS.regimeCurrent = TV_ToolsPanel.EXIT;
             }
 
         }
@@ -176,18 +159,11 @@ public class MasterTeamViewer extends JPanel {
         }
     }
 
-    public MasterTeamViewer(Dimension d, SettingsConfig sc)
+    public MasterTeamViewer(Dimension d)
     {
         
 
         this.TP = new TV_ToolsPanel(d);
-        
-        this.config= new ConfigInfo();
-        this.config.IP_UDP=sc.IP_UDP;
-        this.config.PORT_UDP=sc.PORT_UDP;
-        this.config.PORT_TCP_IMG=sc.PORT_TCP_IMG;
-        this.config.PORT_TCP_COMMAND=sc.PORT_TCP_COMMAND;
-        
         
         this.TP.FullScreen.addActionListener(new ActionListener()
         {
@@ -247,7 +223,7 @@ public class MasterTeamViewer extends JPanel {
                 {
                 MasterTeamViewer.this.TP.b_scale.setToolTipText("Экран вписан в окно приложения");
                     
-                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(RegimeView.INSCRIBED);
+                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.INSCRIBED);
 
                 MasterTeamViewer.this.MaxSizeStudent.CS.FrameSize();
 
@@ -256,7 +232,7 @@ public class MasterTeamViewer extends JPanel {
                 else
                 {
                     MasterTeamViewer.this.TP.b_scale.setToolTipText("Экран в исходном размере");
-                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(RegimeView.USERSIZE);
+                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.USERSIZE);
                 MasterTeamViewer.this.MaxSizeStudent.CS.UserSize();
                 MasterTeamViewer.this.scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                
@@ -273,38 +249,31 @@ public class MasterTeamViewer extends JPanel {
             {
                MasterTeamViewer.this.MaxSizeStudent.CS.isControl=!MasterTeamViewer.this.MaxSizeStudent.CS.isControl;
                if(MasterTeamViewer.this.MaxSizeStudent.CS.isControl)
-                {
-                   
+                { 
                     MasterTeamViewer.this.TP.b_control.setToolTipText(" Отключить управление ");
-                    
-                    
                 }
                else
                 {
                    MasterTeamViewer.this.TP.b_control.setToolTipText(" Включить управление ");
-                   
-                   
                 }
                 MasterTeamViewer.this.MaxSizeStudent.CS.requestFocus();
             }
                 });
         this.setSize(d);
         this.setLayout(new BorderLayout());
-        this.MasterPane.setLayout(new BorderLayout());
 
         this.scrollPane = new JScrollPane(this.PreviewPane);
 
-        this.MasterPane.add(scrollPane, BorderLayout.CENTER);
+        this.add(scrollPane, BorderLayout.CENTER);
         this.PreviewPane.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.PreviewPane.setPreferredSize(StudentPane.PaneSize);
         this.PreviewPane.setBackground(Color.LIGHT_GRAY);
 
-        this.finder = new UDP_Listener(this.config);
+        this.finder = new UDP_Listener();
         this.finder.EL.addStudentEventAdd(addSt);
         this.isPreview = true;
 
         this.TP.setVisible(!this.isPreview);
-        this.add(this.MasterPane, BorderLayout.CENTER);
 
         this.TimerCheck.schedule(TaskCheck, 1000, 500);
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -323,10 +292,9 @@ public class MasterTeamViewer extends JPanel {
 
     private Student getStudentByIP(String ip) {
         for (Student s : students) {
-            if (s.getStudentByIP(ip) != null) {
-               // System.out.println("Find :" + s);
+            if (s.getStudentByIP(ip) != null) 
+            { 
                 return s;
-
             }
         }
         return null;
@@ -345,10 +313,11 @@ public class MasterTeamViewer extends JPanel {
             this.isPreview = false;
             this.TP.setStudentName(s.getIP());
             this.TP.setVisible(!this.isPreview);
-            this.regimeCurrent = RegimeView.USERSIZE;
-            setTimeForeach(20000);
+            this.regimeCurrent = TV_ToolsPanel.USERSIZE;
+            setTimeForeach(12000, false);
             this.MaxSizeStudent = s;            
             this.MaxSizeStudent.RecieverPrScr.setTime(150);
+            this.MaxSizeStudent.RecieverPrScr.setStatus(true);
             this.MaxSizeStudent.SP.setSelected(!this.isPreview);
             this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.FULL;
             Thread.sleep(1);
@@ -360,11 +329,12 @@ public class MasterTeamViewer extends JPanel {
     }
     
     // задаем время запроса экрана для всех студентов
-    private void setTimeForeach(int mls)
+    private void setTimeForeach(int mls, boolean status)
     {
         for (Student s : students)
         {
-            s.RecieverPrScr.setTime(mls);
+          //  s.RecieverPrScr.setTime(mls);
+            s.RecieverPrScr.setStatus(status);
         }
     
     }
@@ -377,12 +347,12 @@ public class MasterTeamViewer extends JPanel {
              this.TP.setVisible(!this.isPreview);
             if(this.MaxSizeStudent!=null)
             {
-            this.MaxSizeStudent.SP.setSelected(!isPreview);
-            this.MaxSizeStudent.CS.isControl=false;
-            setTimeForeach(1000);
-           // this.MaxSizeStudent.RecieverPrScr.setTime(1000);
-            this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.PREVIEW;
-            this.TP.b_control.setSelected(false);
+                this.MaxSizeStudent.SP.setSelected(!isPreview);
+                this.MaxSizeStudent.CS.isControl=false;           
+                this.MaxSizeStudent.RecieverPrScr.setTime(1000);
+                setTimeForeach(1000, true);
+                this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.PREVIEW;
+                this.TP.b_control.setSelected(false);
             }
             this.scrollPane.setViewportView(this.PreviewPane);
             Thread.sleep(1);
@@ -417,6 +387,7 @@ public class MasterTeamViewer extends JPanel {
         );
         s.RecieverPrScr.ERS.removeStudentEventAdd(removeSt);
         s.RecieverPrScr.start();
+        s.RecieverPrScr.setStatus(true);
 
         boolean isAdd = false;
         for (int i = 0; i < students.size(); i++) {

@@ -12,25 +12,19 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JEditorPane;
-import javax.swing.JOptionPane;
 import masterPanel.ReportException;
+import masterPanel.SettingsConfig;
 
 /**
  *
  * @author viky
  */
 public class Sender_UDP
-{
-    private final InetAddress IP_UDP;
-    private final int port;
+{    
     DatagramSocket DS;
-    
-    public JEditorPane canvas;
-    public Sender_UDP(InetAddress ip, int port)
-    {      
-        this.IP_UDP = ip;
-        this.port = port;
-        try
+    public Sender_UDP()
+    {   
+        try 
         {
             this.DS = new DatagramSocket();
         } 
@@ -38,6 +32,7 @@ public class Sender_UDP
         {
             Logger.getLogger(Sender_UDP.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     public synchronized boolean Send(byte[] ByteSream)
@@ -51,7 +46,7 @@ public class Sender_UDP
           ///////// System.out.println(" LENGTH SEND "+ByteSream.length+ Calendar.getInstance().getTime().toString()); 
            
             DatagramPacket DP = new DatagramPacket(
-                    ByteSream, ByteSream.length, this.IP_UDP, this.port);
+                    ByteSream, ByteSream.length, SettingsConfig.IP_UDP, SettingsConfig.PORT_UDP_BOARD);
             DS.send(DP);
             return true;
 

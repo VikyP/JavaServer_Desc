@@ -6,6 +6,7 @@
 package userControl;
 
 import java.awt.Dimension;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
@@ -18,6 +19,7 @@ public class WidthLineComboBox extends JComboBox
     private DefaultComboBoxModel model;
     private LineParam_ItemRenderer WLIR;
     private LineParam_ItemEditor WLIE;
+    private Map M;
      
     public WidthLineComboBox() 
     {

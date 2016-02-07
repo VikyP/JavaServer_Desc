@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.ReportException;
+import masterPanel.SettingsConfig;
 
 /**
  *
@@ -27,6 +28,8 @@ public class ConnectionManagerLeader extends Thread
    //котейнер для ожидающих подкдлючение
     //объект добавляется, если его нет в перечне уже подлючившихся и ожидающих подкдлючение
     private ArrayList<Student> WaitingConnection = new ArrayList<Student> ();
+    
+    private int timeout=5000;
 
     public ConnectionManagerLeader()
     {
@@ -48,9 +51,9 @@ public class ConnectionManagerLeader extends Thread
                     try
                     {
                       //  System.out.println("Start  TCP");
-                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), S.config.PORT_TCP_IMG);
+                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), SettingsConfig.PORT_TCP_IMG);
                        // System.out.println("IP " + clientSocketAdress.toString());
-                        client.connect(clientSocketAdress, 5000);
+                        client.connect(clientSocketAdress,timeout);
                       // System.out.println("  TCP_image  OK ");
                     } 
                     catch (Exception exc)
@@ -68,9 +71,9 @@ public class ConnectionManagerLeader extends Thread
                     try
                     {
                       //  System.out.println("Start  TCP");
-                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), S.config.PORT_TCP_COMMAND);
+                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), SettingsConfig.PORT_TCP_COMMAND);
                        // System.out.println("IP " + clientSocketAdress.toString());
-                        clientCC.connect(clientSocketAdress, 5000);
+                        clientCC.connect(clientSocketAdress,timeout);
                        // System.out.println("  TCP_command  OK");
                     } 
                     catch (Exception exc)
@@ -85,13 +88,11 @@ public class ConnectionManagerLeader extends Thread
                 
                 //нет подключения
                 if (client.isConnected() && clientCC.isConnected())
-                {
-                    
+                {  
                    
                     S.createRecieverPrScr(client);
                     S.CS.SenderCommand.setSocket(clientCC);
                     Applicants.add(S);
-                  //  System.out.println("  TCP  OK " +Applicants.size());
                 }
                 else
                 {

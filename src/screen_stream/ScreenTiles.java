@@ -136,6 +136,7 @@ public class ScreenTiles
      */
     public byte[] PrScrToBytes()
     {
+        Runtime r=Runtime.getRuntime(); 
         // получаем снимок экрана с огрублением цветов       
         BufferedImage BI =MakePrintScreen();
         // подгоняем размеры картинки для кратности необходимым параметрам
@@ -185,6 +186,7 @@ public class ScreenTiles
            }
         }
         //пакет для отправки 
+        r.gc () ;
         return body;
     }
 

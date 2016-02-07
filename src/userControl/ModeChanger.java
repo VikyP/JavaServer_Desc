@@ -123,16 +123,20 @@ public class ModeChanger extends JPanel
       
       this.SendScreen=new JToggleButton(ImageIconURL.get("resources/monitor_45.png"));
       this.SendScreen.setIcon(ImageIconURL.get("resources/video_start_45.png"));
-      this.SendScreen.setSelectedIcon(ImageIconURL.get("resources/video_stop_45.png"));     
+      this.SendScreen.setSelectedIcon(ImageIconURL.get("resources/video_stop_45.png"));    
+      this.SendScreen.setToolTipText("Укажите группу");
+      this.SendScreen.setEnabled(false);
       this.setToggleButtonPaintOff(this.SendScreen);
-      this.SendScreen.setToolTipText("Просмотр подключений");
+      
+      
       this.Record=new JToggleButton(ImageIconURL.get("resources/micStart.png")); 
       this.Record.setSelectedIcon(ImageIconURL.get("resources/micStop.png"));
       this.setToggleButtonPaintOff(this.Record);      
-      this.Record.setToolTipText("Включение записи звука");
+      this.Record.setToolTipText("Укажите группу");
       this.Record.setEnabled(false);
       this.viewers= new JToggleButton(ImageIconURL.get("resources/monitor_45.png"));
-      this.viewers.setToolTipText("Включение трансляции рабочего стола");
+      this.viewers.setToolTipText("Укажите группу");
+      this.viewers.setEnabled(false);
       this.setToggleButtonPaintOff(this.viewers);
       this.viewers.addActionListener(new ActionListener()
       {
@@ -193,6 +197,16 @@ public class ModeChanger extends JPanel
         TB.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
     
+    public void startConnection()
+    {
+        this.viewers.setEnabled(true);
+        this.SendScreen.setEnabled(true);
+        this.Record.setEnabled(true);
+        this.viewers.setToolTipText("Просмотр подключений");
+        this.SendScreen.setToolTipText("Включение трансляции рабочего стола");
+        this.Record.setToolTipText("Включение записи звука");
+    
+    }
    
     private void closeMode()
     {

@@ -35,28 +35,30 @@ import userControl.ImageIconURL;
  */
 public class TV_ToolsPanel extends JPanel
 {
+    
+    private boolean status=false;
+    private JToggleButton Mode;
+    private JLabel studentName;
+    
+    private Rectangle openRect;
+    private Rectangle closeRect;   
+    
+    private int beginMoveY;
+    private Dimension panelSize= new Dimension(120,210);
+    
+    public static final byte FULLSCREEN=0;
+    public static final byte USERSIZE=1;
+    public static final byte INSCRIBED=2;
+    public static final byte EXIT=3;
+    
     public EventModeTypeChanged EMT;
     public JPanel Tools = new JPanel();
-   
-    private boolean status=false;
     
-   
-    
-    
-    private JToggleButton Mode;
     public JToggleButton FullScreen;
     public JToggleButton b_scale;
     public JToggleButton b_control;
     public JButton b_exit;
     
-  
-    private Dimension panelSize= new Dimension(120,210);
-   
-    private Rectangle openRect;
-    private Rectangle closeRect;
-   
-    private JLabel studentName;
-    private int beginMoveY;
     
     class MyMouselistener extends MouseAdapter
     {      

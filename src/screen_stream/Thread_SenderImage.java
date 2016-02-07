@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.RecordInfo;
 import masterPanel.ReportException;
+import masterPanel.SettingsConfig;
 
 /**
  *
@@ -22,17 +23,11 @@ public class Thread_SenderImage extends Thread
 {
   
     private ScreenTiles ST;
-   
-    private final InetAddress IP_UDP;
-    private final int port;
     private boolean Status=false;
     private DatagramSocket DS;
     
-    public Thread_SenderImage(InetAddress ip, int port,RecordInfo r) 
-    {
-       
-        this.IP_UDP = ip;
-        this.port = port;
+    public Thread_SenderImage(RecordInfo r) 
+    { 
         this.ST = new  ScreenTiles(r);
         this.setDaemon(true);
         try 
@@ -64,7 +59,7 @@ public class Thread_SenderImage extends Thread
                 byte[] ByteSream=  ST.PrScrToBytes();
                 if(ByteSream!=null)
                 {
-                   // System.out.println("Send Screeen "+ ByteSream.length); 
+                    System.out.println("Send Screeen "+ ByteSream.length); 
                     Send(ByteSream) ;       
                 }
                 else 
@@ -100,7 +95,7 @@ public class Thread_SenderImage extends Thread
                 return;
             }
             DatagramPacket DP = new DatagramPacket(
-                    ByteSream, ByteSream.length, this.IP_UDP, this.port);
+                    ByteSream, ByteSream.length, SettingsConfig.IP_UDP, SettingsConfig.PORT_TCP_ScStr);
             DS.send(DP);
         }
         catch (Exception se)
@@ -114,8 +109,8 @@ public class Thread_SenderImage extends Thread
     {
         this.Status=flag;
         if(Status)
-        {   this.notify();
-           // System.out.println(" Thread_SenderImage   start");
+        {   
+            this.notify();
         }    
            
     }
@@ -124,10 +119,11 @@ public class Thread_SenderImage extends Thread
      {
          if(!Status)
              try 
-            {
-               
+            {               
                 this.wait();
-        } catch (InterruptedException ex) {
+            }
+             catch (InterruptedException ex)
+        {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         }
      

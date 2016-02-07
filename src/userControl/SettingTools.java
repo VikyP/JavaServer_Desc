@@ -69,11 +69,12 @@ public class SettingTools
        // this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         
         this.currLine= new LinePreview();
-        this.currLine.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.LABEL_HEIGHT));        
+        this.currLine.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.LABEL_HEIGHT));  
+        
         this.currLine.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         this.currFill= new JPanel();
         this.currFill.setPreferredSize(new Dimension(SizeSketch.LABEL_WIDTH, SizeSketch.LABEL_HEIGHT));
-        this.currFill.setToolTipText("Цвет заливки");
+        //this.currFill.setToolTipText("Цвет заливки");
         this.currFill.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
        
         
@@ -81,13 +82,13 @@ public class SettingTools
         this.colorLine.setPressedIcon(ImageIconURL.get("resources/colorPen30_press.png"));
         this.colorLine.setPreferredSize(btnSize);
         this.setButtonPaintOff(this.colorLine);
-      
+        this.colorLine.setToolTipText("Цвет линии");
        
         
         this.colorFill= new JButton(ImageIconURL.get("resources/colorBrush30.png"));
         this.colorFill.setPressedIcon(ImageIconURL.get("resources/colorBrush30_press.png"));
         this.colorFill.setPreferredSize(btnSize);
-       
+        this.colorFill.setToolTipText("Цвет заливки");
         this.setButtonPaintOff(this.colorFill);
         
         layout.setHorizontalGroup(layout.createSequentialGroup()
@@ -108,7 +109,6 @@ public class SettingTools
         this.thicnessLine.addItems(widthLine);
         this.thicnessLine.setSelectedItem(getSelectedThickness((int) w));
         this.thicnessLine.setEnabled(false);
-      //  this.thicnessLine.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         JLabel labStyle= new JLabel("Тип линии");
         labStyle.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
        

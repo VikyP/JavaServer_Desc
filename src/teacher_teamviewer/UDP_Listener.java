@@ -13,6 +13,7 @@ import teacher_teamviewer.event_package.IEventAddStudent;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import masterPanel.ReportException;
+import masterPanel.SettingsConfig;
 
 
 /**
@@ -24,15 +25,13 @@ public class UDP_Listener extends Thread
    
     public EventAddStudent EL;
     private Student newStudent;
-    private ConfigInfo config;
     
-    public UDP_Listener( ConfigInfo c)
-    {
-        
+    public UDP_Listener( )
+    {        
         this.EL= new EventAddStudent();
         this.setDaemon(true);
-        this.config=c;       
-       // System.out.println("    port " + c.PORT_UDP);       
+          
+        System.out.println("    port " + SettingsConfig.PORT_UDP);       
     }
     
 
@@ -41,7 +40,7 @@ public class UDP_Listener extends Thread
     {
         try
         {
-            DatagramSocket  DS  = new DatagramSocket (this.config.PORT_UDP);
+            DatagramSocket  DS  = new DatagramSocket (SettingsConfig.PORT_UDP);
             byte[] b= new byte [8196] ;
             DatagramPacket DP= new DatagramPacket (b, 0, b.length);
             while(true)
@@ -51,28 +50,15 @@ public class UDP_Listener extends Thread
                 String msg= new String (DP.getData(), 0, DP.getLength(),"UTF8");
                
                 String [] studentInfo=msg.split(";");
-                /*
-                for (int i = 0; i < studentInfo.length; i++)
-                {
-                    System.out.println(studentInfo[i]);   
-                }
-                */
-                
                 if(studentInfo[0].equals("NEW"))
                 {
-                    newStudent =new Student(studentInfo[1], this.config);
+                    newStudent =new Student(studentInfo[1]);
                     javax.swing.SwingUtilities.invokeLater(new Runnable(){@Override public void run()
                      {
                          IEventAddStudent newS= (IEventAddStudent)UDP_Listener.this.EL.getListener();
                          newS.addNewStudent(UDP_Listener.this.newStudent); 
                      }
                      });
-                   
-                   //IEventAddStudent newS= (IEventAddStudent) this.EL.getListener();
-                   // newS.addNewStudent(newStudent); 
-                  
-                    
-                  //  System.out.println( " Received from :" +DP.getAddress().toString()+ " : " + msg);  
                 }
              //   System.out.println("Stop UDP");
               

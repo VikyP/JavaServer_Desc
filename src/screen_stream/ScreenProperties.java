@@ -31,7 +31,7 @@ public class ScreenProperties
     
     //максимальный объем пакета, который после сжатия можно переслать по UDP
     public static int DataMax=120000;
-    public static int DataMaxUDP=20000;
+    public static int DataMaxUDP=1400;
 
     // максимальная  разница между истинной высотой экрана и
     //высотой кратной количеству строк

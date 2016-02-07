@@ -9,6 +9,7 @@ package teacher_teamviewer;
 import java.io.DataInputStream;
 import java.net.Socket;
 import masterPanel.ReportException;
+import masterPanel.SettingsConfig;
 import teacher_teamviewer.event_package.IUnpack;
 
 
@@ -25,8 +26,7 @@ public class Student extends Object implements Comparable
     
     public StudentPane SP;
     public CanvasScreen CS;
-    public boolean  isConnect;
-    public  ConfigInfo config;   
+    public boolean  isConnect;  
     private String IP;
    
     public TCP_Client_RecieverPrScr RecieverPrScr;
@@ -53,10 +53,9 @@ public class Student extends Object implements Comparable
 
     };
     
-    public Student( String ip, ConfigInfo c)
+    public Student( String ip)
     {
         this.IP=ip; 
-        this.config=c;
         this.SP= new StudentPane(ip);
         this.CS = new CanvasScreen(this.SP.BI);
         this.isConnect=false;
@@ -66,7 +65,7 @@ public class Student extends Object implements Comparable
     @Override
     public String toString()
     {
-       return this.IP+":"+this.config.PORT_TCP_IMG;      
+       return this.IP+":"+SettingsConfig.PORT_TCP_IMG;      
     }
     
    @Override
@@ -75,7 +74,7 @@ public class Student extends Object implements Comparable
         if(ob==null)
             return false;
        
-        return( this.IP.equals(((Student)ob).IP) && this.config.PORT_TCP_IMG==((Student)ob).config.PORT_TCP_IMG );
+        return( this.IP.equals(((Student)ob).IP)  );
       
     }
     
@@ -87,6 +86,7 @@ public class Student extends Object implements Comparable
         this.RecieverPrScr= new TCP_Client_RecieverPrScr(client); 
         this.RecieverPrScr.ER.addEventUnpack(UR);  
     }
+    
      //создание потока для работы с упралением
     public void createSenderMessage(Socket client)
     {
@@ -121,8 +121,7 @@ public class Student extends Object implements Comparable
         try
         { 
             
-        String [] ip1=this.IP.split("\\."); 
-           
+        String [] ip1=this.IP.split("\\.");
         String [] ip2 =((Student)o).IP.split("\\.");
        
             for(int i=0; i<4;i++)
@@ -143,7 +142,7 @@ public class Student extends Object implements Comparable
         return 0;
     }
 
-    void setRegimeView(RegimeView regimeView)
+    void setRegimeView(byte regimeView)
     {
         this.CS.regimeCurrent=regimeView;
     }

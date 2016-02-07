@@ -36,6 +36,8 @@ import javax.swing.JToggleButton;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import masterPanel.ReportException;
 import myjavadesc.events.EventChangeBoard;
 import myjavadesc.events.IChBoard;
@@ -56,17 +58,24 @@ public class ArchiveFiles
     //текущая дата запуска приложения 
     //(используется для создания папки-Сегодня архива досок )
     private Calendar today;
-    
+
     //папка-Сегодня
     private File todayDir;
 
     /**
      * флаг является ли текущая папка сегодняшней
      */
-    public boolean isTodayDir = false;
-    private String todayStr;
+    public boolean isTodayDir()
+    {
+        return getPathTodayDir().equals(this.dayPath);
+    }
     /**
-     * 
+     * папка текущего (сегодня) занятия
+     */
+    private String todayPath;
+
+    /**
+     * выбранная папка
      */
     public String dayPath;
 
@@ -74,10 +83,9 @@ public class ArchiveFiles
     private File groupDir;
     private ArrayList<File> listBoard;
 
-  
     /**
      * файл текущей доски(чтение-запись)
-     */    
+     */
     public File currentBoard;
 
     // расширение файла доски   
@@ -100,30 +108,25 @@ public class ArchiveFiles
     public JButton previosBoard;
     //следущая
     public JButton nextBoard;
-    
 
     //следущая
     public JButton themesBoard;
     public JButton colorText;
     public JSpinner fontSize;
-    private final int MIN_Value=15;
-    private final int MAX_Value=25;
-    private final int STEP_Value=1;
-    
-    
+    private final int MIN_Value = 15;
+    private final int MAX_Value = 25;
+    private final int STEP_Value = 1;
+
     private JLabel fontSizeIcon;
-    
+
     public JToggleButton rec;
-    public int rowsClose=3;
-    
+    public int rowsClose = 3;
+
     // панель всегда доступна
     public JPanel archPanel;
     //панель может быть скрыта
     public JPanel archPanelHide;
-    
-   
 
-    
     // фильтр выбирает только файлы с заданным расширением
     private FileFilter FF = new FileFilter()
     {
@@ -147,6 +150,28 @@ public class ArchiveFiles
     };
     public EventChangeBoard EvChBoard;
 
+    /**
+     * Определение имени файла для доски
+     *
+     * @param index индекс доски в списке (номер-1)
+     * @param isNew новая доска -true, переименование после удаления - false
+     * @return имя файла доски
+     */
+    private String getBoardNameByIndex(int index)
+    {
+
+        String boarName = "";
+
+        if (index < 10)
+        {
+            boarName = "/" + "Board_0" + index + "." + this.ext;
+        } else
+        {
+            boarName = "/" + "Board_" + index + "." + this.ext;
+        }
+        return boarName;
+    }
+
     public ArchiveFiles()
     {
 
@@ -159,6 +184,20 @@ public class ArchiveFiles
         //перечень занятий(дней-папок) выбранной группы
         this.lm = new DefaultListModel();
         this.archiveGroup = new JList(lm);
+        //событие изменения выбранной даты
+        this.archiveGroup.addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e)
+            {
+                if (archiveGroup.getSelectedIndex() < 0)
+                {
+                    return;
+                }               
+                dayPath =groupDir.getName() + "/" + archiveGroup.getSelectedValue().toString();
+                setDay(dayPath);
+            }
+        });
 
         // перечень досок на выбранный день
         this.cbm = new DefaultComboBoxModel();    // для  JComboBox   
@@ -196,7 +235,7 @@ public class ArchiveFiles
             {
                 ArchiveFiles.this.addBoard();
                 ArchiveFiles.this.changeBoard();
-                
+
             }
         });
 
@@ -261,26 +300,25 @@ public class ArchiveFiles
         this.colorText.setToolTipText("Тема ");
 
         this.setButtonPaintOff(this.colorText);
-        this.todayStr = this.todayTostring();
-        
-        fontSizeIcon= new JLabel(ImageIconURL.get("resources/fontSize20.png"));
-        fontSizeIcon.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH*2,SizeSketch.CONTROL_HEIGHT));
-        SpinnerModel model =
-        new SpinnerNumberModel(MIN_Value,MIN_Value,MAX_Value,STEP_Value);
-        
-        this.fontSize= new JSpinner();
+
+        fontSizeIcon = new JLabel(ImageIconURL.get("resources/fontSize20.png"));
+        fontSizeIcon.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH * 2, SizeSketch.CONTROL_HEIGHT));
+        SpinnerModel model
+                = new SpinnerNumberModel(MIN_Value, MIN_Value, MAX_Value, STEP_Value);
+
+        this.fontSize = new JSpinner();
         this.fontSize.setModel(model);
         this.fontSize.requestFocus(false);
-        
+
         //запрет редактирования тексттового поля счетчика
         JTextField tf = ((JSpinner.DefaultEditor) this.fontSize.getEditor()).getTextField();
         tf.setFont(tf.getFont().deriveFont(20));
         tf.setEditable(false);
         setPaintOff(this.fontSize);
-       toolsArchive();
-       
+        toolsArchive();
+
     }
-    
+
     public void addFontSizeChangeListener(ChangeListener listener)
     {
         this.fontSize.addChangeListener(listener);
@@ -296,72 +334,81 @@ public class ArchiveFiles
     }
 
     /**
-     * Компановка инструмента на панели     
+     * Компановка инструмента на панели
+     *
      * @return панель с инструментом
      */
     public void toolsArchive()
     {
-      
-        this.archPanel = new JPanel(); 
+
+        this.archPanel = new JPanel();
         GroupLayout layout = new GroupLayout(this.archPanel);
         this.archPanel.setLayout(layout);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
-        
+
         this.BoardsToday.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.CONTROL_HEIGHT));
-        
-        layout.setHorizontalGroup(layout.createParallelGroup(LEADING) 
-                .addGroup(layout.createSequentialGroup() 
-                    .addComponent(this.newBoard)
-                    .addComponent(this.deleteBoard)
-                    .addComponent(this.previosBoard)
-                    .addComponent(this.nextBoard)    
-                )
-                .addComponent(this.BoardsToday)
-                );
-        layout.setVerticalGroup(layout.createSequentialGroup()
-                
-                .addGroup(layout.createParallelGroup(BASELINE) 
-                    .addComponent(this.newBoard)
-                    .addComponent(this.deleteBoard)                   
-                    .addComponent(this.previosBoard)
-                    .addComponent(this.nextBoard)    
+
+        layout.setHorizontalGroup(layout.createParallelGroup(LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addComponent(this.newBoard)
+                        .addComponent(this.deleteBoard)
+                        .addComponent(this.previosBoard)
+                        .addComponent(this.nextBoard)
                 )
                 .addComponent(this.BoardsToday)
         );
-        
-       
-        this.archPanelHide= new JPanel();
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(BASELINE)
+                        .addComponent(this.newBoard)
+                        .addComponent(this.deleteBoard)
+                        .addComponent(this.previosBoard)
+                        .addComponent(this.nextBoard)
+                )
+                .addComponent(this.BoardsToday)
+        );
+
+        this.archPanelHide = new JPanel();
         layout = new GroupLayout(this.archPanelHide);
         this.archPanelHide.setLayout(layout);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
-        
+
         JScrollPane scroll_H = new JScrollPane(this.archiveGroup);
         scroll_H.setPreferredSize(new Dimension(SizeSketch.COMBOBOX_WIDTH, SizeSketch.LISTBOX_HEIGHT));
-        
-        layout.setHorizontalGroup(layout.createParallelGroup(LEADING) 
+
+        layout.setHorizontalGroup(layout.createParallelGroup(LEADING)
                 .addComponent(scroll_H)
-                .addGroup(layout.createSequentialGroup() 
-                    .addComponent(this.themesBoard)
-                    .addComponent(this.colorText)
-                    .addComponent(this.fontSizeIcon)
-                    .addComponent(this.fontSize)    
-                )
-                );
-        layout.setVerticalGroup(layout.createSequentialGroup()
-                .addComponent(scroll_H)
-                .addGroup(layout.createParallelGroup(BASELINE) 
-                    .addComponent(this.themesBoard)
-                    .addComponent(this.colorText)
-                    .addComponent(this.fontSizeIcon)
-                    .addComponent(this.fontSize) 
+                .addGroup(layout.createSequentialGroup()
+                        .addComponent(this.themesBoard)
+                        .addComponent(this.colorText)
+                        .addComponent(this.fontSizeIcon)
+                        .addComponent(this.fontSize)
                 )
         );
-         
-     
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addComponent(scroll_H)
+                .addGroup(layout.createParallelGroup(BASELINE)
+                        .addComponent(this.themesBoard)
+                        .addComponent(this.colorText)
+                        .addComponent(this.fontSizeIcon)
+                        .addComponent(this.fontSize)
+                )
+        );
+
     }
-    
+
+    public void startCommection()
+    {
+        // при переходе на новую группу
+        // активируем инструмент для работы с арховом   
+        this.newBoard.setEnabled(true);
+        this.deleteBoard.setEnabled(true);
+        this.previosBoard.setEnabled(true);
+        this.nextBoard.setEnabled(true);
+        this.themesBoard.setEnabled(true);
+        this.colorText.setEnabled(true);
+    }
     /**
      *
      * Заполнение списка заняний для выбранной группы
@@ -378,19 +425,11 @@ public class ArchiveFiles
             return;
         }
 
-        // при переходе на новую группу
-        // активируем инструмент для работы с арховом    
-        this.rec.setEnabled(true);
-        this.newBoard.setEnabled(true);
-        this.deleteBoard.setEnabled(true);
-        this.previosBoard.setEnabled(true);
-        this.nextBoard.setEnabled(true);
-        this.themesBoard.setEnabled(true);
-        this.colorText.setEnabled(true);
         //очищаем список
         this.lm.removeAllElements();
         this.cbm.removeAllElements();
-        this.groupDir = new File(groupName);
+        this.groupDir = new File(GroupsTools.groupKey+groupName);
+        this.todayPath = this.getPathTodayDir();
         File[] days;
         //если папка группы существует
         if (this.groupDir.exists())
@@ -417,8 +456,7 @@ public class ArchiveFiles
         {
             this.lm.addElement(f.getName());
 
-           // System.out.println(i + "    " + f.getName());
-          
+            // System.out.println(i + "    " + f.getName());
             // проверка на наличие папки-Сегодня для выбранной группы
             if (f.getName().equals(this.todayTostring()))
             {
@@ -440,9 +478,7 @@ public class ArchiveFiles
      */
     public void setDay(String day)
     {
-       // System.out.println(day);
 
-        this.isTodayDir = false;
         //очищаем список
         this.listBoard.clear();
         this.cbm.removeAllElements();
@@ -454,14 +490,10 @@ public class ArchiveFiles
             return;
         }
         //Выставляем флаг для истории досок
-        this.isTodayDir = this.todayStr.equals(day.substring(day.indexOf("/") + 1));
 
         //список файлов досок 
         File[] files = F.listFiles(this.FF);
-        
         Arrays.sort(files);
-       // Collections.reverse(Arrays.asList(files));
-
         //если папка выбранной даты пуста
         if (files.length == 0)
         {
@@ -478,10 +510,12 @@ public class ArchiveFiles
         if (this.cbm.getSize() != 0)
         {
             this.BoardsToday.setSelectedIndex(this.cbm.getSize() - 1);
-        } else
-        {
-            this.currentBoard = null;
 
+        }
+        else
+        {
+
+            this.currentBoard = null;
         }
 
     }
@@ -495,10 +529,10 @@ public class ArchiveFiles
         B.setBorderPainted(false);
         B.setContentAreaFilled(false);
         B.setPreferredSize(new Dimension(SizeSketch.BUTTON_WIDTH, SizeSketch.CONTROL_HEIGHT));
-        B.setEnabled(false);  
+        B.setEnabled(false);
         B.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
-    
+
     /**
      * отменяет прорисовку рамки
      */
@@ -518,13 +552,13 @@ public class ArchiveFiles
     }
 
     /**
-     * путь к архиву по дате
+     * путь к архиву по дате текущего занятия
      *
      * @return путь к папке архива
      */
-    private String getPathArchive()
+    private String getPathTodayDir()
     {
-        return (this.groupDir.getName() + "/" + this.todayDir.getName());
+        return (this.groupDir.getName() + "/" + this.todayTostring());
     }
 
     /**
@@ -535,30 +569,23 @@ public class ArchiveFiles
      */
     private File createNewBoard(int index)
     {
-        String path = getPathArchive();
-        String tmp="";
-       if(index<10)
-        tmp= "/" + "Board_0" + index + "." + this.ext;
-       else
-        tmp= "/" + "Board_" + index + "." + this.ext;
-       File f = new File(path +tmp);
-       
+        String boardName = getBoardNameByIndex(index);
+        System.out.println("--------------------------   boardName  " + boardName);
+        File f = new File(this.getPathTodayDir()+boardName);
         if (!f.exists())
         {
-           
+
             try
             {
                 f.createNewFile();
                 return f;
-            }
-            catch (IOException ex)
+            } catch (IOException ex)
             {
                 ReportException.write(" Доска " + f.getName() + " cуществует ");
                 Logger.getLogger(ArchiveFiles.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
-        } 
-        else
+        } else
         {
             return f;
         }
@@ -576,7 +603,6 @@ public class ArchiveFiles
             this.archiveGroup.setSelectedIndex(0);
         }
         //выставляем флаг для истории
-        this.isTodayDir = this.todayStr.equals(this.archiveGroup.getSelectedValue().toString());
     }
 
     /**
@@ -586,14 +612,13 @@ public class ArchiveFiles
     {
         // индекс файла текущей доски
         int index = -1;
-        String path=this.groupDir.getName() + "/" + this.todayTostring();
-        File f = new File(path);
+        File f = new File(this.getPathTodayDir());
+
         //если папки-Сегодня нет        
         if (this.todayDir == null || !f.exists())
         {
-           
             // создаем папку
-            this.todayDir = new File(path);
+            this.todayDir = new File(this.todayPath);
             this.todayDir.mkdir();
 
             // создаем файл первой доски
@@ -612,17 +637,21 @@ public class ArchiveFiles
             this.cbm.addElement(getNameBoard(this.currentBoard));
             this.lm.add(0, this.todayDir.getName());
 
-        } 
-      // папка-Сегодня уже есть
+        } // папка-Сегодня уже есть
         else
         {
+            // но она неявляется текущей
+            if (!this.isTodayDir())
+            {  
+                //выставляем ее текущей, так как папки добавляются только в текущую папку
+                this.setDay(this.todayPath);
+            }
             index = this.listBoard.size() + 1;
-           // System.out.println("    index " +index);
             this.currentBoard = this.createNewBoard(index);
             this.listBoard.add(this.currentBoard);
             this.cbm.addElement(getNameBoard(this.currentBoard));
             this.BoardsToday.setSelectedIndex(this.cbm.getSize() - 1);
-            
+
         }
         //перечне дат выбираем последнюю
         setDateLastSelected();
@@ -646,62 +675,43 @@ public class ArchiveFiles
     {
         int index = this.BoardsToday.getSelectedIndex();
         File f = this.listBoard.get(index);
-        if ( this.listBoard.size()==1)
-        {            
-           if( 
-                JOptionPane.showConfirmDialog(  archiveGroup, "Удалить файл"+ f.getName()+"  и  папку \r\n \t\tДень:  "
-                +this.archiveGroup.getSelectedValue().toString()+" ?","Удаление папки",
-                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION
-              )
-           {
-              
-               if(this.lm.size()!=0)
-               {                  
-                File dir=f.getParentFile();
-                f.delete();
-                dir.delete();                  
-                setGroup(this.groupDir.getName());
-               }
-           }                    
-            return;
-        } 
-        
-                
-        String boardName =this.BoardsToday.getSelectedItem().toString();
-       
-        if( JOptionPane.showConfirmDialog(  archiveGroup, "Удалить доску  "
-            +boardName+" ?","Удаление доски",
-            JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION)        
-        {            
-            return;
-        }
-        
-        String path = this.dayPath;
-        System.out.println("  index   " + index);
-        
-        this.listBoard.remove(index);
-        this.BoardsToday.removeItemAt(index);
-        f.delete();
-        for (int i = index; i < this.listBoard.size(); i++)
+        if (this.listBoard.size() == 1)
         {
-            String path_boadr="";
-            if(i<9)
-                path_boadr= "/" + "Board_0" + (i+1) + "." + this.ext;
-                else
-                path_boadr= "/" + "Board_" + (i+1) + "." + this.ext;
-            File newNameFile = new File(path + path_boadr);
-            this.listBoard.get(i).renameTo(newNameFile);
-            this.cbm.removeElementAt(i);
-            this.cbm.insertElementAt(getNameBoard(newNameFile), i);
+            if (JOptionPane.showConfirmDialog(archiveGroup, "Удалить файл" + f.getName() + "  и  папку \r\n \t\tДень:  "
+                    + this.archiveGroup.getSelectedValue().toString() + " ?", "Удаление папки",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+
+                if (this.lm.size() != 0)
+                {
+                    File dir = f.getParentFile();
+                    f.delete();
+                    dir.delete();
+                    setGroup(this.groupDir.getName());
+                }
+            }
+            return;
         }
+
+        String boardName = this.BoardsToday.getSelectedItem().toString();
+
+        if (JOptionPane.showConfirmDialog(archiveGroup, "Удалить доску  "
+                + boardName + " ?", "Удаление доски",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+        {
+            return;
+        }
+        f.delete();
         this.setDay(this.dayPath);
         if (!this.listBoard.isEmpty())
-        {          
-            this.BoardsToday.setSelectedIndex(--index);
-            System.out.println("  index   " + index);
+        {
+            if(index>0)
+                this.BoardsToday.setSelectedIndex(--index);
+            else
+                this.BoardsToday.setSelectedIndex(this.listBoard.size()-1);
             this.currentBoard = this.listBoard.get(index);
         }
-      
+
     }
 
     /**
@@ -712,7 +722,8 @@ public class ArchiveFiles
         int index = -1;
         if (this.BoardsToday.getSelectedIndex() == this.cbm.getSize() - 1)
         {
-            index = 0;
+            return;
+            //index = 0;
         } else
         {
             index = this.BoardsToday.getSelectedIndex() + 1;
@@ -730,7 +741,8 @@ public class ArchiveFiles
         int index = -1;
         if (this.BoardsToday.getSelectedIndex() == 0)
         {
-            index = this.cbm.getSize() - 1;
+            return;
+            //  index = this.cbm.getSize() - 1;
         } else
         {
             index = this.BoardsToday.getSelectedIndex() - 1;

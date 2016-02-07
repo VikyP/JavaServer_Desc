@@ -34,9 +34,6 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import masterPanel.ReportException;
 
-import static teacher_teamviewer.RegimeView.EXIT;
-import static teacher_teamviewer.RegimeView.INSCRIBED;
-
 import teacher_teamviewer.robotDevice.ActionType;
 import teacher_teamviewer.robotDevice.MessageAction;
 
@@ -47,7 +44,7 @@ import teacher_teamviewer.robotDevice.MessageAction;
 public class CanvasScreen extends JPanel
 {
     private BufferedImage bi;
-    public RegimeView regimeCurrent;
+    public byte regimeCurrent;
     private Dimension imgD;
    
     public boolean isControl;
@@ -194,6 +191,7 @@ public class CanvasScreen extends JPanel
                 if(ansver[0]!=1)
                 {
                     System.out.println( " ERROR  !!!!!!!!!");
+                    ReportException.write("Command Send Error ");
                 }
                    
             
@@ -231,7 +229,7 @@ public class CanvasScreen extends JPanel
         this.imgD=new Dimension (BI.getWidth(),BI.getHeight());
         this.setPreferredSize(imgD);
         this.bi=BI;
-        this.regimeCurrent=RegimeView.INSCRIBED;
+        this.regimeCurrent=TV_ToolsPanel.INSCRIBED;
         MyMouseAdapter MMA= new  MyMouseAdapter();
         MyMouseMotionListener MMML = new MyMouseMotionListener();
         
@@ -264,12 +262,12 @@ public class CanvasScreen extends JPanel
     public void paintComponent(Graphics g)
     {
         
-        if(this.regimeCurrent==INSCRIBED)
+        if(this.regimeCurrent==TV_ToolsPanel.INSCRIBED)
         {
            g.setColor(new Color(150,150,180));
            g.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
-        if(this.regimeCurrent!=EXIT)
+        if(this.regimeCurrent!=TV_ToolsPanel.EXIT)
         {
             Graphics2D g2D = (Graphics2D) g.create();
            // g2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
@@ -287,11 +285,11 @@ public class CanvasScreen extends JPanel
         this.bi=BI;
         switch(this.regimeCurrent)
         {
-            case FULLSCREEN:
+            case TV_ToolsPanel.FULLSCREEN:
              
             break;
                 
-            case USERSIZE:
+            case TV_ToolsPanel.USERSIZE:
                
                 this.imgD = new Dimension(this.bi.getWidth(),this.bi.getHeight());
                 this.setPreferredSize(this.imgD);
@@ -300,7 +298,7 @@ public class CanvasScreen extends JPanel
                 this.p.y=0;
             break;
                 
-            case INSCRIBED:
+            case TV_ToolsPanel.INSCRIBED:
                 UpdateSize();
                 break;
         }
@@ -360,7 +358,7 @@ public class CanvasScreen extends JPanel
     private Point getUserPoint( Point p_m)
     {
         Point tmp= new Point();
-        if(this.regimeCurrent==INSCRIBED)            
+        if(this.regimeCurrent==TV_ToolsPanel.INSCRIBED)            
         {
             tmp.x=(p_m.x-this.p.x)*1000/this.scale_point;
             tmp.y=(p_m.y-this.p.y)*1000/this.scale_point;
