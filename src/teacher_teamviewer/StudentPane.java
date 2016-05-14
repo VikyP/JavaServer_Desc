@@ -31,19 +31,16 @@ import masterPanel.ReportException;
 class StudentPane extends Component
 {
     public BufferedImage BI;    
-    private String ip;
+    private String ip="";
     private boolean isSelected;
     private Dimension DImg;
   
-    
-    public static Dimension PaneSize=new Dimension(250,250);
+    Dimension PaneSize=new Dimension(250,250);
       
-    public StudentPane(String ip)
+    public StudentPane()
     {
        this.DImg= new Dimension(PaneSize.width-10,PaneSize.height-20);
-       this.BI= new BufferedImage(this.DImg.width,this.DImg.height, BufferedImage.TYPE_INT_RGB); 
-       
-       this.ip=ip;
+       this.BI= new BufferedImage(this.DImg.width,this.DImg.height, BufferedImage.TYPE_INT_RGB);
        this.isSelected= false;
        this.setPreferredSize(this.PaneSize);
       
@@ -76,7 +73,7 @@ class StudentPane extends Component
         g.setColor(Color.WHITE);
         Font F= new Font("Arial", Font.PLAIN,20);
         g.setFont(F);
-        drawCenter(this.ip,this.getWidth(),this.getHeight(),g);
+        drawCenter(this.getLabelIp(),this.getWidth(),this.getHeight(),g);
         g.dispose();
     
     }
@@ -200,6 +197,22 @@ class StudentPane extends Component
     }
 
        
+    }
+
+    /**
+     * @return the ip
+     */
+    public String getLabelIp()
+    {
+        return ip;
+    }
+
+    /**
+     * @param ip the ip to set
+     */
+    public void setLabelIp(String ip)
+    {
+        this.ip = ip;
     }
     
 }

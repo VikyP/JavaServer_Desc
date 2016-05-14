@@ -44,112 +44,109 @@ import userControl.ImageIconURL;
  *
  * @author viky
  */
+public class MasterTeamViewer extends JPanel
+{
 
-public class MasterTeamViewer extends JPanel {
-
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList <Student>  students = new ArrayList <Student>(32);
 
     private ConnectionManagerLeader connector;
     private final UDP_Listener finder;
     private JScrollPane scrollPane;
     private JPanel PreviewPane = new JPanel();
     private Student MaxSizeStudent;
-    
+
     public byte regimeCurrent;
     public boolean isPreview;
     public boolean haveControl;
 
     public EventSetIsFullScreen ESFS = new EventSetIsFullScreen();
-    
+
     public TV_ToolsPanel TP;
-    
 
     private Timer TimerCheck = new Timer();
-    private TimerTask TaskCheck = new TimerTask() {
+    private TimerTask TaskCheck = new TimerTask()
+    {
 
         @Override
-        public void run() {
-
-            /*
-            for (Student S : MasterTeamViewer.this.students)
-            {
-                //  if(!S.isConnect)
-                System.out.println(i + " " + S.toString());
-            }*/
-
-           // System.out.println("Applicants.size()***" + MasterTeamViewer.this.connector.Applicants.size());
-            while (!MasterTeamViewer.this.connector.Applicants.isEmpty()) {
-            //    System.out.println("TimerTask");
-                MasterTeamViewer.this.addStudent(MasterTeamViewer.this.connector.Applicants.remove(0));
-
-            }
-
-        }
-    };
-
-    IEventAddStudent addSt = new IEventAddStudent() {
-
-        public void addNewStudent(final Student sNew) {
-            //Если студента нет в основном списке
-            if (!students.contains(sNew)) 
-            {
-              //  System.out.println("try add");
-                MasterTeamViewer.this.connector.addItem(sNew);
-               // sNew.startSenderMessage();
-            } 
-            else
-            {
-                System.out.println("-----------" + sNew.getIP() + " exists");
-            }
-        }
-
-    };
-
-    IEventRemoveStudent removeSt = new IEventRemoveStudent() {
-        public void removeStudent(String ip) 
+        public void run()
         {
-           // System.out.println("removeStudent");
-            Student s = MasterTeamViewer.this.getStudentByIP(ip);
 
-            if (s == null) {
-              //  System.out.println(ip + " not found");
+            while (!MasterTeamViewer.this.connector.Applicants.isEmpty())
+            {  
+                Student s=MasterTeamViewer.this.connector.Applicants.remove(0);
+                if(!MasterTeamViewer.this.students.contains(s))
+                    MasterTeamViewer.this.addStudent(s);
+            }
+
+        }
+    };
+
+   
+    
+    IEventAddStudent addSt = new IEventAddStudent()
+    {
+        
+        @Override
+        public void addNewStudent(String ip)
+        {           
+            //Если студента нет в основном списке  
+            if (getStudentByIP(ip)==null)
+                MasterTeamViewer.this.connector.addItem(ip);
+        }
+
+        
+    };
+
+    IEventRemoveStudent removeSt = new IEventRemoveStudent()
+    {
+        @Override
+        public void removeStudent(String ip)
+        {
+            
+            Student s = getStudentByIP(ip);
+            if (s == null)
+            {
                 return;
             }
-           // System.out.println("Find :" + s);
-
             MasterTeamViewer.this.PreviewPane.remove(s.SP);
-            if(s.equals(MaxSizeStudent))
-            {
-                unSelect();
-            }
-            students.remove(s);
             
+            if (s.equals(MaxSizeStudent))
+            {
+              
+                MasterTeamViewer.this.MaxSizeStudent.CS.regimeCurrent = TV_ToolsPanel.EXIT;
+                unSelect();
+            }      
+            students.remove(s);
             MasterTeamViewer.this.PreviewPane.validate();
             MasterTeamViewer.this.PreviewPane.repaint();
 
-            if (!MasterTeamViewer.this.isPreview && MasterTeamViewer.this.MaxSizeStudent.RecieverPrScr.messageTypeView == Student.FULL) {
-                MasterTeamViewer.this.MaxSizeStudent.CS.regimeCurrent = TV_ToolsPanel.EXIT;
-            }
+            
 
         }
     };
 
-    IRepaint repaintSelected = new IRepaint() {
+    IRepaint repaintSelected = new IRepaint()
+    {
         @Override
-        public void repaintImg() {
+        public void repaintImg()
+        {
             MasterTeamViewer.this.scrollPane.validate();
             MasterTeamViewer.this.scrollPane.repaint();
         }
 
     };
 
-    private class MyDispatcher implements KeyEventDispatcher {
+    private class MyDispatcher implements KeyEventDispatcher
+    {
 
         @Override
-        public boolean dispatchKeyEvent(KeyEvent e) {
-            if (e.getID() == KeyEvent.KEY_PRESSED) {
-                if (e.getKeyCode() == 27) {
-                   
+        public boolean dispatchKeyEvent(KeyEvent e)
+        {
+            if (e.getID() == KeyEvent.KEY_PRESSED)
+            {
+                if (e.getKeyCode() == 27)
+                {
+
                     IFullScreen IFS = (IFullScreen) ESFS.getListener();
                     IFS.setIsFullScreen(false);
                 }
@@ -161,104 +158,96 @@ public class MasterTeamViewer extends JPanel {
 
     public MasterTeamViewer(Dimension d)
     {
-        
 
         this.TP = new TV_ToolsPanel(d);
-        
+
         this.TP.FullScreen.addActionListener(new ActionListener()
         {
-            private  ImageIcon maximizeOn= ImageIconURL.get("resources/fullscreeen_on_45.png") ;
-            private  ImageIcon maximizeOff= ImageIconURL.get("resources/fullscreeen_off_45.png") ;
+            private ImageIcon maximizeOn = ImageIconURL.get("resources/fullscreeen_on_45.png");
+            private ImageIcon maximizeOff = ImageIconURL.get("resources/fullscreeen_off_45.png");
 
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(!MasterTeamViewer.this.TP.FullScreen.isSelected())
+                if (!MasterTeamViewer.this.TP.FullScreen.isSelected())
                 {
-                
+
                     System.out.println("11");
-                     //IFullScreen IFS = (IFullScreen) ESFS.getListener();
+                    //IFullScreen IFS = (IFullScreen) ESFS.getListener();
                     // IFS.setIsFullScreen(false);
-                }
-                else
+                } else
                 {
                     System.out.println("22");
                 //IFullScreen IFS = (IFullScreen) ESFS.getListener();
-               // IFS.setIsFullScreen(true);
-              // MasterTeamViewer.this.higthTools = MasterTeamViewer.this.TP.Tools.getHeight();
-              // MasterTeamViewer.this.TP.Tools.setSize(MasterTeamViewer.this.TP.Tools.getWidth(), 0);
-             //   MasterTeamViewer.this.MaxSizeStudent.setRegimeView(RegimeView.FULLSCREEN);
-                
-                
+                    // IFS.setIsFullScreen(true);
+                    // MasterTeamViewer.this.higthTools = MasterTeamViewer.this.TP.Tools.getHeight();
+                    // MasterTeamViewer.this.TP.Tools.setSize(MasterTeamViewer.this.TP.Tools.getWidth(), 0);
+                    //   MasterTeamViewer.this.MaxSizeStudent.setRegimeView(RegimeView.FULLSCREEN);
+
                 }
 
                // IFullScreen IFS = (IFullScreen) ESFS.getListener();
-              //  IFS.setIsFullScreen(true);
-              //  MasterTeamViewer.this.higthTools = MasterTeamViewer.this.TP.Tools.getHeight();
-              //  MasterTeamViewer.this.TP.Tools.setSize(MasterTeamViewer.this.TP.Tools.getWidth(), 0);
+                //  IFS.setIsFullScreen(true);
+                //  MasterTeamViewer.this.higthTools = MasterTeamViewer.this.TP.Tools.getHeight();
+                //  MasterTeamViewer.this.TP.Tools.setSize(MasterTeamViewer.this.TP.Tools.getWidth(), 0);
                 // Master.this.MaxSizeStudent.setRegimeView(RegimeView.FULLSCREEN);
-                
-                
                 MasterTeamViewer.this.MaxSizeStudent.CS.requestFocus();
             }
-            
-            
+
         });
-        
-        this.TP.b_exit.addActionListener( new ActionListener() {
+
+        this.TP.b_exit.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent ae)
-            {  
+            {
                 MasterTeamViewer.this.unSelect();
             }
         });
 
-         this.TP.b_scale.addActionListener
-        ( new ActionListener()
+        this.TP.b_scale.addActionListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e) 
+            public void actionPerformed(ActionEvent e)
             {
-                if(!MasterTeamViewer.this.TP.b_scale.isSelected())
+                if (!MasterTeamViewer.this.TP.b_scale.isSelected())
                 {
-                MasterTeamViewer.this.TP.b_scale.setToolTipText("Экран вписан в окно приложения");
-                    
-                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.INSCRIBED);
+                    MasterTeamViewer.this.TP.b_scale.setToolTipText("Экран вписан в окно приложения");
 
-                MasterTeamViewer.this.MaxSizeStudent.CS.FrameSize();
+                    MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.INSCRIBED);
 
-                MasterTeamViewer.this.scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                }
+                    MasterTeamViewer.this.MaxSizeStudent.CS.FrameSize();
+
+                    MasterTeamViewer.this.scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                } 
                 else
                 {
                     MasterTeamViewer.this.TP.b_scale.setToolTipText("Экран в исходном размере");
-                MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.USERSIZE);
-                MasterTeamViewer.this.MaxSizeStudent.CS.UserSize();
-                MasterTeamViewer.this.scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-               
-                
+                    MasterTeamViewer.this.MaxSizeStudent.setRegimeView(TV_ToolsPanel.USERSIZE);
+                    MasterTeamViewer.this.MaxSizeStudent.CS.UserSize();
+                    MasterTeamViewer.this.scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                 }
                 MasterTeamViewer.this.MaxSizeStudent.CS.requestFocus();
             }
         });
-        
-        this.TP.b_control.addActionListener( new ActionListener(){
-             
+
+        this.TP.b_control.addActionListener(new ActionListener()
+        {
+
             @Override
             public void actionPerformed(ActionEvent ae)
             {
-               MasterTeamViewer.this.MaxSizeStudent.CS.isControl=!MasterTeamViewer.this.MaxSizeStudent.CS.isControl;
-               if(MasterTeamViewer.this.MaxSizeStudent.CS.isControl)
-                { 
-                    MasterTeamViewer.this.TP.b_control.setToolTipText(" Отключить управление ");
-                }
-               else
+                MasterTeamViewer.this.MaxSizeStudent.CS.isControl = !MasterTeamViewer.this.MaxSizeStudent.CS.isControl;
+                if (MasterTeamViewer.this.MaxSizeStudent.CS.isControl)
                 {
-                   MasterTeamViewer.this.TP.b_control.setToolTipText(" Включить управление ");
+                    MasterTeamViewer.this.TP.b_control.setToolTipText(" Отключить управление ");
+                } else
+                {
+                    MasterTeamViewer.this.TP.b_control.setToolTipText(" Включить управление ");
                 }
                 MasterTeamViewer.this.MaxSizeStudent.CS.requestFocus();
             }
-                });
+        });
         this.setSize(d);
         this.setLayout(new BorderLayout());
 
@@ -266,30 +255,42 @@ public class MasterTeamViewer extends JPanel {
 
         this.add(scrollPane, BorderLayout.CENTER);
         this.PreviewPane.setLayout(new FlowLayout(FlowLayout.CENTER));
-        this.PreviewPane.setPreferredSize(StudentPane.PaneSize);
+       // this.PreviewPane.setPreferredSize(StudentPane.PaneSize);
         this.PreviewPane.setBackground(Color.LIGHT_GRAY);
 
         this.finder = new UDP_Listener();
         this.finder.EL.addStudentEventAdd(addSt);
+        
         this.isPreview = true;
 
         this.TP.setVisible(!this.isPreview);
 
-        this.TimerCheck.schedule(TaskCheck, 1000, 500);
+       this.TimerCheck.schedule(TaskCheck, 1000, 500);
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MasterTeamViewer.MyDispatcher());
 
         // диспетчер подключений (первый в очереди соединяется с сервером)
         this.connector = new ConnectionManagerLeader();
+        this.connector.EL.addStudentEventAdd(addSt);
 
     }
-    
+
     public void connector_finder_Start()
     {
         this.finder.start();
         this.connector.start();
     }
 
+
+    public void Invalidate()
+    {
+        this.PreviewPane.validate();
+        this.PreviewPane.repaint();
+
+    }
+    
+   
+    
     private Student getStudentByIP(String ip) {
         for (Student s : students) {
             if (s.getStudentByIP(ip) != null) 
@@ -300,153 +301,127 @@ public class MasterTeamViewer extends JPanel {
         return null;
 
     }
-
-    public void Invalidate() {
-        this.PreviewPane.validate();
-        this.PreviewPane.repaint();
-
-    }
-
-    private void setSelectedStudent(Student s) {
-        try {
-
+    
+    
+    private void setSelectedStudent(Student s)
+    {
+        try
+        {
             this.isPreview = false;
-            this.TP.setStudentName(s.getIP());
+            this.TP.setStudentName(s.getIP().getHostAddress());
             this.TP.setVisible(!this.isPreview);
             this.regimeCurrent = TV_ToolsPanel.USERSIZE;
-            setTimeForeach(12000, false);
-            this.MaxSizeStudent = s;            
-            this.MaxSizeStudent.RecieverPrScr.setTime(150);
-            this.MaxSizeStudent.RecieverPrScr.setStatus(true);
-            this.MaxSizeStudent.SP.setSelected(!this.isPreview);
-            this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.FULL;
+            for( Student student :students ) 
+            {
+               if(student.equals(s))
+               {
+                   this.MaxSizeStudent=s;
+                   this.MaxSizeStudent.RecieverPrScr.setTypeView(TypeView.FULL);
+                   this.MaxSizeStudent.SP.setSelected(!this.isPreview);              
+               }
+               else
+              student.RecieverPrScr.setTypeView(TypeView.SLEEP);
+            }
             Thread.sleep(1);
-            this.scrollPane.setViewportView(s.CS);
-        } catch (InterruptedException ex) {
+            this.scrollPane.setViewportView(this.MaxSizeStudent.CS);
+        } 
+        catch (InterruptedException ex)
+        {
             Logger.getLogger(MasterTeamViewer.class.getName()).log(Level.SEVERE, null, ex);
             ReportException.write(ex.getMessage());
         }
     }
-    
-    // задаем время запроса экрана для всех студентов
-    private void setTimeForeach(int mls, boolean status)
+
+     
+    private void setAllNotify()
     {
-        for (Student s : students)
-        {
-          //  s.RecieverPrScr.setTime(mls);
-            s.RecieverPrScr.setStatus(status);
-        }
-    
+       for( Student student :students ) 
+       {          
+         student.RecieverPrScr.setTypeView(TypeView.PREVIEW);
+       }
     }
+    
+    
 
     public void unSelect()
     {
-        try {
-            
+        try
+        {
             this.isPreview = true;
-             this.TP.setVisible(!this.isPreview);
-            if(this.MaxSizeStudent!=null)
+            this.TP.setVisible(!this.isPreview);
+            if (this.MaxSizeStudent != null)
             {
                 this.MaxSizeStudent.SP.setSelected(!isPreview);
-                this.MaxSizeStudent.CS.isControl=false;           
-                this.MaxSizeStudent.RecieverPrScr.setTime(1000);
-                setTimeForeach(1000, true);
-                this.MaxSizeStudent.RecieverPrScr.messageTypeView = Student.PREVIEW;
+                this.MaxSizeStudent.CS.isControl = false;
                 this.TP.b_control.setSelected(false);
             }
+            setAllNotify();
             this.scrollPane.setViewportView(this.PreviewPane);
             Thread.sleep(1);
             this.Invalidate();
         } 
-        catch (InterruptedException ex) 
+        catch (InterruptedException ex)
         {
             Logger.getLogger(MasterTeamViewer.class.getName()).log(Level.SEVERE, null, ex);
             ReportException.write(ex.getMessage());
         }
     }
 
-    private void addStudent(final Student s) 
-    {
-
-        s.SP.addMouseListener(new MouseAdapter() {
+    private void addStudent(final Student s)
+    {        
+        s.SP.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mousePressed(MouseEvent me) {
-
+            public void mousePressed(MouseEvent me)
+            {
                 MasterTeamViewer.this.setSelectedStudent(s);
-                for (Student st : students) {
-                    if (!s.equals(st)) {
-                        st.SP.setSelected(false);
-                    }
-                }
-
                 MasterTeamViewer.this.Invalidate();
-
             }
-
         }
         );
         s.RecieverPrScr.ERS.removeStudentEventAdd(removeSt);
-        s.RecieverPrScr.start();
-        s.RecieverPrScr.setStatus(true);
-
         boolean isAdd = false;
-        for (int i = 0; i < students.size(); i++) {
-
-            if (s.compareTo(students.get(i)) < 0) {
+        for (int i = 0; i < students.size(); i++)
+        {
+          
+            if (s.compareTo(students.get(i)) < 0)
+            {
                 this.students.add(i, s);
                 isAdd = true;
                 break;
             }
         }
 
-        if (isAdd) {
+        if (isAdd)
+        {
             this.PreviewPane.removeAll();
-            for (Student tmp : students) {
+            for (Student tmp : students)
+            {
                 this.PreviewPane.add(tmp.SP);
             }
-
-        } else {
+        }
+        
+        else
+        {
             students.add(s);
             this.PreviewPane.add(s.SP);
-
         }
-
+       
+        s.RecieverPrScr.setTypeView(this.isPreview?TypeView.PREVIEW:TypeView.SLEEP); 
+        s.RecieverPrScr.start();
         this.PreviewPane.validate();
         this.PreviewPane.repaint();
     }
-/*
-    private void removeStudent(String ip)
+
+
+    public ImageIcon getImageIcon(String resImgName)
     {
-      //  System.out.println("removeStudent");
-
-        Student s = this.getStudentByIP(ip);
-
-        if (s == null) {
-            System.out.println(ip + " not found");
-            return;
-        }
-        System.out.println("Find :" + s);
-
-        this.PreviewPane.remove(s.SP);
-        students.remove(s);
-        this.PreviewPane.validate();
-        this.PreviewPane.repaint();
-
-        if (!this.isPreview && this.MaxSizeStudent.RecieverPrScr.msg == Student.FULL) {
-            this.MaxSizeStudent.CS.regimeCurrent = RegimeView.EXIT;
-        }
-
-    }
-*/
-    public ImageIcon getImageIcon(String resImgName) {
-
         java.net.URL imgUrl = MasterTeamViewer.class.getResource(resImgName);
-        if (imgUrl == null) {
+        if (imgUrl == null)
+        {
             return null;
         }
         return new ImageIcon(imgUrl);
-
     }
-
 
 }

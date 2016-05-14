@@ -381,9 +381,9 @@ public class MasterBoard extends JPanel
     }
 
     /**
-     *
-     * @param c
-     * @return
+     * Определение цвета фона компонента, содержащего доску
+     * @param c фон доски
+     * @return цвет фона компонента
      */
     private Color getPanelBackground(Color c)
     {

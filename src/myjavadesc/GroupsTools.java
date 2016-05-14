@@ -5,24 +5,18 @@
  */
 package myjavadesc;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
-import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -148,7 +142,8 @@ public class GroupsTools {
                 JTextField tf=(JTextField)e.getSource();
                 try
                 {
-                    InetAddress  ip_broadcast =InetAddress.getByName(tf.getText());                    
+                    InetAddress  ip_broadcast =InetAddress.getByName(tf.getText().trim());
+                    /*
                     InetAddress[] ip_=InetAddress.getAllByName(InetAddress.getLocalHost().getHostAddress());
                     for(InetAddress i:ip_)
                     {
@@ -165,7 +160,7 @@ public class GroupsTools {
                         }
                     } 
                     JOptionPane.showMessageDialog(groupPanelHide, "IP указан неверно." + ip_broadcast.getHostAddress() );
-                    tf.setText(""+SettingsConfig.IP_UDP.getHostAddress());
+                    tf.setText(""+SettingsConfig.IP_UDP.getHostAddress());*/
                 } 
                 catch (UnknownHostException ex)
                 {

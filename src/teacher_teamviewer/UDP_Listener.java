@@ -24,13 +24,11 @@ public class UDP_Listener extends Thread
 {
    
     public EventAddStudent EL;
-    private Student newStudent;
     
     public UDP_Listener( )
     {        
         this.EL= new EventAddStudent();
         this.setDaemon(true);
-          
         System.out.println("    port " + SettingsConfig.PORT_UDP);       
     }
     
@@ -48,20 +46,17 @@ public class UDP_Listener extends Thread
                // System.out.println("Start UDP");
                 DS.receive(DP);
                 String msg= new String (DP.getData(), 0, DP.getLength(),"UTF8");
-               
-                String [] studentInfo=msg.split(";");
+             
+                final String [] studentInfo=msg.split(";");
                 if(studentInfo[0].equals("NEW"))
-                {
-                    newStudent =new Student(studentInfo[1]);
+                {                  
                     javax.swing.SwingUtilities.invokeLater(new Runnable(){@Override public void run()
                      {
-                         IEventAddStudent newS= (IEventAddStudent)UDP_Listener.this.EL.getListener();
-                         newS.addNewStudent(UDP_Listener.this.newStudent); 
+                         IEventAddStudent newS= (IEventAddStudent)EL.getListener();
+                         newS.addNewStudent(studentInfo[1]);                          
                      }
                      });
                 }
-             //   System.out.println("Stop UDP");
-              
              Thread.sleep(1000);
             }
             

@@ -13,5 +13,5 @@ import teacher_teamviewer.Student;
  */
 public interface IEventAddStudent
 {
-     void addNewStudent(Student s);
+     void addNewStudent(String ip);
 }

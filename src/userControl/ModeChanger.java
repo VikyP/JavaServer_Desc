@@ -39,7 +39,11 @@ public class ModeChanger extends JPanel
     private JToggleButton board;
     private JToggleButton viewers;
   
-    private Dimension panelSize= new Dimension(110,220);
+    private Dimension panelSize= new Dimension(125,150);
+    private Dimension closeSize= new Dimension(50,150);
+    private Dimension keySize= new Dimension(20,40);
+    
+    
     private int beginMoveY;
    
     private Rectangle openRect;
@@ -49,10 +53,8 @@ public class ModeChanger extends JPanel
         @Override
         public void mousePressed(MouseEvent me)
         {
-           // System.out.println("   mousePressed ");
-            
-            ModeChanger.this.beginMoveY=me.getY();   
-            
+           
+            ModeChanger.this.beginMoveY=me.getY();
         }
     
     }
@@ -96,7 +98,7 @@ public class ModeChanger extends JPanel
       this.addMouseMotionListener(new ModeChanger.MyMouseMotionListener());
       this.addMouseListener(new ModeChanger.MyMouselistener());
       this.Mode=new JToggleButton();//ImageIconURL.get("resources/open.png")
-      this.Mode.setPreferredSize(new Dimension(20,100));
+      this.Mode.setPreferredSize(keySize);
       this.Mode.setIcon(ImageIconURL.get("resources/left_28.png"));
       this.Mode.setSelectedIcon(ImageIconURL.get("resources/right_28.png"));
       
@@ -171,19 +173,19 @@ public class ModeChanger extends JPanel
       
       
       JPanel p_modes=new JPanel(); 
-      p_modes.setPreferredSize(new Dimension(50,200));
-      p_modes.setLayout(new GridLayout(4,0));
+      p_modes.setPreferredSize(closeSize);
+      p_modes.setLayout(new GridLayout(3,0));
       
       p_modes.add(viewers);
       p_modes.add(board);
-      p_modes.add(SendScreen);
-      p_modes.add(Record);
+     // p_modes.add(SendScreen);
+    //  p_modes.add(Record);
       
       this.setLayout(new FlowLayout(FlowLayout.LEFT));       
       this.add(Mode);
      JPanel Struts = new JPanel();
      
-     Struts.setPreferredSize(new Dimension(10,100));
+     Struts.setPreferredSize(keySize);
      Struts.setOpaque(false);
       this.add(Struts);
       this.add(p_modes);
@@ -240,10 +242,10 @@ public class ModeChanger extends JPanel
     // define start points openrect and closeRect
     private void setStartPoints(Dimension d) 
     {
-        this.openRect.x=d.width-110;
-        this.openRect.y=d.height/2-100;
-        this.closeRect.x=d.width-50;
-        this.closeRect.y=d.height/2-100;    
+        this.openRect.x=d.width-this.panelSize.width;
+        this.openRect.y=d.height/2-this.panelSize.height/2;
+        this.closeRect.x=d.width-this.closeSize.width;
+        this.closeRect.y=d.height/2-this.panelSize.height/2;    
     }
             
     public void setActionListenerSendScreen(ActionListener AL)

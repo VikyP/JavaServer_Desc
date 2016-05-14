@@ -12,8 +12,7 @@ package userControl;
 public class SizeSketch
 {   
     public final static int BUTTON_WIDTH=20; 
-    public final static int SPINNER_WIDTH=35;
-    
+    public final static int SPINNER_WIDTH=35;    
     public final static int TOOLPANEL_WIDTH=170;
     public final static int LineChoserW=120;
     public final static int ROW_WIDTH=TOOLPANEL_WIDTH-20;
@@ -25,9 +24,6 @@ public class SizeSketch
     public final static int CONTROL_HEIGHT=22;
     public final static int LISTBOX_HEIGHT=80;
     public final static int ROW_HEIGHT=28;
-    
-   
-    
     
     
 }

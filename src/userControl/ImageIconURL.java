@@ -11,13 +11,16 @@ package userControl;
  */
 public class ImageIconURL
 {
+    /**
+     * 
+     * @param resImgName
+     * @return 
+     */
     public static javax.swing.ImageIcon get(String resImgName)
     { 
         java.net.URL imgUrl =ImageIconURL.class.getResource(resImgName);
         if(imgUrl== null)
            return null;
-        return new javax.swing.ImageIcon(imgUrl);
-  
-    }
-    
+        return new javax.swing.ImageIcon(imgUrl);  
+    }    
 }

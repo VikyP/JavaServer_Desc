@@ -36,9 +36,9 @@ public class TCP_Client_RecieverPrScr extends Thread
     public EventUnpack ER;
     public EventRemoveStudent ERS;
     
-    private long time;
-    public byte messageTypeView;
-    private boolean Status=false;
+    private final long timeFull=150;
+    private final long timePreview=1000;
+    private byte messageTypeView;
     
 
     public TCP_Client_RecieverPrScr(Socket client )
@@ -46,29 +46,34 @@ public class TCP_Client_RecieverPrScr extends Thread
         this.ER= new EventUnpack();
         this.ERS = new  EventRemoveStudent();        
         this.client=client;
-        this.setTime(1000);        
-        this.setDaemon(true);       
-        this.messageTypeView=Student.PREVIEW;
+        this.setDaemon(true); 
     }
     
-    public synchronized void setStatus(boolean flag)
+    /**
+     * @return the messageTypeView
+     */
+    public byte getMessageTypeView()
     {
-        this.Status=flag;
-        if(Status)
-        {   
-            this.notify();
-        }    
-           
+        return messageTypeView;
     }
     
-     public synchronized void getStatus()
+    private long getTime()
+    {
+        if(messageTypeView==TypeView.FULL)
+        return timeFull;
+        else      
+        return timePreview;
+    }
+  
+    
+    private synchronized void getStatus()
      {
-         if(!Status)
-             try 
-            {               
-                this.wait();
-            }
-             catch (InterruptedException ex)
+        if(getMessageTypeView()==TypeView.SLEEP)
+        try 
+        {               
+            this.wait();
+        }
+        catch (InterruptedException ex)
         {
             Logger.getLogger(Thread_SenderImage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,9 +81,12 @@ public class TCP_Client_RecieverPrScr extends Thread
      }
     
     
-    public void setTime(long t)
+    public synchronized void setTypeView(byte typeView)
     {
-        this.time=t;
+       messageTypeView=typeView;
+       if(messageTypeView!=TypeView.SLEEP)
+           this.notify();
+        
     }
    
     @Override
@@ -90,7 +98,7 @@ public class TCP_Client_RecieverPrScr extends Thread
             while(true)
             { 
                 getStatus();
-                this.client.getOutputStream().write(this.messageTypeView);
+                this.client.getOutputStream().write(this.getMessageTypeView());
                 ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
                 int size = 0;
                 byte[] s = new byte[5];
@@ -108,7 +116,7 @@ public class TCP_Client_RecieverPrScr extends Thread
                     ReportException.write("lengthByteArr ="+lengthByteArr);
                 }
                 //если пакет получен 
-                if(type!=Student.NULL && lengthByteArr>0)
+                if(type!=TypeView.NULL && lengthByteArr>0)
                 {
                     byte[] dataBuffer = new byte[32768];
                     do
@@ -137,7 +145,7 @@ public class TCP_Client_RecieverPrScr extends Thread
 
                     DIS.close();
                 }
-                Thread.sleep(this.time);
+                Thread.sleep(getTime());
             }
         }
         catch (IOException ex)
@@ -204,6 +212,8 @@ public class TCP_Client_RecieverPrScr extends Thread
     return  body;
     
     }
+
+    
     
 }
 

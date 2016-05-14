@@ -219,7 +219,7 @@ public class ArchiveFiles
 
             }
         });
-        this.listBoard = new ArrayList<File>();//контейнер для файлов
+        this.listBoard = new ArrayList<>();//контейнер для файлов
 
         //кнопка добавления новой доски
         this.newBoard = new JButton(ImageIconURL.get("resources/New20.png"));

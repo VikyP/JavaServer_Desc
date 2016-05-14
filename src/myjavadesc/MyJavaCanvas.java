@@ -37,6 +37,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -220,7 +222,7 @@ public class MyJavaCanvas extends JEditorPane
                     {
                         if (!MyJavaCanvas.this.sender.Send(MyJavaCanvas.this.textToBytes()))
                         {
-                            JOptionPane.showMessageDialog(MyJavaCanvas.this, " Откройте следующую доску ", "Ошибка передачи данных", JOptionPane.WARNING_MESSAGE);
+                           // JOptionPane.showMessageDialog(MyJavaCanvas.this, " Откройте следующую доску ", "Ошибка передачи данных", JOptionPane.WARNING_MESSAGE);
                         }
                     }
                     count++;
@@ -1331,7 +1333,8 @@ public class MyJavaCanvas extends JEditorPane
         byte[] body = null;
         try
         {
-            DOS.writeUTF(this.getText());
+            ByteBuffer buffer = Charset.forName("UTF-8").encode(this.getText());
+            DOS.writeUTF(new String(buffer.array(),"UTF-8"));
             body = BAOS.toByteArray();
             DOS.close();
             BAOS.close();
@@ -1411,7 +1414,7 @@ public class MyJavaCanvas extends JEditorPane
 
         try
         {
-            byte[] text = this.getText().getBytes();
+            byte[] text = this.getText().getBytes("UTF-8");
             DOS.writeInt(text.length);
             DOS.write(text, 0, text.length);
         } catch (IOException ex)
@@ -1565,24 +1568,20 @@ public class MyJavaCanvas extends JEditorPane
             }
             getFontMetrics_HW();
             int length = DIS.readInt();
-            System.out.println(length);
             byte[] text = new byte[length];
             int cnt = DIS.read(text, 0, length);
           if(length!=0)
           {
-            char c= (char)text[0];
+            /*char c= (char)text[0];
             char z= (char)text[length-1];
-            System.out.println(cnt == length);
-            String str = new String(text);
+            System.out.println(cnt == length);*/
+            String str = new String(text,"UTF-8");
             this.setText(str);
-            System.out.println("     char "+ c +" - z "+z);
-            System.out.println("    str " + str.length());       
-            System.out.println("    lll "+ this.getText().length());
           }
 
         } catch (IOException ex)
         {
-            ReportException.write(" Ошибка чтения файла (текст) ");
+            ReportException.write(" Ошибка чтения файла (текст) "+ex.getMessage());
         }
 
     }

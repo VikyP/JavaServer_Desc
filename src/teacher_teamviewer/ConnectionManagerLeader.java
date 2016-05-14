@@ -5,6 +5,7 @@
  */
 package teacher_teamviewer;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import masterPanel.ReportException;
 import masterPanel.SettingsConfig;
+import teacher_teamviewer.event_package.EventAddStudent;
 
 /**
  *
@@ -22,18 +24,17 @@ public class ConnectionManagerLeader extends Thread
 
     //контейнер для всех запросов на подключение, полученных по UDP
 
-    public ArrayList <Student> Applicants = new ArrayList<Student> ();
+    public ArrayList <Student> Applicants = new ArrayList<> ();
     
-
+    public EventAddStudent EL;
    //котейнер для ожидающих подкдлючение
     //объект добавляется, если его нет в перечне уже подлючившихся и ожидающих подкдлючение
-    private ArrayList<Student> WaitingConnection = new ArrayList<Student> ();
-    
+    private ArrayList<String> WaitingConnection = new ArrayList<> ();
     private int timeout=5000;
 
     public ConnectionManagerLeader()
     {
-
+        this.EL= new EventAddStudent();
     }
 
     @Override
@@ -44,23 +45,23 @@ public class ConnectionManagerLeader extends Thread
            
             try
             {
-                Student S = this.getItem();
-                
+                final String IP = this.getItem();  
+                InetAddress ip= InetAddress.getByName(IP);
                 Socket client = new Socket();
                 {
                     try
                     {
                       //  System.out.println("Start  TCP");
-                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), SettingsConfig.PORT_TCP_IMG);
-                       // System.out.println("IP " + clientSocketAdress.toString());
+                        InetSocketAddress clientSocketAdress = new InetSocketAddress(ip, SettingsConfig.PORT_TCP_IMG);
+                        System.out.println("IP " + clientSocketAdress.toString());
                         client.connect(clientSocketAdress,timeout);
                       // System.out.println("  TCP_image  OK ");
                     } 
                     catch (Exception exc)
                     {
                         //выход по исключению
-                        System.out.println("Ошибка подключения по адресу "+S.getIP()+"\t"+ exc.getMessage());
-                        ReportException.write("Ошибка подключения по адресу "+S.getIP()+"\t"+ exc.getMessage());
+                        System.out.println("Ошибка подключения по адресу "+IP+"\t"+ exc.getMessage());
+                        ReportException.write("Ошибка подключения по адресу "+IP+"\t"+ exc.getMessage());
                         client.close();
                                         
                     }
@@ -71,7 +72,7 @@ public class ConnectionManagerLeader extends Thread
                     try
                     {
                       //  System.out.println("Start  TCP");
-                        InetSocketAddress clientSocketAdress = new InetSocketAddress(S.getIP(), SettingsConfig.PORT_TCP_COMMAND);
+                        InetSocketAddress clientSocketAdress = new InetSocketAddress(ip, SettingsConfig.PORT_TCP_COMMAND);
                        // System.out.println("IP " + clientSocketAdress.toString());
                         clientCC.connect(clientSocketAdress,timeout);
                        // System.out.println("  TCP_command  OK");
@@ -79,8 +80,8 @@ public class ConnectionManagerLeader extends Thread
                     catch (Exception exc)
                     {
                         //выход по исключению
-                        System.out.println("Ошибка подключения по адресу "+S.getIP()+"\t"+ exc.getMessage());
-                        ReportException.write("Ошибка подключения по адресу "+S.getIP()+"\t"+ exc.getMessage());
+                        System.out.println("Ошибка подключения по адресу "+IP+"\t"+ exc.getMessage());
+                        ReportException.write("Ошибка подключения по адресу "+IP+"\t"+ exc.getMessage());
                         clientCC.close();
                                               
                     }
@@ -89,51 +90,47 @@ public class ConnectionManagerLeader extends Thread
                 //нет подключения
                 if (client.isConnected() && clientCC.isConnected())
                 {  
-                   
+                    final Student S= new Student(ip);
                     S.createRecieverPrScr(client);
                     S.CS.SenderCommand.setSocket(clientCC);
+                    S.SP.setLabelIp(IP); 
                     Applicants.add(S);
                 }
                 else
                 {
-                 S = null;
+                    System.out.println("    IP "+IP);
                 }
-               
+                
             } 
             
             catch (Exception ex)
             {
                 ReportException.write(this.getName() + " run() \t\t" + ex.getMessage());
-                Logger.getLogger(ConnectionManagerLeader.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-
         }
 
     }
 
     //
-    public synchronized void addItem(Student s)
+    public synchronized void addItem(String ip)
     {
         //этот студент уже есть в очереди
-        if(this.WaitingConnection.contains(s))
+        if(this.WaitingConnection.contains(ip))
         {
             return;
         }
         // иначе добавляем в очередь
        
-        this.WaitingConnection.add(s);
-      //  System.out.println(" add ok" );
+        this.WaitingConnection.add(ip);
         this.notify();
         
     }
 
     // первый в очереди на подключение
-    public synchronized Student getItem()
+    public synchronized String getItem()
     {
         while (this.WaitingConnection.isEmpty())
         {
-          //  System.out.println("  ConnectionManagerLeader  ");
             try
             {
                 this.wait();

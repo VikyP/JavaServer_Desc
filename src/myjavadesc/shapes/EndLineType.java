@@ -17,8 +17,7 @@ public class EndLineType
     public static final byte NOT=0;
     public static final byte ARROW=1;
     public static final byte CIRCLE=2;
-    public static final byte RECTANGLE=3;
-    
+    public static final byte RECTANGLE=3;    
     
     public static final int RECTANGLE_SIZE=5;
     

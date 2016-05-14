@@ -5,15 +5,7 @@
  */
 package teacher_teamviewer.event_package;
 
-import java.io.DataInputStream;
 import java.util.ArrayList;
-import teacher_teamviewer.Student;
-
-/**
- *
- * @author viky
- */
-
 
 
 public class EventAddStudent

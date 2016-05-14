@@ -2,10 +2,10 @@
 <Configuration>
 	
 	<!-- BroadCast UDP-->
-	<IP_UDP>192.168.0.255</IP_UDP>
+	<IP_UDP>192.168.43.255</IP_UDP>
 
 	<!-- UDP порт для поиска новых студентов-->
-	<PORT_UDP>9610</PORT_UDP>
+	<PORT_UDP>9650</PORT_UDP>
 
 	<!--UDP порт приема данных доски  + 1 -->
 	<!--TCP порт отправки экрана студета +2 -->
@@ -36,5 +36,5 @@
 		<Dash>0</Dash>
 	</Line>
 	<!--Высота шрифта от 15 до 25 -->
-	<FontSize>20</FontSize>
+	<FontSize>17</FontSize>
 </application>

@@ -98,12 +98,6 @@ public class SettingsConfig
     public static int  PORT_TCP_ScStr;
     private final int DELTA_TCP_ScStr=4;
     
-    /**
-     * порт для проверки запуска
-     */
-    public static int  PORT_TEST;
-    private  final int DELTA_TEST=5;
-    
     
     
     //</editor-fold>  
@@ -139,31 +133,24 @@ public class SettingsConfig
        }
     }
     
+    
+    
     public boolean isFirst()
     {
-        boolean flag=false;
-         try 
-         { 
-             DatagramSocket  DS  = new DatagramSocket (PORT_TEST);
-             ServerSocket s=null;
-             try
-             {
-                 s= new ServerSocket(PORT_TEST);
-                 flag=true;    
-             } 
-             catch (Exception se)
-             {
-                 ReportException.write(" Приложение уже запущено " + se.getMessage());                 
-             }
-           
-             
-         } 
-         catch (Exception ex)//(IOException ex)
+        try 
         {
-            Logger.getLogger(SettingsConfig.class.getName()).log(Level.SEVERE, null, ex);  
+            if(!SingleInst.lock())
+            {
+                ReportException.write("The program is already running");
+              //  System.exit(0);
+                return false;
+            }
+        } 
+        catch (IOException ex)
+        {
+            ReportException.write("  " + ex.getMessage());
         }
-       
-        return flag;
+        return true;
     }
     
     public boolean isStreamScreen()
@@ -301,7 +288,6 @@ public class SettingsConfig
         PORT_TCP_IMG=PORT_UDP+DELTA_TCP_IMG;
         PORT_TCP_COMMAND=PORT_UDP+DELTA_TCP_COMMAND;
         PORT_TCP_ScStr=PORT_UDP+DELTA_TCP_ScStr;
-        PORT_TEST=PORT_UDP+DELTA_TEST;        
     }
     
     public void saveSettingsThemes(Color f, Color b, int fSize)

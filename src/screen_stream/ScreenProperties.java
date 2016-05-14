@@ -30,7 +30,7 @@ public class ScreenProperties
     public int widthCountOfBlocks, heightCountOfBlocks;
     
     //максимальный объем пакета, который после сжатия можно переслать по UDP
-    public static int DataMax=120000;
+    public static int DataMax=80000;
     public static int DataMaxUDP=1400;
 
     // максимальная  разница между истинной высотой экрана и
@@ -38,7 +38,7 @@ public class ScreenProperties
     byte precision = 8;
 
     // стартовая высота строки
-    byte heightRow = 111;
+    byte heightRow = 121;
 
     // стартовое количество строк
     public byte countRow = 10;

@@ -7,9 +7,9 @@ package teacher_teamviewer;
 
 
 import java.io.DataInputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 import masterPanel.ReportException;
-import masterPanel.SettingsConfig;
 import teacher_teamviewer.event_package.IUnpack;
 
 
@@ -20,16 +20,10 @@ import teacher_teamviewer.event_package.IUnpack;
 public class Student extends Object implements Comparable
 {
     
-    public static final byte NULL=0;
-    public static final byte PREVIEW=1;
-    public static final byte FULL=2;    
-    
     public StudentPane SP;
     public CanvasScreen CS;
-    public boolean  isConnect;  
-    private String IP;
-   
     public TCP_Client_RecieverPrScr RecieverPrScr;
+    private InetAddress IP; 
   
     IUnpack UR= new IUnpack()
     {
@@ -39,11 +33,11 @@ public class Student extends Object implements Comparable
         {
             switch(type)
             {
-                case PREVIEW:
+                case TypeView.PREVIEW:
                      Student.this.SP.UnPackPreview(dis);
                      break;
                      
-                case FULL:
+                case TypeView.FULL:
                     Student.this.SP.UnPackImage(dis);
                     Student.this.CS.getImage(Student.this.SP.BI);
                     Student.this.CS.repaint();
@@ -53,21 +47,14 @@ public class Student extends Object implements Comparable
 
     };
     
-    public Student( String ip)
+    public Student(InetAddress ip)
     {
-        this.IP=ip; 
-        this.SP= new StudentPane(ip);
+        this.IP=ip;
+        this.SP= new StudentPane();
         this.CS = new CanvasScreen(this.SP.BI);
-        this.isConnect=false;
-      
     }
 
-    @Override
-    public String toString()
-    {
-       return this.IP+":"+SettingsConfig.PORT_TCP_IMG;      
-    }
-    
+   
    @Override
     public boolean equals(Object ob)
     {
@@ -81,70 +68,66 @@ public class Student extends Object implements Comparable
     
     //создание потока для работы с изображением
     public  void createRecieverPrScr(Socket client)
-    {
-       
+    {       
         this.RecieverPrScr= new TCP_Client_RecieverPrScr(client); 
         this.RecieverPrScr.ER.addEventUnpack(UR);  
     }
     
-     //создание потока для работы с упралением
+    //создание потока для работы с упралением
     public void createSenderMessage(Socket client)
     {
-        this.CS.SenderCommand.setSocket( client);
-    
+        this.CS.SenderCommand.setSocket( client);    
     }
-    
-    public Student getStudentByIP(String ip)
+     
+ 
+    void setRegimeView(byte regimeView)
     {
-        if(this.IP.equals(ip))
-            return this;
-        else
-            return null;    
+        this.CS.regimeCurrent=regimeView;
     }
 
-    public void setIP(String ip)
-    {
-        this.IP=ip;
-    }
-    
-   
-
-    public String getIP()
-    {  
-        return this.IP;
-    }
-    
     @Override
     public int compareTo(Object o)
-    {
-       // System.out.println(" compare " + this.IP + "  "+ ((Student)o).IP);   
+    { 
+      
+       int r=0;
         try
         { 
-            
-        String [] ip1=this.IP.split("\\.");
-        String [] ip2 =((Student)o).IP.split("\\.");
-       
+           byte[] ip1= this.getIP().getAddress();
+           byte[] ip2= ((Student)o).getIP().getAddress();
             for(int i=0; i<4;i++)
-            {
-                int tmp=Integer.parseInt(ip1[i])-Integer.parseInt(ip2[i]);
-                if(tmp!=0)
+            {  
+             
+                if((ip1[i]-ip2[i])!=0)
                 {
-                   
-                    return tmp;
+                    r=(ip1[i]-ip2[i]);
+                    return r;
                 }
             }
         }
         catch(Exception ex)
         {
-            System.out.println(ex.getMessage());
-            ReportException.write("Student.compareTo()"+ex.getMessage());
+            ReportException.write("KeyIP.compareTo()"+ex.getMessage());
         }
-        return 0;
+        return r;
     }
-
-    void setRegimeView(byte regimeView)
+    
+    
+    public Student getStudentByIP(String ip)
     {
-        this.CS.regimeCurrent=regimeView;
+      
+        if(this.IP.getHostAddress().equals(ip))
+            return this;
+        else
+            return null;    
+    }
+    
+
+    /**
+     * @return the IP
+     */
+    public InetAddress getIP()
+    {
+        return IP;
     }
     
 }

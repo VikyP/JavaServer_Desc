@@ -18,7 +18,7 @@ Server
 		
 		
 		TEXT
-                        int arrSize - размер основного пакета (что ты просил)
+            int arrSize - размер основного пакета (что ты просил)
 			byte line - номер строки с курсором
 			byte fontHeigt - высота шрифта			
 			String msg -  текст

@@ -62,7 +62,7 @@ public class ScreenTiles
     //время отпрвки быстрой картинки
     private final int  TIME_FAST=128; 
     //время отправки при  построчном обновлении
-    private final int  TIME_ROWS=64;
+    private final int  TIME_ROWS=2;
     //время  отправки изменений
     private final int  TIME_DIFFERENCE=200;
     
@@ -167,6 +167,7 @@ public class ScreenTiles
            //обновляем экран построчно 
            if(rowsTime==0 || this.stopRow<ImageToSend.newPictureBuffer.getHeight()) 
            { 
+               System.out.println(" this.stopRow " +this.stopRow);
             //текущий тип пакета  - построчная передача
             typeSend=TypeImageSend.Row;
             body= gzip(this.byteCompressorRow());
@@ -197,14 +198,15 @@ public class ScreenTiles
      * @return сжатый массив байт
      */
     byte[] gzip(byte[] body)
-    {
+    {  
         try
         {
             ByteArrayInputStream BAIS = new ByteArrayInputStream(body);
             ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
+            int sizeZip=body.length<2048?body.length:2048;
             try
             {
-                byte[] buffer = new byte[32768];
+                byte[] buffer = new byte[sizeZip];
                 GZIPOutputStream gzos = new GZIPOutputStream(BAOS);
                 int length;
                 while ((length = BAIS.read(buffer)) > 0)
@@ -214,10 +216,12 @@ public class ScreenTiles
                 gzos.finish();
             } catch (FileNotFoundException ex)
             {
+                System.out.println("    1"+ ex.getMessage());
                 return null;
 
             } catch (IOException ex)
             {
+                System.out.println("    2" +ex.getMessage());
                 return null;
             }
             //сжатый массив
